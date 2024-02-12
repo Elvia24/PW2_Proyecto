@@ -9,28 +9,30 @@
       href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
     />
     <!-- Custom StyleSheet -->
+    
     <link rel="stylesheet" href="../styles/styles.css" />
     <link rel="icon" href="/front/images/Simbolo.png" type="image/png">
 
-    <title>ArtemiShop/Producto</title>
+    <title>ArtemiShop/Perfil</title>
   </head>
-
   <body>
     <!-- Navigation -->
     <div class="top-nav">
-      <div class="container d-flex">
+      <div class="container d-flex ">
+        <!-- <p></p> -->
 
       </div>
     </div>
     <div class="navigation">
       <div class="nav-center container d-flex">
+        
         <a href="../index.html" class="logo">
           <div class="logo-container">
               <img src="/front/images/Simbolo.png" alt="Logo de ArtemiShop">
               <h1>Artemi<span class="shop">Shop</span></h1>
           </div>
         </a>
-
+        
         <ul class="nav-list d-flex">
           <li class="nav-item">
             <a href="#" class="nav-link">Productos</a>
@@ -66,45 +68,55 @@
             <span class="d-flex">0</span>
           </a>
         </div>
+      </div>
+    </div>
+    <!-- Login -->
+    <div class="container">
+      <div class="login-form">
+        <form action="">
+          <h1>Inicio Sesión</h1>
+          <!-- <p>
+            Already have an account? Login in or
+            <a href="registro.html">Sign Up</a>
+          </p> -->
+          <label for="username">Nombre de Usuario</label>
+          <input type="text" placeholder="Introduzca su nombre de usuario" name="username" required />
 
-        <div class="hamburger">
-          <i class="bx bx-menu-alt-left"></i>
-        </div>
+          <label for="email">Correo</label>
+          <input type="text" placeholder="Ingrese correo electrónico" name="email" required />
+
+          <label for="psw">Contraseña</label>
+          <input
+            type="password"
+            placeholder="Introducir la contraseña"
+            name="psw"
+            required
+          />
+
+          <label for="Dirección">Dirección</label>
+          <input type="text" placeholder="Introduzca su Dirección" name="Dirección" required />
+
+          <label for="Rol">Rol</label>
+          <select>
+            <option value="1">Cliente</option>
+            <option value="2">Vendedor</option>
+            <option value="3">Administrador</option>
+          </select>
+          
+
+
+
+          <div class="buttons">
+            <a href="../index.html"><button type="button" class="cancelbtn">Cancelar</button></a>
+            <button type="submit" class="registrobtn">Iniciar</button>
+          </div>
+        </form>
       </div>
     </div>
 
-    <!-- Product Details -->
-    <section class="section product-detail">
-      <div class="details container">
-        <div class="left image-container">
-          <div class="main">
-            <img src="/front/images/product-8.jpg" id="zoom" alt="" />
-          </div>
-        </div>
-        <div class="right">
-          <span>CATEGORIA</span>
-          <h1>Boy’s T-Shirt By Handsome</h1>
-          <div class="price">$50</div>
-
-          <form class="form">
-            <label for="number">Cantidad:</label>
-            <input type="number" placeholder="1" min="1"/>
-            <a href="carrito.html" class="addCart">Añadir a al Carrito</a>
-          </form>
-          <h3>DETALLE DEL PRODUCTO</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero minima
-            delectus nulla voluptates nesciunt quidem laudantium, quisquam
-            voluptas facilis dicta in explicabo, laboriosam ipsam suscipit!
-          </p>
-        </div>
-      </div>
-    </section>
-
-
     <!-- Footer -->
-    <!-- <footer class="footer">
-      <div class="row">
+    <!--<footer class="footer">
+       <div class="row">
         <div class="col d-flex">
           <h4>INFORMATION</h4>
           <a href="">About us</a>
@@ -126,23 +138,11 @@
           <span><i class="bx bxl-twitter"></i></span>
           <span><i class="bx bxl-pinterest"></i></span>
         </div>
-      </div>
-    </footer> -->
+      </div> 
+    </footer>-->
+
     <!-- Custom Script -->
+    
     <script src="/back/src/js/index.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.4.0.min.js"
-      integrity="sha384-JUMjoW8OzDJw4oFpWIB2Bu/c6768ObEthBMVSiIx4ruBIEdyNSUQAjJNFqT5pnJ6"
-      crossorigin="anonymous"
-    ></script>
-    <script src="/back/src/js/zoomsl.min.js"></script>
-    <script>
-      $(function () {
-        console.log("hello");
-        $("#zoom").imagezoomsl({
-          zoomrange: [4, 4],
-        });
-      });
-    </script>
   </body>
 </html>

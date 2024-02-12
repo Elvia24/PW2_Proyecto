@@ -1,13 +1,15 @@
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Protest+Riot&display=swap');
 /* Color Variables */
 :root {
   --white: #fff;
   --black: #222;
-  --green: #6cbe02;
+  --green: #608008;
   --grey1: #f0f0f0;
   --grey2: #e9d7d3;
+  --green2:  #6080086b;
 }
 
 /* Basic Reset */
@@ -48,10 +50,14 @@ li {
   padding: 0 3rem;
 }
 
+
 .d-flex {
   display: flex;
   align-items: center;
+  
 }
+
+
 
 /* 
 =================
@@ -61,24 +67,32 @@ Header
 
 .header {
   position: relative;
-  min-height: 100vh;
+  /* min-height:30vh; */
   overflow-x: hidden;
+  
 }
 
 .top-nav {
   background-color: var(--green);
-  font-size: 1.3rem;
+  font-size: 1.8rem;
+  font-family: 'Protest Riot', sans-serif;
   color: var(--white);
 }
 
 .top-nav div {
-  justify-content: space-between;
-  height: 4.5rem;
+  justify-content: right;
+  height: 4.0rem;
 }
 
 .top-nav a {
   color: var(--white);
   padding: 0 0.5rem;
+}
+.top-nav a:hover {
+  text-decoration: underline;
+}
+ul.d-flex li {
+   margin-left: 20px;/* Ajusta el valor según sea necesario */
 }
 
 /* 
@@ -191,13 +205,13 @@ Navigation
     display: flex;
   }
 
-  .top-nav ul {
-    display: none;
-  }
+  /*.top-nav ul {
+      display: none; 
+  }*/
 
   .top-nav div {
-    justify-content: center;
-    height: 3rem;
+    /* justify-content: center; */
+    height:  4.0rem;
   }
 }
 
@@ -342,7 +356,7 @@ Hero Media Query
 
 /* Category Section */
 .section {
-  padding: 10rem 0 5rem 0;
+  padding: 4rem 0 5rem 0;
   overflow: hidden;
 }
 
@@ -613,8 +627,10 @@ Hero Media Query
 
 .banner {
   position: relative;
-  background-color: var(--grey2);
+  background-color: var(--green2);
   padding: 14rem 20%;
+  margin: 10px 0px 0px 0px;
+  
 }
 
 .banner .right img {
@@ -627,15 +643,17 @@ Hero Media Query
 .banner .trend,
 .banner p {
   display: block;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 300;
   margin-bottom: 1.5rem;
+  font-family: 'Protest Riot', sans-serif;
 }
 
 .banner h1 {
   font-size: 5.4rem;
   color: var(--black);
   margin-bottom: 1.5rem;
+  font-family: 'Protest Riot', sans-serif;
 }
 
 .banner .btn {
@@ -806,7 +824,7 @@ Hero Media Query
 
 /* Footer */
 .footer {
-  padding: 7rem 1rem;
+  padding: 5rem 1rem;
   background-color: var(--green);
 }
 
@@ -1300,7 +1318,7 @@ th:last-child {
 .product-detail .form input {
   padding: 0.8rem;
   text-align: center;
-  width: 3.5rem;
+  width: 5.5rem;
   margin-right: 2rem;
 }
 
@@ -1348,9 +1366,11 @@ th:last-child {
 
 /* Login Form */
 .login-form {
-  padding: 5rem 0;
+  padding: 10px 20px 10px 20px;
   max-width: 50rem;
-  margin: 5rem auto;
+  margin: 1rem auto;
+  background-color: var(--green2);
+  border-radius: 10px; 
 }
 
 .login-form form {
@@ -1360,6 +1380,8 @@ th:last-child {
 
 .login-form form h1 {
   margin-bottom: 1rem;
+  /* font-family: 'Protest Riot', sans-serif; */
+  align-self: center;
 }
 .login-form form p {
   margin-bottom: 2rem;
@@ -1370,19 +1392,29 @@ th:last-child {
 }
 
 .login-form form input {
-  border: 1px solid #ccc;
+  border: 1px solid var(--green);
   outline: none;
   padding: 1.5rem 0;
   text-indent: 1rem;
   font-size: 1.6rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   border-radius: 0.5rem;
 }
 
 .login-form form input::placeholder {
   font-size: 1.6rem;
-  color: #222;
+  color: #2222229c;
 }
+.login-form form select{
+  border: 1px solid var(--green);
+  outline: none;
+  padding: 1.5rem 0;
+  text-indent: 1rem;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+
 
 .login-form form .buttons {
   margin-top: 1rem;
@@ -1401,4 +1433,55 @@ th:last-child {
 
 .login-form form p a {
   color: dodgerblue;
+}
+
+
+/* 
+=================
+Navigation NombreLogo
+=================
+*/
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img {
+  width: 50px; /* ajusta el tamaño de la imagen */
+  height: 50px; /* ajusta el tamaño de la imagen */
+  /*border-radius: 50%;  para hacer un círculo */
+  margin-right: 0px; /* ajusta el espacio entre la imagen y el texto */
+}
+
+.logo-container h1 {
+  font-size: 30px;
+  color: #333;
+  font-family: 'Dancing Script', cursive;
+  text-decoration: underline; /* Subraya el texto */
+}
+
+.logo-container .shop {
+  color: var(--green);
+  font-weight: bold;
+  
+}
+
+.logo {
+  text-decoration: none;
+}
+
+
+
+
+.categorias-lista {
+  display: none;
+  position: absolute;
+  background-color: #fff; /* Color de fondo de la lista */
+  padding: 10px;
+  border: 1px solid #ccc; /* Borde de la lista */
+  border-radius: 5px; /* Redondea las esquinas */
+}
+
+#categorias-trigger:hover .categorias-lista {
+  display: block;
 }
