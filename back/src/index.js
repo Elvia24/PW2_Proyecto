@@ -1,6 +1,6 @@
 //agregado de la clase, es todo lo que se modifico
 const mysql = require('mysql');
-
+//hola
 const express = require('express');
 const app = express();
 const cors = require('cors');
