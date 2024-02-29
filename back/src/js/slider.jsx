@@ -1,3 +1,4 @@
+import Glide from '@glidejs/glide';
 // Hero Carousel
 const slider1 = document.querySelector('#glide_1');
 if (slider1) {
