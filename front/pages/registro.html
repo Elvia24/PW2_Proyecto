@@ -14,72 +14,75 @@
     <title>ArtemiShop/Registro</title>
   </head>
   <body>
-    <!-- Navigation -->
-    <div class="top-nav">
-      <div class="container d-flex ">
-        <!-- <p></p> -->
-        <ul class="d-flex">
-          <li><a href="/front/pages/inicio_sesion.html">Inicio Sesión</a></li>
-          <li><a href="/front/pages/registro.html">Registro</a></li>
-          <!-- <li><a href="#">Contact</a></li> -->
-        </ul>
-      </div>
-    </div>
-    <div class="navigation">
-      <div class="nav-center container d-flex">
-        <a href="../index.html" class="logo">
-          <div class="logo-container">
-              <img src="/front/images/Simbolo.png" alt="Logo de ArtemiShop">
-              <h1>Artemi<span class="shop">Shop</span></h1>
+      <!-- Navigation -->
+      <div class="top-nav">
+        <div class="container d-flex ">
+          <!-- <p></p> -->
+          <ul class="d-flex">
+            <li><a href="/front/pages/inicio_sesion.html">Inicio Sesión</a></li>
+            <li><a href="/front/pages/registro.html">Registro</a></li>
+            <!-- <li><a href="#">Contact</a></li> -->
+            </ul>
+            </div>
+            </div>
+            <div class="navigation">
+            <div class="nav-center container d-flex">
+            <a href="../index.html" class="logo">
+            <div class="logo-container">
+                <img src="/front/images/Simbolo.png" alt="Logo de ArtemiShop">
+                <h1>Artemi<span class="shop">Shop</span></h1>
+            </div>
+            </a>
+
           </div>
-        </a>
-
-      </div>
-    </div>
-    <!-- Login -->
-    <div class="container">
-      <div class="login-form">
-        <form action="">
-          <h1>Registro</h1>
-
-          <label for="username">Nombre de Usuario</label>
-          <input type="text" placeholder="Introduzca su nombre de usuario" name="username" required />
-
-          <label for="email">Correo</label>
-          <input type="text" placeholder="Ingrese correo electrónico" name="email" required />
-
-          <label for="psw">Contraseña</label>
-          <input
-            type="password"
-            placeholder="Introducir la contraseña"
-            name="psw"
-            required
-          />
-
-          <label for="Dirección">Dirección</label>
-          <input type="text" placeholder="Introduzca su Dirección" name="Dirección" required />
-
-          <label for="Rol">Rol</label>
-          <select>
-            <option value="Cliente">Cliente</option>
-            <option value="Vendedor">Vendedor</option>
-            <option value="Administrador">Administrador</option>
-          </select>
-          
-
-
-
-
-          <div class="buttons">
-            <a href="../index.html"><button type="button" class="cancelbtn">Cancelar</button></a>
-            <button type="submit" class="registrobtn">Iniciar</button>
           </div>
+          <!-- Registro -->
+          <div class="container">
+            <div class="login-form">
+              <form id="formulario" action="../pages/inicio_sesion.html" method="get">
+              <h1>Registro</h1>
+
+              <label for="username">Nombre de Usuario</label>
+              <input type="text" placeholder="Introduzca su nombre de usuario" name="username" required />
+
+              <label for="email">Correo</label>
+              <input type="text" placeholder="Ingrese correo electrónico" name="email" required />
+
+              <label for="psw">Contraseña</label>
+              <input
+               id="psw"
+                type="password"
+                placeholder="Introducir la contraseña"
+                name="psw"
+                
+                oninput="validarContraseña()"
+                required
+              />
+              <p id="mensaje"></p>
+
+
+              <label for="Dirección">Dirección</label>
+              <input type="text" placeholder="Introduzca su Dirección" name="Dirección" required />
+
+              <label for="Rol">Rol</label>
+              <select>
+                <option value="Cliente">Cliente</option>
+                <option value="Vendedor">Vendedor</option>
+                <option value="Administrador">Administrador</option>
+              </select>
+              
+
+              <div class="buttons">
+                <a href="../index.html"><button type="button" class="cancelbtn">Cancelar</button></a>
+                <button type="submit" class="registrobtn" onclick="return iniciarRegistro()">Iniciar</button>
+
+              </div>
         </form>
       </div>
     </div>
 
 
     <!-- Custom Script -->
-    <script src="/back/src/js/index.js"></script>
+    <script src="/back/src/index.js"></script>
   </body>
 </html>
