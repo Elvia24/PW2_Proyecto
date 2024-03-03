@@ -33,60 +33,7 @@
               <h1>Artemi<span class="shop">Shop</span></h1>
           </div>
         </a>
-        <!-- <ul class="nav-list d-flex">
-          <li class="nav-item">
-            <a href="/" class="nav-link">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="product.html" class="nav-link">Shop</a>
-          </li>
-          <li class="nav-item">
-            <a href="#terms" class="nav-link">Terms</a>
-          </li>
-          <li class="nav-item">
-            <a href="#about" class="nav-link">About</a>
-          </li>
-          <li class="nav-item">
-            <a href="#contact" class="nav-link">Contact</a>
-          </li>
-          <li class="icons d-flex">
-            <a href="login.html" class="icon">
-              <i class="bx bx-user"></i>
-            </a>
-            <div class="icon">
-              <i class="bx bx-search"></i>
-            </div>
-            <div class="icon">
-              <i class="bx bx-heart"></i>
-              <span class="d-flex">0</span>
-            </div>
-            <a href="cart.html" class="icon">
-              <i class="bx bx-cart"></i>
-              <span class="d-flex">0</span>
-            </a>
-          </li>
-        </ul> -->
 
-        <!-- <div class="icons d-flex">
-          <a href="login.html" class="icon">
-            <i class="bx bx-user"></i>
-          </a>
-          <div class="icon">
-            <i class="bx bx-search"></i>
-          </div>
-          <div class="icon">
-            <i class="bx bx-heart"></i>
-            <span class="d-flex">0</span>
-          </div>
-          <a href="cart.html" class="icon">
-            <i class="bx bx-cart"></i>
-            <span class="d-flex">0</span>
-          </a>
-        </div> -->
-
-        <!-- <div class="hamburger">
-          <i class="bx bx-menu-alt-left"></i>
-        </div> -->
       </div>
     </div>
     <!-- Login -->
@@ -95,6 +42,8 @@
         <form action="">
           <h1>Registro</h1>
 
+          <label for="username">Nombre de Usuario</label>
+          <input type="text" placeholder="Introduzca su nombre de usuario" name="username" required />
 
           <label for="email">Correo</label>
           <input type="text" placeholder="Ingrese correo electrónico" name="email" required />
@@ -107,12 +56,18 @@
             required
           />
 
+          <label for="Dirección">Dirección</label>
+          <input type="text" placeholder="Introduzca su Dirección" name="Dirección" required />
+
           <label for="Rol">Rol</label>
           <select>
-            <option value="1">Cliente</option>
-            <option value="2">Vendedor</option>
-          
+            <option value="Cliente">Cliente</option>
+            <option value="Vendedor">Vendedor</option>
+            <option value="Administrador">Administrador</option>
           </select>
+          
+
+
 
 
           <div class="buttons">
@@ -123,32 +78,6 @@
       </div>
     </div>
 
-    <!-- Footer -->
-    <!--<footer class="footer">
-       <div class="row">
-        <div class="col d-flex">
-          <h4>INFORMATION</h4>
-          <a href="">About us</a>
-          <a href="">Contact Us</a>
-          <a href="">Term & Conditions</a>
-          <a href="">Shipping Guide</a>
-        </div>
-        <div class="col d-flex">
-          <h4>USEFUL LINK</h4>
-          <a href="">Online Store</a>
-          <a href="">Customer Services</a>
-          <a href="">Promotion</a>
-          <a href="">Top Brands</a>
-        </div>
-        <div class="col d-flex">
-          <span><i class="bx bxl-facebook-square"></i></span>
-          <span><i class="bx bxl-instagram-alt"></i></span>
-          <span><i class="bx bxl-github"></i></span>
-          <span><i class="bx bxl-twitter"></i></span>
-          <span><i class="bx bxl-pinterest"></i></span>
-        </div>
-      </div> 
-    </footer>-->
 
     <!-- Custom Script -->
     <script src="/back/src/js/index.js"></script>
