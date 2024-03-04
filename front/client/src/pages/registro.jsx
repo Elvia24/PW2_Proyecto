@@ -31,7 +31,7 @@ function registro(){
                     <select>
                         <option value="Cliente">Cliente</option>
                         <option value="Vendedor">Vendedor</option>
-                        <option value="Administrador">Administrador</option>
+                      
                     </select>
 
                     <div className="buttons">
