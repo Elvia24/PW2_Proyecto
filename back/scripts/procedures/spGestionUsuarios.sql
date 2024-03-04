@@ -24,7 +24,7 @@ BEGIN
         SET username = p_Username,
             email = p_Email,
             passwor = p_Password,
-            direccion = p_Direccion,
+            direccion = p_Direccion, 
             role = p_Role
         WHERE userID = p_userID;
     END IF;
