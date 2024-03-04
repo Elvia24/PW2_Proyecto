@@ -7,8 +7,32 @@ require('dotenv').config();
 
 
 
+//const login = async (req, res) => {
+//  res.send('Esto es para login');
+//};
+
 const login = async (req, res) => {
-  res.send('Esto es para login');
+  try {
+    const { username, contrasena } = req.body;
+
+    
+    const [results] = await pool.promise().query('CALL spLoginUsuario(?, ?)', [username, contrasena]);
+
+    
+    if (results[0].length > 0) {
+      res.json({
+        success: true,
+        message: 'Inicio de sesión exitoso',
+        data: results[0][0] 
+      });
+    } else {
+      
+      res.status(401).json({ success: false, message: 'Usuario o contraseña incorrecta' });
+    }
+  } catch (error) {
+    console.error('Error al intentar iniciar sesión:', error.message);
+    res.status(500).json({ success: false, message: 'Error al procesar la solicitud de inicio de sesión' });
+  }
 };
 
 //const registro = async (req, res) => {
