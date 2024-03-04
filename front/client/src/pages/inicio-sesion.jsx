@@ -20,7 +20,7 @@ function InicioSesion() {
             setMessage(response.data.message); 
             setTimeout(() => {
                 setMessage(''); 
-                window.location.href = '/'; // Redireccionamos al inicio o donde prefieras
+                window.location.href = '/'; 
             }, 2000);
         } catch (error) {
             if (error.response) {
