@@ -1,4 +1,4 @@
-    function iniciarRegistro() {
+    export function iniciarRegistro() {
         // Ejecutar la validación de la contraseña antes de redirigir
         if (validarContraseña()) {
         document.getElementById("formulario").submit();

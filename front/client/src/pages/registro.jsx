@@ -1,5 +1,7 @@
 
 import Navbar from "./components/Navbar"
+import { validarContraseña } from '../js/validarPassword';
+import { iniciarRegistro } from '../js/validarPassword';
 function registro(){
     return (
         <div>
@@ -34,7 +36,7 @@ function registro(){
 
                     <div className="buttons">
                         <a href="../index.html"><button type="button" className="cancelbtn">Cancelar</button></a>
-                        <button type="submit" className="registrobtn" onClick="return iniciarRegistro()">Iniciar</button>
+                        <button type="submit" className="registrobtn" onClick={iniciarRegistro}>Iniciar</button>
                     </div>
                 </form>
             </div>
