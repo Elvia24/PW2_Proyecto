@@ -13,7 +13,7 @@ app.use('/',require('./routes/userRoutes'));
 //app.use(express.json());
 
 app.listen(3000,()=>{console.log("server on port: 3000")});
-
+//prueba
 //agregado de la clase
 const db = mysql.createConnection({
     host: "localhost",
