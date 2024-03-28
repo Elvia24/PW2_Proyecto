@@ -56,13 +56,7 @@
           <a href="login.html" class="icon">
             <i class="bx bx-user"></i>
           </a>
-          <!-- <div class="icon">
-            <i class="bx bx-search"></i>
-          </div> -->
-          <!-- <div class="icon">
-            <i class="bx bx-heart"></i>
-            <span class="d-flex">0</span>
-          </div> -->
+
           <a href="carrito.html" class="icon">
             <i class="bx bx-cart"></i>
             <span class="d-flex">0</span>
@@ -70,78 +64,55 @@
         </div>
       </div>
     </div>
-    <!-- Login -->
+    <!-- PERFIL -->
     <div class="container">
-      <div class="login-form">
-        <form action="">
-          <h1>Inicio Sesión</h1>
-          <!-- <p>
-            Already have an account? Login in or
-            <a href="registro.html">Sign Up</a>
-          </p> -->
-          <label for="username">Nombre de Usuario</label>
-          <input type="text" placeholder="Introduzca su nombre de usuario" name="username" required />
+      <section class="user-info">
+        <div class="info-section">
+          <h2>Datos del Usuario <i class="bx bx-user"></i></h2>
+          <ul>
+            <li><strong>Nombre:</strong> Juan Pérez</li>
+            <li><strong>Correo:</strong> ejemplo@example.com</li>
+            <li><strong>Dirección:</strong> Calle 123, Ciudad, País</li>
+            <li><strong>Rol:</strong> Cliente</li>
+          </ul>
+        </div>
+        <div class="edit-section">
+          <h2>Editar Información</h2>
+          <form id="user-info-form">
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+              <input type="text" id="nombre" name="nombre" value="Juan Pérez" required>
+            </div>
+            <div class="form-group">
+              <label for="correo">Correo:</label>
+              <input type="email" id="correo" name="correo" value="ejemplo@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="direccion">Dirección:</label>
+              <input type="text" id="direccion" name="direccion" value="Calle 123, Ciudad, País" required>
+            </div>
+            <div class="form-group">
+              <label for="rol">Rol:</label>
+              <input type="text" id="rol" name="rol" value="Cliente" readonly>
+            </div>
+            <button type="submit">Guardar Cambios</button>
+          </form>
+        </div>
 
-          <label for="email">Correo</label>
-          <input type="text" placeholder="Ingrese correo electrónico" name="email" required />
+        
+      </section>
 
-          <label for="psw">Contraseña</label>
-          <input
-            type="password"
-            placeholder="Introducir la contraseña"
-            name="psw"
-            required
-          />
-
-          <label for="Dirección">Dirección</label>
-          <input type="text" placeholder="Introduzca su Dirección" name="Dirección" required />
-
-          <label for="Rol">Rol</label>
-          <select>
-            <option value="1">Cliente</option>
-            <option value="2">Vendedor</option>
-            <option value="3">Administrador</option>
-          </select>
-          
-
-
-
-          <div class="buttons">
-            <a href="../index.html"><button type="button" class="cancelbtn">Cancelar</button></a>
-            <button type="submit" class="registrobtn">Iniciar</button>
-          </div>
-        </form>
+      <div class="ejemplo">
+        aqui van los reportes 
       </div>
+      
+
     </div>
+    
+    
+    
 
-    <!-- Footer -->
-    <!--<footer class="footer">
-       <div class="row">
-        <div class="col d-flex">
-          <h4>INFORMATION</h4>
-          <a href="">About us</a>
-          <a href="">Contact Us</a>
-          <a href="">Term & Conditions</a>
-          <a href="">Shipping Guide</a>
-        </div>
-        <div class="col d-flex">
-          <h4>USEFUL LINK</h4>
-          <a href="">Online Store</a>
-          <a href="">Customer Services</a>
-          <a href="">Promotion</a>
-          <a href="">Top Brands</a>
-        </div>
-        <div class="col d-flex">
-          <span><i class="bx bxl-facebook-square"></i></span>
-          <span><i class="bx bxl-instagram-alt"></i></span>
-          <span><i class="bx bxl-github"></i></span>
-          <span><i class="bx bxl-twitter"></i></span>
-          <span><i class="bx bxl-pinterest"></i></span>
-        </div>
-      </div> 
-    </footer>-->
 
-    <!-- Custom Script -->
     
     <script src="/back/src/js/index.js"></script>
   </body>

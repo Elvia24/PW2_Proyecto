@@ -10,6 +10,8 @@
   --grey1: #f0f0f0;
   --grey2: #e9d7d3;
   --green2:  #6080086b;
+  --blue_save: #63b4da ;
+  --blue_save2: #447a94 ;
 }
 
 /* Basic Reset */
@@ -1455,7 +1457,7 @@ Navigation NombreLogo
 
 .logo-container h1 {
   font-size: 30px;
-  color: #333;
+  color: #000000;
   font-family: 'Dancing Script', cursive;
   text-decoration: underline; /* Subraya el texto */
 }
@@ -1485,3 +1487,110 @@ Navigation NombreLogo
 #categorias-trigger:hover .categorias-lista {
   display: block;
 }
+
+
+/* PERFIL */
+
+
+
+.user-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
+  margin-top: 50px;
+  
+}
+.info-section,
+.edit-section {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+.info-section h2,
+.edit-section h2 {
+  text-align: center;
+}
+
+.info-section{
+  background-color: var(--green2);
+  border-radius: 20px;
+  
+}
+.info-section li strong {
+  font-weight: bold;
+  margin-right: 5px;
+}
+.info-section li {
+padding-bottom: 8px;
+}
+.info-section .bx-user {
+  font-size: 5em; /* Tamaño del icono */
+  display: block; /* Hace que el icono se comporte como un bloque para centrarlo horizontalmente */
+  margin: 0 auto; /* Centra horizontalmente el icono */
+  /* margin: 15px 135px 15px 135px ; */
+}
+
+
+.edit-section{
+  background-color: var(--green);
+  border-radius: 20px;
+}
+.edit-section label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: black; /* Cambiar color a tu preferencia */
+}
+
+/* Estilos adicionales para los input dentro de edit-section */
+.edit-section input[type="text"],
+.edit-section input[type="email"] {
+  width: 100%;
+  padding: 1.5rem ;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Asegura que el padding no aumente el ancho total del input */
+
+  border: 1px solid var(--green);
+  outline: none;
+  font-size: 1.6rem;
+}
+
+/* Estilos para el botón dentro de edit-section */
+.edit-section button {
+  background-color: var(--blue_save); /* Color de fondo */
+  color: black; /* Color del texto */
+  padding: 10px 20px; /* Espacio interno */
+  border: none; /* Sin borde */
+  border-radius: 4px; /* Borde redondeado */
+  cursor: pointer; /* Cursor de puntero */
+  font-weight: bold;
+}
+
+.edit-section button:hover {
+  background-color: var(--blue_save2); /* Cambia el color de fondo al pasar el ratón */
+}
+
+.ejemplo{
+  background-color: #555;
+  margin: 10px;
+  /* margin: 10px; */
+
+}
+
+@media only screen and (min-width: 601px) {
+  .user-info {
+    flex-direction: row;
+  }
+
+  .info-section {
+    width: calc(50% - 10px);
+  }
+
+  .edit-section {
+    width: calc(50% - 10px);
+  }
+}
+/* PERFIL */
