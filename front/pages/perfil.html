@@ -245,9 +245,13 @@
             </div>
           </form>
           <div class="button-group">
-            <button class="btn-ver">Ver Mis Categorias</button>
-            <button class="btn-editar">Editar Categoria</button>
-            <button class="btn-eliminar">Eliminar Categoria</button>
+            <button class="btn-ver" id="btn-verC">Ver Mis Categorias</button>
+            <button class="btn-editar" id="btn-editarC">
+              Editar Categoria
+            </button>
+            <button class="btn-eliminar" id="btn-eliminarC">
+              Eliminar Categoria
+            </button>
           </div>
         </div>
         <!-- AGREGAR CATEGORIAS -->
@@ -492,8 +496,9 @@
       </div>
       <!-- SESSION REPORTES -->
     </div>
-    <!-- Modales Productos Sesion -->
 
+    <!-- Modales Productos Sesion -->
+    <!-- modal-verP-->
     <div id="modal-verP" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -546,7 +551,7 @@
         </div>
       </div>
     </div>
-    <!-- modal editarP-->
+    <!-- modal-editarP-->
     <div id="modal-editarP" class="modal">
       <div class="modal-content">
         <h2>Editar Productos</h2>
@@ -645,7 +650,7 @@
         </div>
       </div>
     </div>
-
+    <!-- modal-eliminarP-->
     <div id="modal-eliminarP" class="modal">
       <div class="modal-content">
         <h2>Eliminar Productos</h2>
@@ -697,13 +702,184 @@
               <p id="cantidadProductoEl"></p>
               <p id="categoriaProductoEl"></p>
 
-              <button class="btn-eliminar"> Eliminar</button>
+              <button class="btn-eliminar">Eliminar</button>
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- Modales Productos Sesion -->
+    <!-- Modales Categoria Sesion -->
+    <!-- modal-verC-->
+    <div id="modal-verC" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-body">
+          <!-- Lado izquierdo: Tabla para mostrar los categorias -->
+          <div class="tabla-de-categorias">
+            <h3>Lista de Categorias</h3>
+            <table id="tabla-categorias">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Imagen</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Aquí se agregarán las filas de la tabla con los productos -->
+                <tr>
+                  <td>nombreC.1</td>
+                  <td>
+                    <div class="cart-info">
+                      <img
+                        src="/front/images/cat2.jpg"
+                        style="min-width: 120px"
+                        alt=""
+                      />
+                    </div>
+                  </td>
+                  <td>descripcionC.1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="modal-segundo-datos-vc" class="modal">
+        <div class="modal-content-segundo">
+          <span class="close-msvC">&times;</span>
+          <div class="modal-body">
+            <h2>Información de la Categoria</h2>
+            <p id="nombreCategoria"></p>
+            <img
+              id="imagenCategoria"
+              src=""
+              alt="Imagen de la Categoria"
+              style="width: 200px"
+            />
+            <p id="descripcionCategoria"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal-editarC-->
+    <div id="modal-editarC" class="modal">
+      <div class="modal-content">
+        <h2>Editar Categoria</h2>
+        <span class="close">&times;</span>
+        <div class="modal-body">
+          <!-- Lado izquierdo: Tabla para mostrar los productos -->
+          <div class="tabla-de-categorias-mec">
+            <h3>Lista de Categorias</h3>
+            <table id="tabla-categorias-mec">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Imagen</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Aquí se agregarán las filas de la tabla con los productos -->
+                <tr>
+                  <td>nombreC.1</td>
+                  <td>
+                    <div class="cart-info">
+                      <img
+                        src="/front/images/cat2.jpg"
+                        alt=""
+                        style="min-width: 120px"
+                      />
+                    </div>
+                  </td>
+                  <td>descripcionC.1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="modal-segundo-datos-mec" class="modal">
+        <div class="modal-content-segundo">
+          <span class="close-mec">&times;</span>
+          <div class="modal-body">
+            <h2>Editar Categoria</h2>
+            <form id="formulario-edicion">
+              <label for="nombreEC">Nombre:</label>
+              <input type="text" id="nombreEC" name="nombreEC" /><br />
+
+              <label for="imagenEC">Imagen:</label>
+              <input type="file" id="imagenEC" name="imagenEC" /><br />
+              <img
+                id="imagenActualEC"
+                src=""
+                alt="Imagen actual Categoria"
+                style="max-width: 120px"
+              /><br />
+
+              <label for="descripcionEC">Descripción:</label>
+              <textarea id="descripcionEC" name="descripcionEC"></textarea
+              ><br />
+
+              <input type="submit" value="Guardar" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal-eliminarC-->
+    <div id="modal-eliminarC" class="modal">
+      <div class="modal-content">
+        <h2>Eliminar Categoria</h2>
+        <span class="close">&times;</span>
+        <div class="modal-body">
+          <!-- Lado izquierdo: Tabla para mostrar los productos -->
+          <div class="tabla-de-categorias-melc">
+            <h3>Lista de Categorias</h3>
+            <table id="tabla-categorias-melc">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Imagen</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Aquí se agregarán las filas de la tabla con los productos -->
+                <tr>
+                  <td>nombreC.1</td>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/cat2.jpg" alt="" style="min-width:120px ;"/>
+                    </div>
+                  </td>
+                  <td>descripcionC.1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="modal-segundo-datos-melc" class="modal">
+        <div class="modal-content-segundo">
+          <span class="close-melc">&times;</span>
+          <div class="modal-body">
+            <h2>Eliminar Categoria</h2>
+            <div id="formulario-eliminar">
+              <p id="nombreElC"></p>
+              <img id="imagenElC" src="" alt="Imagen Categoria" style="width: 200px" />
+              <p id="descripcionElC"></p>
+              <br>
+              <button class="btn-eliminar">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modales Categoria Sesion -->
+
+    <!-- visualizar  imagenes del producto y categoria -->
     <script>
       //imagen del producto previsualizar ----
       function previewImage(event) {
@@ -731,7 +907,10 @@
         reader.readAsDataURL(event.target.files[0]);
       }
     </script>
+    <!-- visualizar  imagenes del producto y categoria -->
 
+    <!-- Botones para las sesiones |editar infromacion| Agregar Nuevo Producto
+      |Agregar Nueva Categoria | Ventas | Comparas    -->
     <script>
       //botones para las sessiones
       document.addEventListener("DOMContentLoaded", function () {
@@ -758,11 +937,11 @@
         const ventaSession = document.getElementById("session-report-venta");
         const compraSession = document.getElementById("session-report-compra");
         // Mostrar por defecto la sección "Editar mi información"
-        //  perfilEditarSection.style.display = "block";
-        //  agregarProductoSection.style.display = "none";
-        //  agregarCategoriaSection.style.display = "none";
-        //  ventaSession.style.display = "none";
-        //  compraSession.style.display = "none";
+          perfilEditarSection.style.display = "block";
+          agregarProductoSection.style.display = "none";
+          agregarCategoriaSection.style.display = "none";
+          ventaSession.style.display = "none";
+          compraSession.style.display = "none";
 
         // Evento de clic para el botón "Editar mi información"
         editarInformacionBtn.addEventListener("click", function () {
@@ -811,7 +990,10 @@
         });
       });
     </script>
+    <!-- Botones para las sesiones |editar infromacion| Agregar Nuevo Producto
+      |Agregar Nueva Categoria | Ventas | Comparas    -->
 
+    <!-- MODALES PRINCIPALES PARA PRODUCTO  -->
     <script>
       //modales de producto
       //botones para las sessiones
@@ -859,7 +1041,9 @@
         });
       });
     </script>
+    <!-- MODALES PRINCIPALES PARA PRODUCTO  -->
 
+    <!-- MODALES SECUNDARIOS PARA PRODUCTO  -->
     <script>
       //segundo modal verP----
       // Obtener todas las filas de la tabla
@@ -1064,62 +1248,348 @@
       });
     </script>
 
+    <script>
+      //segundo modal eliminarP----
+      // Obtener todas las filas de la tabla
+      const filasEliminar = document.querySelectorAll(
+        "#tabla-productos_melp tbody tr"
+      );
 
-        <script>
-          //segundo modal eliminarP----
-          // Obtener todas las filas de la tabla
-          const filasEliminar = document.querySelectorAll("#tabla-productos_melp tbody tr");
-    
-          // Agregar evento clic a cada fila
-          filasEliminar.forEach((fila) => {
-            fila.addEventListener("click", () => {
-              // Mostrar el segundo modal
-              const modalSegundo = document.getElementById("modal-segundo-datos-melp");
-              modalSegundo.style.display = "block";
-    
-              // Obtener los datos de la fila
-              const nombre = fila.querySelector("td:nth-child(1)").textContent;
-              const imagen = fila
-                .querySelector("td:nth-child(2) img")
-                .getAttribute("src");
-              const descripcion = fila.querySelector("td:nth-child(3)").textContent;
-              const precio = fila.querySelector("td:nth-child(4)").textContent;
-              const cantidad = fila.querySelector("td:nth-child(5)").textContent;
-              const categoria = fila.querySelector("td:nth-child(6)").textContent;
-    
-              // Mostrar los datos en el modal
-              document.getElementById("nombreProductoEl").textContent =
-                "Nombre: " + nombre;
-              document.getElementById("imagenProductoEl").src = imagen;
-              document.getElementById("descripcionProductoEl").textContent =
-                "Descripción: " + descripcion;
-              document.getElementById("precioProductoEl").textContent =
-                "Precio: " + precio;
-              document.getElementById("cantidadProductoEl").textContent =
-                "Cantidad: " + cantidad;
-              document.getElementById("categoriaProductoEl").textContent =
-                "Categoría: " + categoria;
-            });
-          });
-    
-          // Obtener el botón de cerrar del segundo modal
-          const closeBtnSegundo_melp = document.querySelector(
-            "#modal-segundo-datos-melp .close-melp"
+      // Agregar evento clic a cada fila
+      filasEliminar.forEach((fila) => {
+        fila.addEventListener("click", () => {
+          // Mostrar el segundo modal
+          const modalSegundo = document.getElementById(
+            "modal-segundo-datos-melp"
           );
-    
-          // Agregar evento clic al botón de cerrar del segundo modal
-          closeBtnSegundo_melp.addEventListener("click", () => {
-            const modalSegundo_melp = document.getElementById("modal-segundo-datos-melp");
-            modalSegundo_melp.style.display = "none"; // Ocultar el segundo modal al hacer clic en el botón de cerrar
-          });
-    
-          // Evitar que el segundo modal se cierre al hacer clic fuera de él
-          const modalSegundo_melp = document.getElementById("modal-segundo-datos-melp");
-          modalSegundo_melp.addEventListener("click", (event) => {
-            event.stopPropagation(); // Evitar la propagación del evento para que no se cierre al hacer clic dentro
-          });
-        </script>
+          modalSegundo.style.display = "block";
 
+          // Obtener los datos de la fila
+          const nombre = fila.querySelector("td:nth-child(1)").textContent;
+          const imagen = fila
+            .querySelector("td:nth-child(2) img")
+            .getAttribute("src");
+          const descripcion = fila.querySelector("td:nth-child(3)").textContent;
+          const precio = fila.querySelector("td:nth-child(4)").textContent;
+          const cantidad = fila.querySelector("td:nth-child(5)").textContent;
+          const categoria = fila.querySelector("td:nth-child(6)").textContent;
+
+          // Mostrar los datos en el modal
+          document.getElementById("nombreProductoEl").textContent =
+            "Nombre: " + nombre;
+          document.getElementById("imagenProductoEl").src = imagen;
+          document.getElementById("descripcionProductoEl").textContent =
+            "Descripción: " + descripcion;
+          document.getElementById("precioProductoEl").textContent =
+            "Precio: " + precio;
+          document.getElementById("cantidadProductoEl").textContent =
+            "Cantidad: " + cantidad;
+          document.getElementById("categoriaProductoEl").textContent =
+            "Categoría: " + categoria;
+        });
+      });
+
+      // Obtener el botón de cerrar del segundo modal
+      const closeBtnSegundo_melp = document.querySelector(
+        "#modal-segundo-datos-melp .close-melp"
+      );
+
+      // Agregar evento clic al botón de cerrar del segundo modal
+      closeBtnSegundo_melp.addEventListener("click", () => {
+        const modalSegundo_melp = document.getElementById(
+          "modal-segundo-datos-melp"
+        );
+        modalSegundo_melp.style.display = "none"; // Ocultar el segundo modal al hacer clic en el botón de cerrar
+      });
+
+      // Evitar que el segundo modal se cierre al hacer clic fuera de él
+      const modalSegundo_melp = document.getElementById(
+        "modal-segundo-datos-melp"
+      );
+      modalSegundo_melp.addEventListener("click", (event) => {
+        event.stopPropagation(); // Evitar la propagación del evento para que no se cierre al hacer clic dentro
+      });
+    </script>
+    <!-- MODALES SECUNDARIOS PARA PRODUCTO  -->
+
+    <!-- MODALES PRINCIPALES PARA CATEGORIA  -->
+    <script>
+      //modales de categorias
+      //botones para las sessiones
+      document.addEventListener("DOMContentLoaded", function () {
+        // Obtener referencias a los elementos
+        const verC_Btn = document.getElementById("btn-verC");
+        const editarC_Btn = document.getElementById("btn-editarC");
+        const eliminarC_Btn = document.getElementById("btn-eliminarC");
+
+        const verC_Modal = document.getElementById("modal-verC");
+        const editarC_Modal = document.getElementById("modal-editarC");
+        const eliminarC_Modal = document.getElementById("modal-eliminarC");
+
+        // Función para abrir el modal correspondiente
+        function abrirModalC(modal) {
+          modal.style.display = "block";
+        }
+        // Función para cerrar todos los modales
+        function cerrarModalesC() {
+          verC_Modal.style.display = "none";
+          editarC_Modal.style.display = "none";
+          eliminarC_Modal.style.display = "none";
+        }
+
+        verC_Btn.addEventListener("click", function () {
+          cerrarModalesC();
+          abrirModalC(verC_Modal);
+        });
+
+        editarC_Btn.addEventListener("click", function () {
+          cerrarModalesC();
+          abrirModalC(editarC_Modal);
+        });
+
+        eliminarC_Btn.addEventListener("click", function () {
+          cerrarModalesC();
+          abrirModalC(eliminarC_Modal);
+        });
+
+        const closes = document.querySelectorAll(".close");
+        closes.forEach(function (close) {
+          close.addEventListener("click", function () {
+            cerrarModalesC();
+          });
+        });
+      });
+    </script>
+    <!-- MODALES PRINCIPALES PARA CATEGORIA  -->
+    <!-- MODALES SECUNDARIOS PARA CATEGORIA  -->
+    <script>
+      //segundo modal verC----
+      // Obtener todas las filas de la tabla
+      const filasC = document.querySelectorAll("#tabla-categorias tbody tr");
+
+      // Agregar evento clic a cada fila
+      filasC.forEach((fila) => {
+        fila.addEventListener("click", () => {
+          // Mostrar el segundo modal
+          const modalSegundoVC = document.getElementById(
+            "modal-segundo-datos-vc"
+          );
+          modalSegundoVC.style.display = "block";
+
+          // Obtener los datos de la fila
+          const nombreC = fila.querySelector("td:nth-child(1)").textContent;
+          const imagenC = fila
+            .querySelector("td:nth-child(2) img")
+            .getAttribute("src");
+          const descripcionC =
+            fila.querySelector("td:nth-child(3)").textContent;
+
+          // Mostrar los datos en el modal
+          document.getElementById("nombreCategoria").textContent =
+            "Nombre: " + nombreC;
+          document.getElementById("imagenCategoria").src = imagenC;
+          document.getElementById("descripcionCategoria").textContent =
+            "Descripción: " + descripcionC;
+        });
+      });
+
+      // Obtener el botón de cerrar del segundo modal
+      const closeBtnSegundoVC = document.querySelector(
+        "#modal-segundo-datos-vc .close-msvC"
+      );
+
+      // Agregar evento clic al botón de cerrar del segundo modal
+      closeBtnSegundoVC.addEventListener("click", () => {
+        const modalSegundoVC = document.getElementById(
+          "modal-segundo-datos-vc"
+        );
+        modalSegundoVC.style.display = "none"; // Ocultar el segundo modal al hacer clic en el botón de cerrar
+      });
+
+      // Evitar que el segundo modal se cierre al hacer clic fuera de él
+      const modalSegundoVC = document.getElementById("modal-segundo-datos-vc");
+      modalSegundoVC.addEventListener("click", (event) => {
+        event.stopPropagation(); // Evitar la propagación del evento para que no se cierre al hacer clic dentro
+      });
+    </script>
+
+    <script>
+      //segundo modal editarC---------
+      // Obtener todas las filas de la tabla
+      const filaseditarC = document.querySelectorAll(
+        "#tabla-categorias-mec tbody tr"
+      );
+
+      // Agregar evento clic a cada fila
+      filaseditarC.forEach((fila) => {
+        fila.addEventListener("click", () => {
+          // Mostrar el segundo modal
+          const modalSegundo = document.getElementById(
+            "modal-segundo-datos-mec"
+          );
+          modalSegundo.style.display = "block";
+
+          // Obtener los datos de la fila
+          const nombre_mec = fila.querySelector("td:nth-child(1)").textContent;
+          const imagen_mec = fila
+            .querySelector("td:nth-child(2) img")
+            .getAttribute("src");
+          const descripcion_mec =
+            fila.querySelector("td:nth-child(3)").textContent;
+
+          // Mostrar los datos en el modal
+          document.getElementById("nombreEC").textContent =
+            "Nombre: " + nombre_mec;
+          document.getElementById("imagenEC").src = imagen_mec;
+          document.getElementById("descripcionEC").textContent =
+            "Descripción: " + descripcion_mec;
+        });
+      });
+
+      // Obtener el botón de cerrar del segundo modal
+      const closeBtnSegundoEditarC = document.querySelector(
+        "#modal-segundo-datos-mec .close-mec"
+      );
+
+      // Agregar evento clic al botón de cerrar del segundo modal
+      closeBtnSegundoEditarC.addEventListener("click", () => {
+        const modalSegundoEditarC = document.getElementById(
+          "modal-segundo-datos-mec"
+        );
+        modalSegundoEditarC.style.display = "none"; // Ocultar el segundo modal al hacer clic en el botón de cerrar
+      });
+
+      // Evitar que el segundo modal se cierre al hacer clic fuera de él
+      const modalSegundoEditarC = document.getElementById(
+        "modal-segundo-datos-mec"
+      );
+      modalSegundoEditarC.addEventListener("click", (event) => {
+        event.stopPropagation(); // Evitar la propagación del evento para que no se cierre al hacer clic dentro
+      });
+
+      // Agregar evento submit al formulario de edición
+      document
+        .getElementById("formulario-edicion")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Evitar que el formulario se envíe y la página se recargue
+
+          // Obtener los valores de los campos de entrada
+          const nombre = document.getElementById("nombreProductoEC").value;
+          const descripcion = document.getElementById(
+            "descripcionProductoE"
+          ).value;
+
+          // Actualizar los valores en la tabla o donde sea necesario
+          const filaActual = document.querySelector(
+            "#tabla-productos-mec tbody .seleccionada"
+          );
+          filaActual.querySelector("td:nth-child(1)").textContent = nombre;
+          filaActual.querySelector("td:nth-child(3)").textContent = descripcion;
+
+          // Cerrar el modal después de guardar los cambios
+          const modalSegundoEditarC = document.getElementById(
+            "modal-segundo-datos-mec"
+          );
+          modalSegundoEditarC.style.display = "none";
+        });
+
+      // Agregar evento change al campo de entrada de imagen para mostrar la imagen seleccionada
+      document
+        .getElementById("imagenEC")
+        .addEventListener("change", function (event) {
+          const file = event.target.files[0]; // Obtener el archivo seleccionado
+          const reader = new FileReader(); // Crear un objeto FileReader
+
+          reader.onload = function (event) {
+            const img = document.getElementById("imagenActualEC");
+            img.src = event.target.result; // Mostrar la imagen seleccionada
+          };
+
+          reader.readAsDataURL(file); // Convertir el archivo a formato base64
+        });
+
+      // Agregar evento clic a cada fila para cargar los datos en el modal de edición
+      filaseditarC.forEach((fila) => {
+        fila.addEventListener("click", () => {
+          // Mostrar el segundo modal de editar productos
+          const modalSegundo = document.getElementById(
+            "modal-segundo-datos-mec"
+          );
+          modalSegundo.style.display = "block";
+
+          // Obtener los datos de la fila
+          const nombre_mec = fila.querySelector("td:nth-child(1)").textContent;
+          const descripcion_mec =
+            fila.querySelector("td:nth-child(3)").textContent;
+          const imagen_mec = fila
+            .querySelector("td:nth-child(2) img")
+            .getAttribute("src");
+
+          // Mostrar los datos en el formulario de edición
+          document.getElementById("nombreEC").value = nombre_mec;
+          document.getElementById("descripcionEC").value = descripcion_mec;
+
+          // Mostrar la imagen actual en el modal
+          const img = document.getElementById("imagenActualEC");
+          img.src = imagen_mec;
+        });
+      });
+    </script>
+
+    <script>
+      //segundo modal eliminarC----
+      // Obtener todas las filas de la tabla
+      const filasEliminarC = document.querySelectorAll(
+        "#tabla-categorias-melc tbody tr"
+      );
+
+      // Agregar evento clic a cada fila
+      filasEliminarC.forEach((fila) => {
+        fila.addEventListener("click", () => {
+          // Mostrar el segundo modal
+          const modalSegundo = document.getElementById(
+            "modal-segundo-datos-melc"
+          );
+          modalSegundo.style.display = "block";
+
+          // Obtener los datos de la fila
+          const nombre = fila.querySelector("td:nth-child(1)").textContent;
+          const imagen = fila
+            .querySelector("td:nth-child(2) img")
+            .getAttribute("src");
+          const descripcion = fila.querySelector("td:nth-child(3)").textContent;
+
+          // Mostrar los datos en el modal
+          document.getElementById("nombreElC").textContent =
+            "Nombre: " + nombre;
+          document.getElementById("imagenElC").src = imagen;
+          document.getElementById("descripcionElC").textContent =
+            "Descripción: " + descripcion;
+        });
+      });
+
+      // Obtener el botón de cerrar del segundo modal
+      const closeBtnSegundo_melc = document.querySelector(
+        "#modal-segundo-datos-melc .close-melc"
+      );
+
+      // Agregar evento clic al botón de cerrar del segundo modal
+      closeBtnSegundo_melc.addEventListener("click", () => {
+        const modalSegundo_melc = document.getElementById(
+          "modal-segundo-datos-melc"
+        );
+        modalSegundo_melc.style.display = "none"; // Ocultar el segundo modal al hacer clic en el botón de cerrar
+      });
+
+      // Evitar que el segundo modal se cierre al hacer clic fuera de él
+      const modalSegundo_melc = document.getElementById(
+        "modal-segundo-datos-melc"
+      );
+      modalSegundo_melc.addEventListener("click", (event) => {
+        event.stopPropagation(); // Evitar la propagación del evento para que no se cierre al hacer clic dentro
+      });
+    </script>
+    <!-- MODALES SECUNDARIOS PARA CATEGORIA  -->
     <script src="/back/src/js/index.js"></script>
   </body>
 </html>

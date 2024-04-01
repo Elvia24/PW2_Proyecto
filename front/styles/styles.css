@@ -1662,7 +1662,10 @@ padding-bottom: 8px;
 .close,
 .close-msd,
 .close-mep,
-.close-melp {
+.close-melp, 
+.close-msvC,
+.close-mec,
+.close-melc {
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -1676,7 +1679,13 @@ padding-bottom: 8px;
 .close-mep:hover,
 .close-mep:focus, 
 .close-melp:hover,
-.close-melp:focus  {
+.close-melp:focus,
+.close-msvC:hover,
+.close-msvC:focus,
+.close-mec:hover,
+.close-mec:focus,
+.close-melc:hover,
+.close-melc:focus    {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -1687,7 +1696,10 @@ padding-bottom: 8px;
 /* Estilo para la fila al pasar el cursor de las tablas modales*/
 #tabla-productos tbody tr:hover,
 #tabla-productos_mep tbody tr:hover,
-#tabla-productos_melp tbody tr:hover {
+#tabla-productos_melp tbody tr:hover,
+#tabla-categorias tbody tr:hover,
+#tabla-categorias-mec tbody tr:hover,
+#tabla-categorias-melc tbody tr:hover {
   background-color: var(--grey3); /* Cambia el color de fondo */
   cursor: pointer; /* Cambia el cursor al pasar sobre la fila */
 }
