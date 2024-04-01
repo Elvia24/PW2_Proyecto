@@ -10,7 +10,17 @@
   --green: #608008;
   --grey1: #f0f0f0;
   --grey2: #e9d7d3;
+  --grey3: #e0e0e0;
   --green2: #6080086b;
+  --green3: #263302;
+  --blue_see: #63b4da;
+  --blue_see2: #447a94;
+  --green_add: #28a745;
+  --green_add2: #124d20;
+  --yellow_save_changes: #ffc107;
+  --yellow_save_changes2: #745806;
+  --red_delete: #dc3545;
+  --red_delete2: #741c24;
 }
 
 /* Basic Reset */

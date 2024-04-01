@@ -32,7 +32,7 @@ function inicio() {
                     <div className="product-item">
                         <div className="overlay">
                             <a href="productDetails.html" className="product-thumb">
-                                <img src="../../src/images/product-1.jpg" alt="" />
+                                <img src="../../src/images/sample_images/product-1.jpg" alt="" />
                             </a>
                         </div>
                         <div className="product-info">
@@ -47,15 +47,15 @@ function inicio() {
                     </div>
                     <div className="product-item">
                         <div className="overlay">
-                            <a href="" className="product-thumb">
-                                <img src="../../src/images/product-3.jpg" alt="" />
+                            <a href="#" className="product-thumb">
+                                <img src="../../src/images/sample_images/product-3.jpg" alt="" />
                             </a>
 
                         </div>
 
                         <div className="product-info">
                             <span>CATEGORIA</span>
-                            <a href="">Sonata White Men’s Shirt</a>
+                            <a href="#">Sonata White Men’s Shirt</a>
                             <h4>$800</h4>
                         </div>
                         <ul className="icons">
@@ -65,13 +65,13 @@ function inicio() {
                     </div>
                     <div className="product-item">
                         <div className="overlay">
-                            <a href="" className="product-thumb">
-                                <img src="../../src/images/product-2.jpg" alt="" />
+                            <a href="#" className="product-thumb">
+                                <img src="../../src/images/sample_images/product-2.jpg" alt="" />
                             </a>
                         </div>
                         <div className="product-info">
                             <span>CATEGORIA</span>
-                            <a href="">Concepts Solid Pink Men’s Polo</a>
+                            <a href="#">Concepts Solid Pink Men’s Polo</a>
                             <h4>$150</h4>
                         </div>
                         <ul className="icons">
@@ -81,14 +81,14 @@ function inicio() {
                     </div>
                     <div className="product-item">
                         <div className="overlay">
-                            <a href="" className="product-thumb">
-                                <img src="../../src/images/product-4.jpg" alt="" />
+                            <a href="#" className="product-thumb">
+                                <img src="../../src/images/sample_images/product-4.jpg" alt="" />
                             </a>
 
                         </div>
                         <div className="product-info">
                             <span>CATEGORIA</span>
-                            <a href="">Edor do eiusmod tempor</a>
+                            <a href="#">Edor do eiusmod tempor</a>
                             <h4>$900</h4>
                         </div>
                         <ul className="icons">
@@ -98,13 +98,13 @@ function inicio() {
                     </div>
                     <div className="product-item">
                         <div className="overlay">
-                            <a href="" className="product-thumb">
-                                <img src="../../src/images/product-5.jpg" alt="" />
+                            <a href="#" className="product-thumb">
+                                <img src="../../src/images/sample_images/product-5.jpg" alt="" />
                             </a>
                         </div>
                         <div className="product-info">
                             <span>CATEGORIA</span>
-                            <a href="">Edor do eiusmod tempor</a>
+                            <a href="#">Edor do eiusmod tempor</a>
                             <h4>$100</h4>
                         </div>
                         <ul className="icons">
@@ -114,13 +114,13 @@ function inicio() {
                     </div>
                     <div className="product-item">
                         <div className="overlay">
-                            <a href="" className="product-thumb">
-                                <img src="../../src/images/product-6.jpg" alt="" />
+                            <a href="#" className="product-thumb">
+                                <img src="../../src/images/sample_images/product-6.jpg" alt="" />
                             </a>
                         </div>
                         <div className="product-info">
                             <span>CATEGORIA</span>
-                            <a href="">Edor do eiusmod tempor</a>
+                            <a href="#">Edor do eiusmod tempor</a>
                             <h4>$500</h4>
                         </div>
                         <ul className="icons">
@@ -130,14 +130,14 @@ function inicio() {
                     </div>
                     <div className="product-item">
                         <div className="overlay">
-                            <a href="" className="product-thumb">
-                                <img src="../../src/images/product-7.jpg" alt="" />
+                            <a href="#" className="product-thumb">
+                                <img src="../../src/images/sample_images/product-7.jpg" alt="" />
                             </a>
 
                         </div>
                         <div className="product-info">
                             <span>CATEGORIA</span>
-                            <a href="">Edor do eiusmod tempor</a>
+                            <a href="#">Edor do eiusmod tempor</a>
                             <h4>$200</h4>
                         </div>
                         <ul className="icons">
@@ -147,13 +147,13 @@ function inicio() {
                     </div>
                     <div className="product-item">
                         <div className="overlay">
-                            <a href="" className="product-thumb">
-                                <img src="../../src/images/product-2.jpg" alt="" />
+                            <a href="#" className="product-thumb">
+                                <img src="../../src/images/sample_images/product-2.jpg" alt="" />
                             </a>
                         </div>
                         <div className="product-info">
                             <span>CATEGORIA</span>
-                            <a href="">Edor do eiusmod tempor</a>
+                            <a href="#">Edor do eiusmod tempor</a>
                             <h4>$560</h4>
                         </div>
                         <ul className="icons">
