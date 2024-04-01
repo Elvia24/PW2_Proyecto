@@ -1,0 +1,430 @@
+/* PERFIL */
+.user-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    margin-top: 50px;
+
+}
+
+.info-section,
+.edit-section {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.info-section h2,
+.edit-section h2,
+.session-reports h2 {
+    text-align: center;
+}
+
+.info-section {
+    background-color: var(--green2);
+    border-radius: 20px;
+
+}
+
+.info-section li strong {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.info-section li {
+    padding-bottom: 8px;
+}
+
+.info-section .bx-user {
+    font-size: 5em;
+    /* Tamaño del icono */
+    display: block;
+    /* Hace que el icono se comporte como un bloque para centrarlo horizontalmente */
+    margin: 0 auto;
+    /* Centra horizontalmente el icono */
+    /* margin: 15px 135px 15px 135px ; */
+}
+
+
+.edit-section {
+    background-color: var(--green);
+    border-radius: 20px;
+}
+
+.edit-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+    /* Cambiar color a tu preferencia */
+}
+
+/* Estilos adicionales para los input dentro de edit-section */
+.edit-section input[type="text"],
+.edit-section input[type="email"],
+.edit-section input[type="number"],
+.edit-section input[type="file"],
+.edit-section textarea {
+    width: 100%;
+    padding: 1.5rem;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* Asegura que el padding no aumente el ancho total del input */
+
+    border: 1px solid var(--green3);
+    outline: none;
+    font-size: 1.6rem;
+}
+
+.edit-section select {
+    width: 100%;
+    padding: 1.5rem;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* Asegura que el padding no aumente el ancho total del input */
+
+    border: 1px solid var(--green3);
+    outline: none;
+    font-size: 1.6rem;
+}
+
+/* Estilos para el botón dentro de edit-section */
+.button-group {
+    display: flex;
+    justify-content: center;
+    /* Centra los elementos horizontalmente */
+}
+
+.edit-section button {
+    /* background-color: var(--yellow_save_changes); Color de fondo */
+    color: black;
+    /* Color del texto */
+    padding: 10px 20px;
+    /* Espacio interno */
+    border: none;
+    /* Sin borde */
+    border-radius: 4px;
+    /* Borde redondeado */
+    cursor: pointer;
+    /* Cursor de puntero */
+    font-weight: bold;
+    margin: auto 5px 15px auto;
+}
+
+/* .edit-section button:hover {
+    background-color: var(--yellow_save_changes2); 
+  } */
+
+/* Estilos para botónes el grgupo de botones*/
+.edit-section .btn-agregar {
+    background-color: var(--green_add);
+    /* Color de fondo para ver productos */
+
+}
+
+.edit-section .btn-agregar:hover {
+    background-color: var(--green_add2);
+    /* Color de fondo para ver productos */
+
+}
+
+.edit-section .btn-ver {
+    background-color: var(--blue_see);
+    /* Color de fondo para ver productos */
+
+}
+
+.edit-section .btn-ver:hover {
+    background-color: var(--blue_see2);
+    /* Color de fondo para ver productos */
+
+}
+
+.edit-section .btn-editar {
+    background-color: var(--yellow_save_changes);
+    /* Color de fondo para editar producto */
+
+}
+
+.edit-section .btn-editar:hover {
+    background-color: var(--yellow_save_changes2);
+    /* Color de fondo para editar producto */
+
+}
+
+.edit-section .btn-eliminar {
+    background-color: var(--red_delete);
+    /* Color de fondo para eliminar producto */
+
+}
+
+.edit-section .btn-eliminar:hover {
+    background-color: var(--red_delete2);
+    /* Color de fondo para eliminar producto */
+
+}
+
+/* Estilos para botónes */
+/* Estilos para los modales */
+.modal {
+    display: none;
+    /* Ocultar inicialmente */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo semi-transparente */
+
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 50px auto;
+    /* Ajusta el margen superior e inferior para centrar verticalmente el modal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    position: relative;
+    /* Establece la posición relativa */
+    border-radius: 10px;
+}
+
+.close,
+.close-msd,
+.close-mep,
+.close-melp,
+.close-msvC,
+.close-mec,
+.close-melc {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus,
+.close-msd:hover,
+.close-msd:focus,
+.close-mep:hover,
+.close-mep:focus,
+.close-melp:hover,
+.close-melp:focus,
+.close-msvC:hover,
+.close-msvC:focus,
+.close-mec:hover,
+.close-mec:focus,
+.close-melc:hover,
+.close-melc:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* tablas modales estilos */
+
+
+/* Estilo para la fila al pasar el cursor de las tablas modales*/
+#tabla-productos tbody tr:hover,
+#tabla-productos_mep tbody tr:hover,
+#tabla-productos_melp tbody tr:hover,
+#tabla-categorias tbody tr:hover,
+#tabla-categorias-mec tbody tr:hover,
+#tabla-categorias-melc tbody tr:hover {
+    background-color: var(--grey3);
+    /* Cambia el color de fondo */
+    cursor: pointer;
+    /* Cambia el cursor al pasar sobre la fila */
+}
+
+/* tablas modales estilos */
+/*segundo modal productos ver*/
+.modal-content-segundo {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    /* Tamaño máximo del modal */
+}
+
+.modal-body {
+    text-align: center;
+    /* Centra el contenido dentro del modal */
+}
+
+
+/* Estilos para los elementos del formulario del segundo modal de edicion de producto*/
+#formulario-edicion {
+    text-align: left;
+}
+
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    /* Ajusta el ancho según sea necesario */
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    /* Asegura que el padding no afecte al ancho total */
+
+    padding: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border: 1px solid var(--green3);
+    outline: none;
+    font-size: 1.6rem;
+    border-color: var(--green);
+}
+
+input[type="submit"] {
+    background-color: var(--yellow_save_changes);
+    /* Color de fondo */
+    color: black;
+    /* Color del texto */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    border: none;
+    /* Sin borde */
+    border-radius: 4px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cursor de puntero */
+}
+
+/* Estilos para los elementos del formulario del segundo modal de edicion de producto*/
+input[type="submit"]:hover {
+    background-color: var(--yellow_save_changes2);
+    /* Cambia el color de fondo en el hover */
+}
+
+
+
+.btn-eliminar {
+    background-color: var(--red_delete);
+    /* Color de fondo */
+    color: #fff;
+    /* Color del texto */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    border: none;
+    /* Borde */
+    border-radius: 5px;
+    /* Radio del borde */
+    cursor: pointer;
+    /* Cambiar cursor al pasar el ratón */
+}
+
+/* Estilos adicionales cuando se pasa el ratón por encima */
+.btn-eliminar:hover {
+    background-color: var(--red_delete2);
+    /* Color de fondo cuando se pasa el ratón */
+}
+
+/* Estilos para los modales */
+
+
+#preview,
+#preview1 {
+    /*imagen seleccionada para el nuevo producto */
+    max-width: 100%;
+    max-height: 200px;
+    margin: 10px auto;
+    /* Centra horizontalmente */
+    display: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.session-reports {
+    /* background-color: #263302; */
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.table-container-ventas,
+.table-container-compras,
+.tabla-de-productos {
+    max-height: 500px;
+    /* Ajusta según el porcentaje deseado */
+    overflow: auto;
+    scrollbar-width: thin;
+    /* ancho del scrollbar */
+    scrollbar-color: #ccc #f0f0f0;
+    /* color del scrollbar */
+}
+
+/* Estilos específicos para navegadores Firefox */
+.table-container-ventas,
+.table-container-compras,
+.tabla-de-productos {
+    scrollbar-width: thin;
+    scrollbar-color: var(--green) #f0f0f0;
+}
+
+#ventas-table thead th,
+.table-container-compras thead th,
+.tabla-de-productos thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    /* Asegura que esté por encima del contenido desplazado */
+}
+
+/* botones en la parte de la info del usuario */
+.buttons button {
+    margin-right: 23px;
+    /* Espacio entre los botones */
+    margin-bottom: 10px;
+    /* Espacio entre filas de botones */
+    padding: 8px 16px;
+    /* Ajuste de relleno */
+    border: none;
+    /* Quitar bordes */
+    background-color: var(--green3);
+    /* Color de fondo */
+    color: #fff;
+    /* Color de texto */
+    border-radius: 4px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cursor de ratón al pasar por encima */
+}
+
+.buttons button:hover {
+    background-color: var(--green);
+    /* Cambio de color al pasar el ratón por encima */
+}
+
+@media only screen and (min-width: 601px) {
+    .user-info {
+        flex-direction: row;
+    }
+
+    .info-section {
+        width: calc(50% - 10px);
+    }
+
+    .edit-section {
+        width: calc(50% - 10px);
+    }
+}
+
+/* PERFIL */

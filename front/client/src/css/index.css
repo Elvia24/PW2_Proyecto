@@ -1,8 +1,8 @@
-
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Protest+Riot&display=swap');
+
 /* Color Variables */
 :root {
   --white: #fff;
@@ -10,7 +10,7 @@
   --green: #608008;
   --grey1: #f0f0f0;
   --grey2: #e9d7d3;
-  --green2:  #6080086b;
+  --green2: #6080086b;
 }
 
 /* Basic Reset */
@@ -55,7 +55,7 @@ li {
 .d-flex {
   display: flex;
   align-items: center;
-  
+
 }
 
 
@@ -70,7 +70,7 @@ Header
   position: relative;
   /* min-height:30vh; */
   overflow-x: hidden;
-  
+
 }
 
 .top-nav {
@@ -89,11 +89,14 @@ Header
   color: var(--white);
   padding: 0 0.5rem;
 }
+
 .top-nav a:hover {
   text-decoration: underline;
 }
+
 ul.d-flex li {
-   margin-left: 20px;/* Ajusta el valor según sea necesario */
+  margin-left: 20px;
+  /* Ajusta el valor según sea necesario */
 }
 
 /* 
@@ -212,7 +215,7 @@ Navigation
 
   .top-nav div {
     /* justify-content: center; */
-    height:  4.0rem;
+    height: 4.0rem;
   }
 }
 
@@ -313,6 +316,7 @@ Hero Media Query
     left: 0;
   }
 }
+
 @media only screen and (max-width: 999px) {
   .glide__slide--active .left {
     top: 15%;
@@ -349,6 +353,7 @@ Hero Media Query
   .hero .left span {
     font-size: 1.4rem;
   }
+
   .hero .left p {
     font-size: 1.5rem;
     width: 80%;
@@ -631,7 +636,7 @@ Hero Media Query
   background-color: var(--green2);
   padding: 14rem 20%;
   margin: 10px 0px 0px 0px;
-  
+
 }
 
 .banner .right img {
@@ -1371,7 +1376,7 @@ th:last-child {
   max-width: 50rem;
   margin: 1rem auto;
   background-color: var(--green2);
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
 .login-form form {
@@ -1384,6 +1389,7 @@ th:last-child {
   /* font-family: 'Protest Riot', sans-serif; */
   align-self: center;
 }
+
 .login-form form p {
   margin-bottom: 2rem;
 }
@@ -1406,7 +1412,8 @@ th:last-child {
   font-size: 1.6rem;
   color: #2222229c;
 }
-.login-form form select{
+
+.login-form form select {
   border: 1px solid var(--green);
   outline: none;
   padding: 1.5rem 0;
@@ -1448,23 +1455,27 @@ Navigation NombreLogo
 }
 
 .logo-container img {
-  width: 50px; /* ajusta el tamaño de la imagen */
-  height: 50px; /* ajusta el tamaño de la imagen */
+  width: 50px;
+  /* ajusta el tamaño de la imagen */
+  height: 50px;
+  /* ajusta el tamaño de la imagen */
   /*border-radius: 50%;  para hacer un círculo */
-  margin-right: 0px; /* ajusta el espacio entre la imagen y el texto */
+  margin-right: 0px;
+  /* ajusta el espacio entre la imagen y el texto */
 }
 
 .logo-container h1 {
   font-size: 30px;
-  color: #333;
+  color: black;
   font-family: 'Dancing Script', cursive;
-  text-decoration: underline; /* Subraya el texto */
+  text-decoration: underline;
+  /* Subraya el texto */
 }
 
 .logo-container .shop {
   color: var(--green);
   font-weight: bold;
-  
+
 }
 
 .logo {
@@ -1472,15 +1483,16 @@ Navigation NombreLogo
 }
 
 
-
-
 .categorias-lista {
   display: none;
   position: absolute;
-  background-color: #fff; /* Color de fondo de la lista */
+  background-color: #fff;
+  /* Color de fondo de la lista */
   padding: 10px;
-  border: 1px solid #ccc; /* Borde de la lista */
-  border-radius: 5px; /* Redondea las esquinas */
+  border: 1px solid #ccc;
+  /* Borde de la lista */
+  border-radius: 5px;
+  /* Redondea las esquinas */
 }
 
 #categorias-trigger:hover .categorias-lista {
