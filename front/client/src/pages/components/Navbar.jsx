@@ -26,15 +26,14 @@ function Navbar() {
                     {/* left sidebar*/}
                     <ul className={`nav-list d-flex ${isOpen ? 'open' : ''}`}>
                         <li className="nav-item">
-                            <a href="#" className="nav-link">Productos</a>
+                            <a href="/ArtemiShop_Productos" className="nav-link">Productos</a>
                         </li>
                         <li className="nav-item">
-                            <a href="#" className="nav-link">Categorias</a>
+                            <a href="/ArtemiShop_Categorias" className="nav-link">Categorias</a>
                         </li>
                         <li className="icons d-flex">
                             <a href="#" className="icon">
                                 <i className="bx bx-user"></i>
-
                             </a>
 
                             <a href="#" className="icon">
@@ -45,8 +44,9 @@ function Navbar() {
                     </ul>
                     {/* left sidebar*/}
                     <div className="icons d-flex">
-                        <a href="#" className="icon">
+                        <a href="#" className="icon ">
                             <i className="bx bx-user"></i>
+                            <label className="username-label" htmlFor="">username</label>
                         </a>
 
                         <a href="#" className="icon">

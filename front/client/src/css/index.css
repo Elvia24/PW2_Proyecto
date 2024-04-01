@@ -161,6 +161,7 @@ Navigation
   margin-right: 0.5rem;
 }
 
+
 .icon span {
   position: absolute;
   top: 3px;
@@ -372,35 +373,39 @@ Hero Media Query
 
 /* Category Section */
 .section {
-  padding: 4rem 0 5rem 0;
+  padding: 3rem 0 0 0;
   overflow: hidden;
 }
 
 .cat-center {
   display: flex;
+  flex-wrap:wrap; /* Cambia el comportamiento para envolver los elementos en filas */
   align-items: center;
   justify-content: center;
-  max-width: 114rem;
+  max-width: 150;
   margin: auto;
   padding: 0 3rem;
 }
 
 .cat-center .cat {
-  max-width: 37rem;
+  max-width: 100rem; /* Calcula el ancho máximo para 3 categorías por fila */
   height: 25rem;
   overflow: hidden;
   position: relative;
   cursor: pointer;
   text-align: center;
+  margin-right: 3rem; /* Espacio entre las categorías */
 }
-
+.cat-center .cat:nth-child(3n) {
+  margin-right: 0; /* Elimina el margen derecho de la tercera categoría para que no haya espacio adicional */
+}
 .cat-center .cat:not(:last-child) {
   margin-right: 3rem;
 }
 
 .cat-center .cat img {
-  width: 36.5rem;
-  height: 100%;
+  width: 30rem;
+  height: 20rem;
   margin: auto;
   object-fit: cover;
   transition: all 2s ease;
@@ -432,10 +437,12 @@ Hero Media Query
 
 @media only screen and (max-width: 967px) {
   .cat-center .cat {
-    max-width: 25rem;
-    height: 20rem;
+    max-width: 100rem; 
+    height: 25rem;
   }
-
+  .cat-center .cat:nth-child(2n) {
+    margin-right: 0; 
+  }
   .cat-center .cat img {
     width: 25rem;
   }
@@ -453,7 +460,9 @@ Hero Media Query
 
   .cat-center .cat {
     max-width: 100%;
-    height: 30rem;
+    height: 25rem;
+    margin-right: 0; 
+    margin-bottom: 5rem; 
   }
 
   .cat-center .cat:not(:last-child) {
@@ -1438,20 +1447,33 @@ th:last-child {
   margin-top: 1rem;
 }
 
+
 .login-form form button {
   outline: none;
   border: none;
   font-size: 1.6rem;
   padding: 1rem 3rem;
   margin-right: 1.5rem;
-  background-color: var(--green);
+  /* background-color: var(--green); */
   color: white;
   cursor: pointer;
 }
 
-.login-form form p a {
-  color: dodgerblue;
+.login-form .cancelbtn{
+  background-color: var(--red_delete);
 }
+.login-form .cancelbtn:hover{
+  background-color: var(--red_delete2);
+}
+.login-form .registrobtn{
+  background-color: var(--green_add);
+}
+.login-form .registrobtn:hover{
+  background-color: var(--green_add2);
+}
+/* .login-form form p a {
+  color: dodgerblue;
+} */
 
 
 /* 
@@ -1507,4 +1529,19 @@ Navigation NombreLogo
 
 #categorias-trigger:hover .categorias-lista {
   display: block;
+}
+
+
+/*Username*/
+.username-label {
+  
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;/* Hace que el texto sea negrita */
+  position:relative;
+  bottom: 5px; /* Mueve el label 20px hacia abajo desde su posición original */
+  left: 3px;  /*Mueve el label 10px hacia la izquierda desde su posición original */
+}
+.username-label:hover {
+  text-decoration: underline; /* Subraya el texto cuando el cursor pasa sobre él */
 }

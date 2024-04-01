@@ -4,7 +4,7 @@ import Registro from './pages/registro';
 import NotFound from './pages/NotFound';
 import InicioSesion from './pages/inicio-sesion';
 import Productos from './pages/productos';
-
+import Categorias from './pages/categorias';
 function App(){
   return (
     <Routes>
@@ -13,6 +13,7 @@ function App(){
       <Route path='*' element={<NotFound/>}></Route>
       <Route path='/ArtemiShop_IniciarSesion' element={<InicioSesion />} />
       <Route path='/ArtemiShop_Productos' element={<Productos />} />
+      <Route path='/ArtemiShop_Categorias' element={<Categorias />} />
     </Routes>
   )
 }
