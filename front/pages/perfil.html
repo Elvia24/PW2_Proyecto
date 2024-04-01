@@ -9,30 +9,28 @@
       href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
     />
     <!-- Custom StyleSheet -->
-    
+
     <link rel="stylesheet" href="../styles/styles.css" />
-    <link rel="icon" href="/front/images/Simbolo.png" type="image/png">
+    <link rel="icon" href="/front/images/Simbolo.png" type="image/png" />
 
     <title>ArtemiShop/Perfil</title>
   </head>
   <body>
     <!-- Navigation -->
     <div class="top-nav">
-      <div class="container d-flex ">
+      <div class="container d-flex">
         <!-- <p></p> -->
-
       </div>
     </div>
     <div class="navigation">
       <div class="nav-center container d-flex">
-        
         <a href="../index.html" class="logo">
           <div class="logo-container">
-              <img src="/front/images/Simbolo.png" alt="Logo de ArtemiShop">
-              <h1>Artemi<span class="shop">Shop</span></h1>
+            <img src="/front/images/Simbolo.png" alt="Logo de ArtemiShop" />
+            <h1>Artemi<span class="shop">Shop</span></h1>
           </div>
         </a>
-        
+
         <ul class="nav-list d-flex">
           <li class="nav-item">
             <a href="#" class="nav-link">Productos</a>
@@ -41,15 +39,15 @@
             <a href="#" class="nav-link">Categorias</a>
           </li>
           <li class="icons d-flex">
-          <a href="login.html" class="icon">
-            <i class="bx bx-user"></i>
-          </a>
+            <a href="login.html" class="icon">
+              <i class="bx bx-user"></i>
+            </a>
 
-          <a href="carrito.html" class="icon">
-            <i class="bx bx-cart"></i>
-            <span class="d-flex">0</span>
-          </a>
-        </li>
+            <a href="carrito.html" class="icon">
+              <i class="bx bx-cart"></i>
+              <span class="d-flex">0</span>
+            </a>
+          </li>
         </ul>
 
         <div class="icons d-flex">
@@ -64,9 +62,10 @@
         </div>
       </div>
     </div>
-    <!-- PERFIL -->
+
     <div class="container">
       <section class="user-info">
+        <!-- PERFIL -->
         <div class="info-section">
           <h2>Datos del Usuario <i class="bx bx-user"></i></h2>
           <ul>
@@ -74,46 +73,1053 @@
             <li><strong>Correo:</strong> ejemplo@example.com</li>
             <li><strong>Dirección:</strong> Calle 123, Ciudad, País</li>
             <li><strong>Rol:</strong> Cliente</li>
+            <li class="buttons">
+              <button id="editar-informacion">Editar mi informacion</button>
+              <button id="agregar-producto">Agregar Producto</button>
+              <button id="agregar-categoria">Agregar Categoria</button>
+              <button id="btn-session-report-venta">Mis Ventas</button>
+              <button id="btn-session-report-compra">Mis Compras</button>
+            </li>
           </ul>
         </div>
-        <div class="edit-section">
+        <!-- PERFIL -->
+        <!-- PERFIL EDITAR -->
+        <div class="edit-section" id="perfil-editar">
           <h2>Editar Información</h2>
           <form id="user-info-form">
             <div class="form-group">
               <label for="nombre">Nombre:</label>
-              <input type="text" id="nombre" name="nombre" value="Juan Pérez" required>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                value="Juan Pérez"
+                required
+              />
             </div>
             <div class="form-group">
               <label for="correo">Correo:</label>
-              <input type="email" id="correo" name="correo" value="ejemplo@example.com" required>
+              <input
+                type="email"
+                id="correo"
+                name="correo"
+                value="ejemplo@example.com"
+                required
+              />
             </div>
             <div class="form-group">
               <label for="direccion">Dirección:</label>
-              <input type="text" id="direccion" name="direccion" value="Calle 123, Ciudad, País" required>
+              <input
+                type="text"
+                id="direccion"
+                name="direccion"
+                value="Calle 123, Ciudad, País"
+                required
+              />
             </div>
             <div class="form-group">
               <label for="rol">Rol:</label>
-              <input type="text" id="rol" name="rol" value="Cliente" readonly>
+              <input type="text" id="rol" name="rol" value="Cliente" readonly />
             </div>
-            <button type="submit">Guardar Cambios</button>
+
+            <button type="submit" class="btn-editar">Guardar Cambios</button>
           </form>
         </div>
+        <!-- PERFIL EDITAR -->
+        <!-- AGREGAR PRODUCTO -->
+        <div class="edit-section" id="agregar-producto-section">
+          <h2>Agregar Nuevo Producto</h2>
+          <form id="add-product-form" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="producto-nombre">Nombre:</label>
+              <input
+                type="text"
+                id="producto-nombre"
+                name="producto-nombre"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="producto-descripcion">Descripción:</label>
+              <textarea
+                id="producto-descripcion"
+                name="producto-descripcion"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="producto-precio">Precio:</label>
+              <input
+                type="number"
+                id="producto-precio"
+                name="producto-precio"
+                step="0.01"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="producto-cantidad">Cantidad:</label>
+              <input
+                type="number"
+                id="producto-cantidad"
+                name="producto-cantidad"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="producto-categoria">Categoría:</label>
+              <select
+                id="producto-categoria"
+                name="producto-categoria"
+                required
+              >
+                <option value="categoria1">Categoría 1</option>
+                <option value="categoria2">Categoría 2</option>
+                <option value="categoria3">Categoría 3</option>
+                <!-- Agrega más opciones según tus necesidades -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="producto-imagen">Imagen:</label>
+              <input
+                type="file"
+                id="producto-imagen"
+                name="producto-imagen"
+                accept="image/*"
+                required
+                onchange="previewImage(event)"
+              />
+              <img id="preview" src="#" alt="Vista previa de la imagen" />
+            </div>
 
-        
+            <div class="button-group">
+              <button type="submit" class="btn-agregar">Guardar</button>
+            </div>
+          </form>
+
+          <div class="button-group">
+            <button class="btn-ver" id="btn-verP">Ver Mis Productos</button>
+            <button class="btn-editar" id="btn-editarP">Editar Producto</button>
+            <button class="btn-eliminar" id="btn-eliminarP">
+              Eliminar Producto
+            </button>
+          </div>
+        </div>
+        <!-- AGREGAR PRODUCTO -->
+        <!-- AGREGAR CATEGORIAS -->
+        <div class="edit-section" id="agregar-categoria-section">
+          <h2>Agregar Nueva Categoria</h2>
+          <form id="add-categoria-form" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="categoria-nombre">Nombre:</label>
+              <input
+                type="text"
+                id="categoria-nombre"
+                name="categoria-nombre"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="categoria-descripcion">Descripción:</label>
+              <textarea
+                id="categoria-descripcion"
+                name="categoria-descripcion"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="categoria-imagen">Imagen:</label>
+              <input
+                type="file"
+                id="categoria-imagen"
+                name="categoria-imagen"
+                accept="image/*"
+                required
+                onchange="previewCategoriaImage(event)"
+              />
+              <img id="preview1" src="#" alt="Vista previa de la imagen" />
+            </div>
+
+            <div class="button-group">
+              <button type="submit" class="btn-agregar">Guardar</button>
+            </div>
+          </form>
+          <div class="button-group">
+            <button class="btn-ver">Ver Mis Categorias</button>
+            <button class="btn-editar">Editar Categoria</button>
+            <button class="btn-eliminar">Eliminar Categoria</button>
+          </div>
+        </div>
+        <!-- AGREGAR CATEGORIAS -->
       </section>
 
-      <div class="ejemplo">
-        aqui van los reportes 
+      <!-- SESSION REPORTES -->
+      <div class="session-reports">
+        <!-- reporte ventas -->
+        <div class="session-report-venta" id="session-report-venta">
+          <h2>Ventas</h2>
+          <div class="table-container-ventas" id="table-container-ventas">
+            <table id="ventas-table">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Cantidad</th>
+                  <th>Total</th>
+                  <th>Fecha de Venta</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-2.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $50.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$50.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-3.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $90.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$90.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-4.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $60.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$60.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-5.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $60.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$60.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-6.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $60.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$60.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-6.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $60.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$60.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-6.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $60.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$60.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- reporte ventas -->
+        <!-- reporte compra -->
+        <div class="session-report-compra" id="session-report-compra">
+          <h2>Compras</h2>
+          <div class="table-container-compras">
+            <table id="compra-table">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Cantidad</th>
+                  <th>Total</th>
+                  <th>Fecha de compra</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-2.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $50.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$50.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-3.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $90.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$90.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-4.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $60.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$60.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-5.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $60.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$60.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-6.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $60.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$60.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-6.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $60.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$60.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-6.jpg" alt="" />
+                      <div>
+                        <p>Boy’s T-Shirt</p>
+                        <span>Precio: $60.00</span> <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>1</td>
+                  <td>$60.00</td>
+                  <td>17/03/2023</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- reporte compra -->
       </div>
-      
-
+      <!-- SESSION REPORTES -->
     </div>
-    
-    
-    
+    <!-- Modales Productos Sesion -->
+
+    <div id="modal-verP" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-body">
+          <!-- Lado izquierdo: Tabla para mostrar los productos -->
+          <div class="tabla-de-productos">
+            <h3>Lista de Productos</h3>
+            <table id="tabla-productos">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Imagen</th>
+                  <th>Descripción</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
+                  <th>Categoría</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Aquí se agregarán las filas de la tabla con los productos -->
+                <tr>
+                  <td>nombreP.1</td>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-6.jpg" alt="" />
+                    </div>
+                  </td>
+                  <td>descripcion.1</td>
+                  <td>precio.1</td>
+                  <td>cantidad.1</td>
+                  <td>categoría.1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="modal-segundo-datos" class="modal">
+        <div class="modal-content-segundo">
+          <span class="close-msd">&times;</span>
+          <div class="modal-body">
+            <h2>Información del Producto</h2>
+            <p id="nombreProducto"></p>
+            <img id="imagenProducto" src="" alt="Imagen del Producto" />
+            <p id="descripcionProducto"></p>
+            <p id="precioProducto"></p>
+            <p id="cantidadProducto"></p>
+            <p id="categoriaProducto"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal editarP-->
+    <div id="modal-editarP" class="modal">
+      <div class="modal-content">
+        <h2>Editar Productos</h2>
+        <span class="close">&times;</span>
+        <div class="modal-body">
+          <!-- Lado izquierdo: Tabla para mostrar los productos -->
+          <div class="tabla-de-productos_mep">
+            <h3>Lista de Productos</h3>
+            <table id="tabla-productos_mep">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Imagen</th>
+                  <th>Descripción</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
+                  <th>Categoría</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Aquí se agregarán las filas de la tabla con los productos -->
+                <tr>
+                  <td>nombreP.1</td>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-6.jpg" alt="" />
+                    </div>
+                  </td>
+                  <td>descripcion.1</td>
+                  <td>precio.1</td>
+                  <td>cantidad.1</td>
+                  <td>categoria2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="modal-segundo-datos-mep" class="modal">
+        <div class="modal-content-segundo">
+          <span class="close-mep">&times;</span>
+          <div class="modal-body">
+            <h2>Editar Producto</h2>
+            <form id="formulario-edicion">
+              <label for="nombreProductoE">Nombre:</label>
+              <input
+                type="text"
+                id="nombreProductoE"
+                name="nombreProductoE"
+              /><br />
+
+              <label for="imagenProductoE">Imagen:</label>
+              <input
+                type="file"
+                id="imagenProductoE"
+                name="imagenProductoE"
+              /><br />
+              <img
+                id="imagenProductoActual"
+                src=""
+                alt="Imagen actual del Producto"
+                style="max-width: 100px"
+              /><br />
+
+              <label for="descripcionProductoE">Descripción:</label>
+              <textarea
+                id="descripcionProductoE"
+                name="descripcionProductoE"
+              ></textarea
+              ><br />
+
+              <label for="precioProductoE">Precio:</label>
+              <input
+                type="text"
+                id="precioProductoE"
+                name="precioProductoE"
+              /><br />
+
+              <label for="cantidadProductoE">Cantidad:</label>
+              <input
+                type="text"
+                id="cantidadProductoE"
+                name="cantidadProductoE"
+              /><br />
+
+              <label for="categoriaProductoE">Categoría:</label>
+              <select id="categoriaProductoE" name="categoriaProductoE">
+                <option value="categoria1">Categoría 1</option>
+                <option value="categoria2">Categoría 2</option>
+                <option value="categoria3">Categoría 3</option></select
+              ><br />
+
+              <input type="submit" value="Guardar" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-eliminarP" class="modal">
+      <div class="modal-content">
+        <h2>Eliminar Productos</h2>
+        <span class="close">&times;</span>
+        <div class="modal-body">
+          <!-- Lado izquierdo: Tabla para mostrar los productos -->
+          <div class="tabla-de-productos_melp">
+            <h3>Lista de Productos</h3>
+            <table id="tabla-productos_melp">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Imagen</th>
+                  <th>Descripción</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
+                  <th>Categoría</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Aquí se agregarán las filas de la tabla con los productos -->
+                <tr>
+                  <td>nombreP.1</td>
+                  <td>
+                    <div class="cart-info">
+                      <img src="/front/images/product-6.jpg" alt="" />
+                    </div>
+                  </td>
+                  <td>descripcion.1</td>
+                  <td>precio.1</td>
+                  <td>cantidad.1</td>
+                  <td>categoria2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="modal-segundo-datos-melp" class="modal">
+        <div class="modal-content-segundo">
+          <span class="close-melp">&times;</span>
+          <div class="modal-body">
+            <h2>Eliminar Producto</h2>
+            <div id="formulario-eliminar">
+              <p id="nombreProductoEl"></p>
+              <img id="imagenProductoEl" src="" alt="Imagen del Producto" />
+              <p id="descripcionProductoEl"></p>
+              <p id="precioProductoEl"></p>
+              <p id="cantidadProductoEl"></p>
+              <p id="categoriaProductoEl"></p>
+
+              <button class="btn-eliminar"> Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modales Productos Sesion -->
+    <script>
+      //imagen del producto previsualizar ----
+      function previewImage(event) {
+        //veremos  la imagen del producto
+        var reader = new FileReader();
+        reader.onload = function () {
+          var preview = document.getElementById("preview");
+          preview.src = reader.result;
+          preview.style.display = "block"; // Mostrar la imagen
+        };
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    </script>
+
+    <script>
+      //imagen del categoria previsualizar ----
+      function previewCategoriaImage(event) {
+        //veremos la imagen de la categoria que escoga el usario
+        var reader = new FileReader();
+        reader.onload = function () {
+          var preview = document.getElementById("preview1");
+          preview.src = reader.result;
+          preview.style.display = "block"; // Mostrar la imagen
+        };
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    </script>
+
+    <script>
+      //botones para las sessiones
+      document.addEventListener("DOMContentLoaded", function () {
+        // Obtener referencias a los elementos
+        const editarInformacionBtn =
+          document.getElementById("editar-informacion");
+        const agregarProductoBtn = document.getElementById("agregar-producto");
+        const agregarCategoriaBtn =
+          document.getElementById("agregar-categoria");
+        const perfilEditarSection = document.getElementById("perfil-editar");
+        const agregarProductoSection = document.getElementById(
+          "agregar-producto-section"
+        );
+        const agregarCategoriaSection = document.getElementById(
+          "agregar-categoria-section"
+        );
+
+        const misVentasBtn = document.getElementById(
+          "btn-session-report-venta"
+        );
+        const misComprasBtn = document.getElementById(
+          "btn-session-report-compra"
+        );
+        const ventaSession = document.getElementById("session-report-venta");
+        const compraSession = document.getElementById("session-report-compra");
+        // Mostrar por defecto la sección "Editar mi información"
+        //  perfilEditarSection.style.display = "block";
+        //  agregarProductoSection.style.display = "none";
+        //  agregarCategoriaSection.style.display = "none";
+        //  ventaSession.style.display = "none";
+        //  compraSession.style.display = "none";
+
+        // Evento de clic para el botón "Editar mi información"
+        editarInformacionBtn.addEventListener("click", function () {
+          // Mostrar la sección de editar información y ocultar las otras
+          perfilEditarSection.style.display = "block";
+          agregarProductoSection.style.display = "none";
+          agregarCategoriaSection.style.display = "none";
+          ventaSession.style.display = "none";
+          compraSession.style.display = "none";
+        });
+
+        // Evento de clic para el botón "Agregar Producto"
+        agregarProductoBtn.addEventListener("click", function () {
+          // Mostrar la sección de agregar producto y ocultar las otras
+          perfilEditarSection.style.display = "none";
+          agregarProductoSection.style.display = "block";
+          agregarCategoriaSection.style.display = "none";
+          ventaSession.style.display = "none";
+          compraSession.style.display = "none";
+        });
+
+        // Evento de clic para el botón "Agregar Categoria"
+        agregarCategoriaBtn.addEventListener("click", function () {
+          // Mostrar la sección de agregar categoría y ocultar las otras
+          perfilEditarSection.style.display = "none";
+          agregarProductoSection.style.display = "none";
+          agregarCategoriaSection.style.display = "block";
+          ventaSession.style.display = "none";
+          compraSession.style.display = "none";
+        });
+        misVentasBtn.addEventListener("click", function () {
+          // Mostrar la sección de agregar categoría y ocultar las otras
+          perfilEditarSection.style.display = "none";
+          agregarProductoSection.style.display = "none";
+          agregarCategoriaSection.style.display = "none";
+          ventaSession.style.display = "block";
+          compraSession.style.display = "none";
+        });
+        misComprasBtn.addEventListener("click", function () {
+          // Mostrar la sección de agregar categoría y ocultar las otras
+          perfilEditarSection.style.display = "none";
+          agregarProductoSection.style.display = "none";
+          agregarCategoriaSection.style.display = "none";
+          ventaSession.style.display = "none";
+          compraSession.style.display = "block";
+        });
+      });
+    </script>
+
+    <script>
+      //modales de producto
+      //botones para las sessiones
+      document.addEventListener("DOMContentLoaded", function () {
+        // Obtener referencias a los elementos
+        const verP_Btn = document.getElementById("btn-verP");
+        const editarP_Btn = document.getElementById("btn-editarP");
+        const eliminarP_Btn = document.getElementById("btn-eliminarP");
+
+        const verP_Modal = document.getElementById("modal-verP");
+        const editarP_Modal = document.getElementById("modal-editarP");
+        const eliminarP_Modal = document.getElementById("modal-eliminarP");
+
+        // Función para abrir el modal correspondiente
+        function abrirModal(modal) {
+          modal.style.display = "block";
+        }
+        // Función para cerrar todos los modales
+        function cerrarModales() {
+          verP_Modal.style.display = "none";
+          editarP_Modal.style.display = "none";
+          eliminarP_Modal.style.display = "none";
+        }
+
+        verP_Btn.addEventListener("click", function () {
+          cerrarModales();
+          abrirModal(verP_Modal);
+        });
+
+        editarP_Btn.addEventListener("click", function () {
+          cerrarModales();
+          abrirModal(editarP_Modal);
+        });
+
+        eliminarP_Btn.addEventListener("click", function () {
+          cerrarModales();
+          abrirModal(eliminarP_Modal);
+        });
+
+        const closes = document.querySelectorAll(".close");
+        closes.forEach(function (close) {
+          close.addEventListener("click", function () {
+            cerrarModales();
+          });
+        });
+      });
+    </script>
+
+    <script>
+      //segundo modal verP----
+      // Obtener todas las filas de la tabla
+      const filas = document.querySelectorAll("#tabla-productos tbody tr");
+
+      // Agregar evento clic a cada fila
+      filas.forEach((fila) => {
+        fila.addEventListener("click", () => {
+          // Mostrar el segundo modal
+          const modalSegundo = document.getElementById("modal-segundo-datos");
+          modalSegundo.style.display = "block";
+
+          // Obtener los datos de la fila
+          const nombre = fila.querySelector("td:nth-child(1)").textContent;
+          const imagen = fila
+            .querySelector("td:nth-child(2) img")
+            .getAttribute("src");
+          const descripcion = fila.querySelector("td:nth-child(3)").textContent;
+          const precio = fila.querySelector("td:nth-child(4)").textContent;
+          const cantidad = fila.querySelector("td:nth-child(5)").textContent;
+          const categoria = fila.querySelector("td:nth-child(6)").textContent;
+
+          // Mostrar los datos en el modal
+          document.getElementById("nombreProducto").textContent =
+            "Nombre: " + nombre;
+          document.getElementById("imagenProducto").src = imagen;
+          document.getElementById("descripcionProducto").textContent =
+            "Descripción: " + descripcion;
+          document.getElementById("precioProducto").textContent =
+            "Precio: " + precio;
+          document.getElementById("cantidadProducto").textContent =
+            "Cantidad: " + cantidad;
+          document.getElementById("categoriaProducto").textContent =
+            "Categoría: " + categoria;
+        });
+      });
+
+      // Obtener el botón de cerrar del segundo modal
+      const closeBtnSegundo = document.querySelector(
+        "#modal-segundo-datos .close-msd"
+      );
+
+      // Agregar evento clic al botón de cerrar del segundo modal
+      closeBtnSegundo.addEventListener("click", () => {
+        const modalSegundo = document.getElementById("modal-segundo-datos");
+        modalSegundo.style.display = "none"; // Ocultar el segundo modal al hacer clic en el botón de cerrar
+      });
+
+      // Evitar que el segundo modal se cierre al hacer clic fuera de él
+      const modalSegundo = document.getElementById("modal-segundo-datos");
+      modalSegundo.addEventListener("click", (event) => {
+        event.stopPropagation(); // Evitar la propagación del evento para que no se cierre al hacer clic dentro
+      });
+    </script>
+
+    <script>
+      //segundo modal editarP---------
+      // Obtener todas las filas de la tabla
+      const filaseditarP = document.querySelectorAll(
+        "#tabla-productos_mep tbody tr"
+      );
+
+      // Agregar evento clic a cada fila
+      filaseditarP.forEach((fila) => {
+        fila.addEventListener("click", () => {
+          // Mostrar el segundo modal
+          const modalSegundo = document.getElementById(
+            "modal-segundo-datos-mep"
+          );
+          modalSegundo.style.display = "block";
+
+          // Obtener los datos de la fila
+          const nombre_mep = fila.querySelector("td:nth-child(1)").textContent;
+          const imagen_mep = fila
+            .querySelector("td:nth-child(2) img")
+            .getAttribute("src");
+          const descripcion_mep =
+            fila.querySelector("td:nth-child(3)").textContent;
+          const precio_mep = fila.querySelector("td:nth-child(4)").textContent;
+          const cantidad_mep =
+            fila.querySelector("td:nth-child(5)").textContent;
+          const categoria_mep =
+            fila.querySelector("td:nth-child(6)").textContent;
+
+          // Mostrar los datos en el modal
+          document.getElementById("nombreProductoE").textContent =
+            "Nombre: " + nombre_mep;
+          document.getElementById("imagenProductoE").src = imagen_mep;
+          document.getElementById("descripcionProductoE").textContent =
+            "Descripción: " + descripcion_mep;
+          document.getElementById("precioProductoE").textContent =
+            "Precio: " + precio_mep;
+          document.getElementById("cantidadProductoE").textContent =
+            "Cantidad: " + cantidad_mep;
+          document.getElementById("categoriaProductoE").textContent =
+            "Categoría: " + categoria_mep;
+        });
+      });
+
+      // Obtener el botón de cerrar del segundo modal
+      const closeBtnSegundoEditarP = document.querySelector(
+        "#modal-segundo-datos-mep .close-mep"
+      );
+
+      // Agregar evento clic al botón de cerrar del segundo modal
+      closeBtnSegundoEditarP.addEventListener("click", () => {
+        const modalSegundoEditarP = document.getElementById(
+          "modal-segundo-datos-mep"
+        );
+        modalSegundoEditarP.style.display = "none"; // Ocultar el segundo modal al hacer clic en el botón de cerrar
+      });
+
+      // Evitar que el segundo modal se cierre al hacer clic fuera de él
+      const modalSegundoEditarP = document.getElementById(
+        "modal-segundo-datos-mep"
+      );
+      modalSegundoEditarP.addEventListener("click", (event) => {
+        event.stopPropagation(); // Evitar la propagación del evento para que no se cierre al hacer clic dentro
+      });
+
+      // Agregar evento submit al formulario de edición
+      document
+        .getElementById("formulario-edicion")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Evitar que el formulario se envíe y la página se recargue
+
+          // Obtener los valores de los campos de entrada
+          const nombre = document.getElementById("nombreProductoE").value;
+          const descripcion = document.getElementById(
+            "descripcionProductoE"
+          ).value;
+          const precio = document.getElementById("precioProductoE").value;
+          const cantidad = document.getElementById("cantidadProductoE").value;
+          const categoria = document.getElementById("categoriaProductoE").value;
+
+          // Actualizar los valores en la tabla o donde sea necesario
+          const filaActual = document.querySelector(
+            "#tabla-productos_mep tbody .seleccionada"
+          );
+          filaActual.querySelector("td:nth-child(1)").textContent = nombre;
+          filaActual.querySelector("td:nth-child(3)").textContent = descripcion;
+          filaActual.querySelector("td:nth-child(4)").textContent = precio;
+          filaActual.querySelector("td:nth-child(5)").textContent = cantidad;
+          filaActual.querySelector("td:nth-child(6)").textContent = categoria;
+
+          // Cerrar el modal después de guardar los cambios
+          const modalSegundoEditarP = document.getElementById(
+            "modal-segundo-datos-mep"
+          );
+          modalSegundoEditarP.style.display = "none";
+        });
+
+      // Agregar evento change al campo de entrada de imagen para mostrar la imagen seleccionada
+      document
+        .getElementById("imagenProductoE")
+        .addEventListener("change", function (event) {
+          const file = event.target.files[0]; // Obtener el archivo seleccionado
+          const reader = new FileReader(); // Crear un objeto FileReader
+
+          reader.onload = function (event) {
+            const img = document.getElementById("imagenProductoActual");
+            img.src = event.target.result; // Mostrar la imagen seleccionada
+          };
+
+          reader.readAsDataURL(file); // Convertir el archivo a formato base64
+        });
+
+      // Agregar evento clic a cada fila para cargar los datos en el modal de edición
+      filaseditarP.forEach((fila) => {
+        fila.addEventListener("click", () => {
+          // Mostrar el segundo modal de editar productos
+          const modalSegundo = document.getElementById(
+            "modal-segundo-datos-mep"
+          );
+          modalSegundo.style.display = "block";
+
+          // Obtener los datos de la fila
+          const nombre_mep = fila.querySelector("td:nth-child(1)").textContent;
+          const descripcion_mep =
+            fila.querySelector("td:nth-child(3)").textContent;
+          const precio_mep = fila.querySelector("td:nth-child(4)").textContent;
+          const cantidad_mep =
+            fila.querySelector("td:nth-child(5)").textContent;
+          const categoria_mep =
+            fila.querySelector("td:nth-child(6)").textContent;
+          const imagen_mep = fila
+            .querySelector("td:nth-child(2) img")
+            .getAttribute("src");
+
+          // Mostrar los datos en el formulario de edición
+          document.getElementById("nombreProductoE").value = nombre_mep;
+          document.getElementById("descripcionProductoE").value =
+            descripcion_mep;
+          document.getElementById("precioProductoE").value = precio_mep;
+          document.getElementById("cantidadProductoE").value = cantidad_mep;
+          document.getElementById("categoriaProductoE").value = categoria_mep;
+
+          // Mostrar la imagen actual en el modal
+          const img = document.getElementById("imagenProductoActual");
+          img.src = imagen_mep;
+        });
+      });
+    </script>
 
 
+        <script>
+          //segundo modal eliminarP----
+          // Obtener todas las filas de la tabla
+          const filasEliminar = document.querySelectorAll("#tabla-productos_melp tbody tr");
     
+          // Agregar evento clic a cada fila
+          filasEliminar.forEach((fila) => {
+            fila.addEventListener("click", () => {
+              // Mostrar el segundo modal
+              const modalSegundo = document.getElementById("modal-segundo-datos-melp");
+              modalSegundo.style.display = "block";
+    
+              // Obtener los datos de la fila
+              const nombre = fila.querySelector("td:nth-child(1)").textContent;
+              const imagen = fila
+                .querySelector("td:nth-child(2) img")
+                .getAttribute("src");
+              const descripcion = fila.querySelector("td:nth-child(3)").textContent;
+              const precio = fila.querySelector("td:nth-child(4)").textContent;
+              const cantidad = fila.querySelector("td:nth-child(5)").textContent;
+              const categoria = fila.querySelector("td:nth-child(6)").textContent;
+    
+              // Mostrar los datos en el modal
+              document.getElementById("nombreProductoEl").textContent =
+                "Nombre: " + nombre;
+              document.getElementById("imagenProductoEl").src = imagen;
+              document.getElementById("descripcionProductoEl").textContent =
+                "Descripción: " + descripcion;
+              document.getElementById("precioProductoEl").textContent =
+                "Precio: " + precio;
+              document.getElementById("cantidadProductoEl").textContent =
+                "Cantidad: " + cantidad;
+              document.getElementById("categoriaProductoEl").textContent =
+                "Categoría: " + categoria;
+            });
+          });
+    
+          // Obtener el botón de cerrar del segundo modal
+          const closeBtnSegundo_melp = document.querySelector(
+            "#modal-segundo-datos-melp .close-melp"
+          );
+    
+          // Agregar evento clic al botón de cerrar del segundo modal
+          closeBtnSegundo_melp.addEventListener("click", () => {
+            const modalSegundo_melp = document.getElementById("modal-segundo-datos-melp");
+            modalSegundo_melp.style.display = "none"; // Ocultar el segundo modal al hacer clic en el botón de cerrar
+          });
+    
+          // Evitar que el segundo modal se cierre al hacer clic fuera de él
+          const modalSegundo_melp = document.getElementById("modal-segundo-datos-melp");
+          modalSegundo_melp.addEventListener("click", (event) => {
+            event.stopPropagation(); // Evitar la propagación del evento para que no se cierre al hacer clic dentro
+          });
+        </script>
+
     <script src="/back/src/js/index.js"></script>
   </body>
 </html>
