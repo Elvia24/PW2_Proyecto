@@ -1256,6 +1256,9 @@ th:last-child {
   padding: 1rem;
   margin-top: 1rem;
 }
+.checkout:hover{
+  background-color: var(--green3);
+}
 
 @media only screen and (max-width: 567px) {
   .cart-info p {

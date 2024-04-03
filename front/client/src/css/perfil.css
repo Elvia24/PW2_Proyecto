@@ -65,20 +65,7 @@
 .edit-section input[type="email"],
 .edit-section input[type="number"],
 .edit-section input[type="file"],
-.edit-section textarea {
-    width: 100%;
-    padding: 1.5rem;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    /* Asegura que el padding no aumente el ancho total del input */
-
-    border: 1px solid var(--green3);
-    outline: none;
-    font-size: 1.6rem;
-}
-
+.edit-section textarea,
 .edit-section select {
     width: 100%;
     padding: 1.5rem;
@@ -93,10 +80,15 @@
     font-size: 1.6rem;
 }
 
+
 /* Estilos para el botón dentro de edit-section */
+.button-group-perfil {
+    /* justify-content:space-between; */
+    display:grid;
+}
 .button-group {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     /* Centra los elementos horizontalmente */
 }
 
@@ -121,29 +113,8 @@
   } */
 
 /* Estilos para botónes el grgupo de botones*/
-.edit-section .btn-agregar {
-    background-color: var(--green_add);
-    /* Color de fondo para ver productos */
 
-}
 
-.edit-section .btn-agregar:hover {
-    background-color: var(--green_add2);
-    /* Color de fondo para ver productos */
-
-}
-
-.edit-section .btn-ver {
-    background-color: var(--blue_see);
-    /* Color de fondo para ver productos */
-
-}
-
-.edit-section .btn-ver:hover {
-    background-color: var(--blue_see2);
-    /* Color de fondo para ver productos */
-
-}
 
 .edit-section .btn-editar {
     background-color: var(--yellow_save_changes);
@@ -151,26 +122,11 @@
 
 }
 
-.edit-section .btn-editar:hover {
-    background-color: var(--yellow_save_changes2);
-    /* Color de fondo para editar producto */
-
-}
-
-.edit-section .btn-eliminar {
-    background-color: var(--red_delete);
-    /* Color de fondo para eliminar producto */
-
-}
-
-.edit-section .btn-eliminar:hover {
-    background-color: var(--red_delete2);
-    /* Color de fondo para eliminar producto */
-
-}
-
 /* Estilos para botónes */
 /* Estilos para los modales */
+
+
+/* VERIFICAR SI SIRVEN  */
 .modal {
     display: none;
     /* Ocultar inicialmente */
@@ -274,15 +230,13 @@
 }
 
 
-input[type="text"],
+/* input[type="text"],
 textarea,
 select {
     width: 100%;
-    /* Ajusta el ancho según sea necesario */
+    
     margin-bottom: 10px;
     box-sizing: border-box;
-    /* Asegura que el padding no afecte al ancho total */
-
     padding: 1.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -290,7 +244,7 @@ select {
     outline: none;
     font-size: 1.6rem;
     border-color: var(--green);
-}
+} */
 
 input[type="submit"] {
     background-color: var(--yellow_save_changes);
@@ -337,21 +291,9 @@ input[type="submit"]:hover {
 }
 
 /* Estilos para los modales */
+/* VERIFICAR SI SIRVEN  */
 
 
-#preview,
-#preview1 {
-    /*imagen seleccionada para el nuevo producto */
-    max-width: 100%;
-    max-height: 200px;
-    margin: 10px auto;
-    /* Centra horizontalmente */
-    display: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-
-}
 
 .session-reports {
     /* background-color: #263302; */
@@ -390,7 +332,7 @@ input[type="submit"]:hover {
 
 /* botones en la parte de la info del usuario */
 .buttons button {
-    margin-right: 23px;
+    /* margin-right: 23px; */
     /* Espacio entre los botones */
     margin-bottom: 10px;
     /* Espacio entre filas de botones */

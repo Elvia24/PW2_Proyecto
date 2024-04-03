@@ -4,6 +4,7 @@
   // import './index.css'
   import './css/index.css'
   import './css/perfil.css'
+  import './css/ProductosCategorias.css'
   import {BrowserRouter} from 'react-router-dom'
 
 

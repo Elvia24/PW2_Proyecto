@@ -32,11 +32,12 @@ function Navbar() {
                             <a href="/ArtemiShop_Categorias" className="nav-link">Categorias</a>
                         </li>
                         <li className="icons d-flex">
-                            <a href="#" className="icon">
+                            <a href="/ArtemiShop_Perfil" className="icon">
                                 <i className="bx bx-user"></i>
+                                <label className="username-label" >username</label>
                             </a>
 
-                            <a href="#" className="icon">
+                            <a href="/ArtemiShop_Carrito" className="icon">
                                 <i className="bx bx-cart"></i>
                                 <span className="d-flex">0</span>
                             </a>
@@ -44,12 +45,12 @@ function Navbar() {
                     </ul>
                     {/* left sidebar*/}
                     <div className="icons d-flex">
-                        <a href="#" className="icon ">
+                        <a href="/ArtemiShop_Perfil" className="icon ">
                             <i className="bx bx-user"></i>
-                            <label className="username-label" htmlFor="">username</label>
+                            <label className="username-label" >username</label>
                         </a>
 
-                        <a href="#" className="icon">
+                        <a href="/ArtemiShop_Carrito" className="icon">
                             <i className="bx bx-cart"></i>
                             <span className="d-flex">0</span>
                         </a>
