@@ -31,17 +31,17 @@ function inicio() {
                 <div className="product-center">
                     <div className="product-item">
                         <div className="overlay">
-                            <a href="productDetails.html" className="product-thumb">
+                            <a href="/ArtemiShop_productDetails" className="product-thumb">
                                 <img src="../../src/images/sample_images/product-1.jpg" alt="" />
                             </a>
                         </div>
                         <div className="product-info">
                             <span>CATEGORIA</span>
-                            <a href="productDetails.html">Quis Nostrud Exercitation</a>
+                            <a href="/ArtemiShop_productDetails">Quis Nostrud Exercitation</a>
                             <h4>$700</h4>
                         </div>
                         <ul className="icons">
-                            <li><i className='bx bxs-show'></i></li>
+                        <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a> </li>
                             <li><i className="bx bx-cart"></i></li>
                         </ul>
                     </div>

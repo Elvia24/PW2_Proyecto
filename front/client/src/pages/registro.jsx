@@ -29,7 +29,7 @@ function Registro() {
 
         try {
             
-            const response = await axios.post('http://localhost:3000/auth/registro', {
+            const response = await axios.post('http://localhost:3400/auth/registro', {
                 username,
                 email,
                 password,
@@ -78,7 +78,7 @@ function Registro() {
                         </select>
 
                         <div className="buttons">
-                            <a href="../index.html"><button type="button" className="cancelbtn">Cancelar</button></a>
+                            <a href="/"><button type="button" className="cancelbtn">Cancelar</button></a>
                             <button type="submit" className="registrobtn">Registrar</button>
                         </div>
                     </form>
