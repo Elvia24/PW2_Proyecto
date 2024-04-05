@@ -1,6 +1,7 @@
 // AgregarProducto.jsx
 import React, { useState } from 'react';
-import { previewImagePF, previewImageCF } from '../../js/imagePreviewPyC';
+import { previewImagePF} from '../../js/imagePreviewPyC';
+// previewImageCF 
 function AgregarProducto() {
 
     return (
@@ -68,9 +69,6 @@ function AgregarProducto() {
                 </div>
             </form>
         </div>
-
-
-
     );
 }
 

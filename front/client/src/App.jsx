@@ -8,6 +8,8 @@ import Categorias from './pages/categorias';
 import Carrito from './pages/carrito';
 import Perfil from './pages/perfil';
 import MisProductos from './pages/misProductos';
+import MisCategorias from './pages/misCategorias';
+import ProductDetails from './pages/productDetails';
 function App(){
   return (
     <Routes>
@@ -20,6 +22,8 @@ function App(){
       <Route path='/ArtemiShop_Carrito' element={<Carrito />} />
       <Route path='/ArtemiShop_Perfil' element={<Perfil />} />
       <Route path='/ArtemiShop_MisProductos' element={<MisProductos />} />
+      <Route path='/ArtemiShop_MisCategorias' element={<MisCategorias />} />
+      <Route path='/ArtemiShop_productDetails' element={<ProductDetails />} />
     </Routes>
   )
 }

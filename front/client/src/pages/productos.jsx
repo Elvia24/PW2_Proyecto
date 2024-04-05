@@ -15,129 +15,129 @@ function Productos() {
                     <div className="product-center container">
                         <div className="product-item">
                             <div className="overlay">
-                                <a href="productDetails.html" className="product-thumb">
+                                <div   className="product-thumb">
                                     <img src="../../src/images/sample_images/product-7.jpg" alt="" />
-                                </a>
+                                </div>
                             </div>
                             <div className="product-info">
                                 <span> CATEGORIA</span>
-                                <a href="productDetails.html">Concepts Solid Pink Men’s Polo</a>
+                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
                                 <h4>$150</h4>
                             </div>
                             <ul className="icons">
-                                <li><i className="bx bxs-show"></i></li>
+                                <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a> </li>
                                 <li><i className="bx bx-cart"></i></li>
                             </ul>
                         </div>
                         <div className="product-item">
                             <div className="overlay">
-                                <a href="#" className="product-thumb">
+                                <div className="product-thumb">
                                     <img src="../../src/images/sample_images/product-2.jpg" alt="" />
-                                </a>
+                                </div>
                             </div>
                             <div className="product-info">
                                 <span> CATEGORIA</span>
-                                <a href="#">Concepts Solid Pink Men’s Polo</a>
+                                <a >Concepts Solid Pink Men’s Polo</a>
                                 <h4>$150</h4>
                             </div>
                             <ul className="icons">
-                                <li><i className="bx bxs-show"></i></li>
+                            <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
                                 <li><i className="bx bx-cart"></i></li>
                             </ul>
                         </div>
                         <div className="product-item">
                             <div className="overlay">
-                                <a href="#" className="product-thumb">
+                                <div className="product-thumb">
                                     <img src="../../src/images/sample_images/product-3.jpg" alt="" />
-                                </a>
+                                </div>
                             </div>
                             <div className="product-info">
                                 <span> CATEGORIA</span>
-                                <a href="">Concepts Solid Pink Men’s Polo</a>
+                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
                                 <h4>$150</h4>
                             </div>
                             <ul className="icons">
-                                <li><i className="bx bxs-show"></i></li>
+                            <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
                                 <li><i className="bx bx-cart"></i></li>
                             </ul>
                         </div>
                         <div className="product-item">
                             <div className="overlay">
-                                <a href="#" className="product-thumb">
+                                <a  className="product-thumb">
                                     <img src="../../src/images/sample_images/product-4.jpg" alt="" />
                                 </a>
                             </div>
                             <div className="product-info">
                                 <span> CATEGORIA</span>
-                                <a href="">Concepts Solid Pink Men’s Polo</a>
+                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
                                 <h4>$150</h4>
                             </div>
                             <ul className="icons">
-                                <li><i className="bx bxs-show"></i></li>
+                                <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
                                 <li><i className="bx bx-cart"></i></li>
                             </ul>
                         </div>
                         <div className="product-item">
                             <div className="overlay">
-                                <a href="#" className="product-thumb">
+                                <div  className="product-thumb">
                                     <img src="../../src/images/sample_images/product-5.jpg" alt="" />
-                                </a>
+                                </div>
                             </div>
                             <div className="product-info">
                                 <span> CATEGORIA</span>
-                                <a href="">Concepts Solid Pink Men’s Polo</a>
+                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
                                 <h4>$150</h4>
                             </div>
                             <ul className="icons">
-                                <li><i className="bx bxs-show"></i></li>
+                                <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
                                 <li><i className="bx bx-cart"></i></li>
                             </ul>
                         </div>
                         <div className="product-item">
                             <div className="overlay">
-                                <a href="#" className="product-thumb">
+                                <div  className="product-thumb">
                                     <img src="../../src/images/sample_images/product-6.jpg" alt="" />
-                                </a>
+                                </div>
                             </div>
                             <div className="product-info">
                                 <span> CATEGORIA</span>
-                                <a href="#">Concepts Solid Pink Men’s Polo</a>
+                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
                                 <h4>$150</h4>
                             </div>
                             <ul className="icons">
-                                <li><i className="bx bxs-show"></i></li>
+                                <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
                                 <li><i className="bx bx-cart"></i></li>
                             </ul>
                         </div>
                         <div className="product-item">
                             <div className="overlay">
-                                <a href="#" className="product-thumb">
+                                <div className="product-thumb">
                                     <img src="../../src/images/sample_images/product-7.jpg" alt="" />
-                                </a>
+                                </div>
                             </div>
                             <div className="product-info">
                                 <span> CATEGORIA</span>
-                                <a href="#">Concepts Solid Pink Men’s Polo</a>
+                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
                                 <h4>$150</h4>
                             </div>
                             <ul className="icons">
-                                <li><i className="bx bxs-show"></i></li>
+                                <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
                                 <li><i className="bx bx-cart"></i></li>
                             </ul>
                         </div>
                         <div className="product-item">
                             <div className="overlay">
-                                <a href="#" className="product-thumb">
+                                <div  className="product-thumb">
                                     <img src="../../src/images/sample_images/product-4.jpg" alt="" />
-                                </a>
+                                </div>
                             </div>
                             <div className="product-info">
                                 <span> CATEGORIA</span>
-                                <a href="#">Concepts Solid Pink Men’s Polo</a>
+                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
                                 <h4>$150</h4>
                             </div>
                             <ul className="icons">
-                                <li><i className="bx bxs-show"></i></li>
+                                <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
                                 <li><i className="bx bx-cart"></i></li>
                             </ul>
                         </div>

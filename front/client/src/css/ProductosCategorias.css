@@ -18,14 +18,21 @@
         border: none;
         cursor: pointer;
         /* background-color: transparent;  Quitamos el color de fondo para los botones */
-       margin: 0 10px;  /* Espaciado entre los botones */
+        margin: 0 10px;
+        /* Espaciado entre los botones */
         border-radius: 10px;
+        
     }
 
-    .navbar button:hover{
+    .navbar button:hover {
         background-color: var(--green);
+        color: #ffffff; /* Cambia el color del texto a blanco */
     }
-
+    .selected {
+        background-color: var(--green); /* Cambia el color de fondo a azul */
+        color: #ffffff; /* Cambia el color del texto a blanco */
+    }
+    
 
 
 
@@ -33,60 +40,111 @@
     .principal {
         background-color: var(--green2);
         border-radius: 20px;
-    
+
         width: 100%;
         margin-bottom: 20px;
         padding: 15px;
     }
-    
-.principal h2 {
-    text-align: center;
-}
 
-.principal input[type="text"],
-.principal input[type="email"],
-.principal input[type="number"],
-.principal input[type="file"],
-.principal textarea,
-.principal select {
-    width: 100%;
-    padding: 1.5rem;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    /* Asegura que el padding no aumente el ancho total del input */
+    .principal h2 {
+        text-align: center;
+    }
 
-    border: 1px solid var(--green3);
-    outline: none;
-    font-size: 1.6rem;
-}
+    .principal input[type="text"],
+    .principal input[type="email"],
+    .principal input[type="number"],
+    .principal input[type="file"],
+    .principal textarea,
+    .principal select {
+        width: 100%;
+        padding: 1.5rem;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        /* Asegura que el padding no aumente el ancho total del input */
 
-#ImagePA,
-#ImageCA {
-    margin: 10px auto;     
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    max-width: 40%;
-    height: 'auto';
-    
-}
+        border: 1px solid var(--green3);
+        outline: none;
+        font-size: 1.6rem;
+    }
 
-/* botones */
+    #ImagePA,
+    #ImageCA {
+        margin: 10px auto;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        max-width: 40%;
+        height: 'auto';
 
-.principal .btn-agregar {
-    background-color: var(--green_add);
-    /* Color de fondo para ver productos */
+    }
 
-}
+    /* botones */
 
-.principal .btn-agregar:hover {
-    background-color: var(--green_add2);
-    /* Color de fondo para ver productos */
+    .principal .btn-agregar {
+        color: black;
+        background-color: var(--green_add);
+        /* Color de fondo para ver productos */
 
-}
+    }
 
-.right-align {
-    display: flex;
-    justify-content: flex-end;
-}
+    .principal .btn-agregar:hover {
+        color: white;
+        background-color: var(--green_add2);
+        /* Color de fondo para ver productos */
+
+    }
+    .principal .btn-editar {
+        color: black;
+        background-color: var(--yellow_save_changes);
+        /* Color de fondo para ver productos */
+
+    }
+
+    .principal .btn-editar:hover {
+        color: white;
+        background-color: var(--yellow_save_changes2);
+        /* Color de fondo para ver productos */
+
+    }
+    .principal .btn-eliminar {
+
+        background-color: var(--red_delete);
+        /* Color de fondo para ver productos */
+
+    }
+
+    .principal .btn-eliminar:hover {
+        
+        background-color: var(--red_delete2);
+        /* Color de fondo para ver productos */
+
+    }
+
+    .right-align {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+
+    /* tabla de productos en misProductos misCategorias */
+    .custom-table-container {
+        background-color: white;
+        border-radius: 5px;
+        max-height: 400px;
+        /* Altura máxima del contenedor de la tabla */
+        overflow-y: auto;
+        /* Agrega un scroll vertical cuando el contenido de la tabla sea mayor que la altura máxima */
+        scrollbar-width: thin;
+        /* Grosor del scrollbar */
+        scrollbar-color: var(--green) transparent;
+        /* Color del scrollbar */
+    }
+
+
+    .custom-table thead {
+        /* Estilos para mantener fijo el encabezado de la tabla */
+        position: sticky;
+        top: 0;
+        /*background-color: #f1f1f1;  Color de fondo del encabezado */
+    }

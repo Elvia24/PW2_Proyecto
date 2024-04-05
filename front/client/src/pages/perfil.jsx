@@ -20,10 +20,12 @@ function Perfil() {
     // ---SECCIONES VISIBLES---
     // Estado para almacenar el identificador de la sección actualmente visible
     const [seccionVisible, setSeccionVisible] = useState('editar-informacion');
+    const [currentButton, setCurrentButton] = useState('editar-informacion');
 
     // Función para manejar el clic en los botones
     const handleClick = (seccion) => {
         setSeccionVisible(seccion); // Cambiar el estado a la sección clicada
+        setCurrentButton(seccion); // Actualizar el botón actual
     };
     // ---SECCIONES VISIBLES---
 
@@ -45,14 +47,14 @@ function Perfil() {
                                 <br />
                                 <hr />
                                 <br />
-                                <button onClick={() => handleClick("editar-informacion")}>Editar mi informacion</button>
-                                <button onClick={() => handleClick("session-report-venta")}>Mis Ventas</button>
-                                <button onClick={() => handleClick("session-report-compra")}>Mis Compras</button>
+                                <button onClick={() => handleClick("editar-informacion")} className={currentButton === 'editar-informacion' ? 'active' : ''}>Editar mi información</button>
+                                <button onClick={() => handleClick("session-report-venta")} className={currentButton === 'session-report-venta' ? 'active' : ''}>Mis Ventas</button>
+                                <button onClick={() => handleClick("session-report-compra")} className={currentButton === 'session-report-compra' ? 'active' : ''}>Mis Compras</button>
                                 <br />
                                 <hr />
                                 <br />
                                 <a href="/ArtemiShop_misProductos" className="button-group-perfil"><button >Mis Productos</button></a>
-                                <button >Mis Categorias</button>
+                                <a href="/ArtemiShop_misCategorias" className="button-group-perfil"><button >Mis Categorias</button></a>
                             </li>
                         </ul>
                     </div>
