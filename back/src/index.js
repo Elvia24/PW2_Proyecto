@@ -5,7 +5,10 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const app = express();
 const port = process.env.PORT || 3000
+
 const userRoutes = require('./routes/users_routes.js');
+const productoRoutes = require('./routes/product_routes.js');
+
 const pool = require('./config/db');
 
 
@@ -17,6 +20,7 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(express.json());
 app.use('/auth', userRoutes);
+app.use('/productos', productoRoutes);
 
   
   

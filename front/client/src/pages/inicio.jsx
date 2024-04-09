@@ -1,8 +1,12 @@
-import Navbar from "./components/Navbar"
+import React from 'react';
+import Navbar from "./components/Navbar";
+import Header from "./components/header";
+import SectionNuevo from "./components/SeccionNuevo";
 
-function inicio() {
+function Inicio() {
     return (
         <div>
+<<<<<<< Updated upstream
             <header className="header" id="header">
 
                 <div >
@@ -165,7 +169,13 @@ function inicio() {
             </section>
 
 
+=======
+            <Navbar />
+            <Header />
+            <SectionNuevo />
+>>>>>>> Stashed changes
         </div>
     );
 }
-export default inicio;
+
+export default Inicio;

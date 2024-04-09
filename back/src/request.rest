@@ -17,3 +17,6 @@ Content-Type: application/json
   "username": "aa",
   "contrasena": "aa6"
 }
+###
+GET http://localhost:3000/productos/
+Content-Type: application/json

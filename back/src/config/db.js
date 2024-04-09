@@ -10,7 +10,9 @@ require('dotenv').config();
 }); */
 
 const pool = mysql.createPool({
-    connectionLimit: 10, 
+    connectionLimit: 10,
+    waitForConnections: true,
+    queueLimit: 0, 
     host: 'localhost',  //ip de la bd donde presentaremos
     user: 'root', //usuario de la bd donde presentaremos
     password: 'BDMserver8.', //contra de la bd donde presentaremos
