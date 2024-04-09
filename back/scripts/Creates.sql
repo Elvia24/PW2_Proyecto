@@ -38,6 +38,7 @@ CREATE TABLE Productos
   userID INT NOT NULL, -- FK a la tabla Usuario
   categoryID INT NOT NULL, -- FK a la tabla Categoria
   nombre VARCHAR(50) not null,
+  productImage mediumblob,
   descripcion VARCHAR(300),  
   precio DECIMAL(10,2) NOT NULL,
   cantidad DECIMAL(10,2) NOT NULL
@@ -51,6 +52,7 @@ username VARCHAR(50)  NOT NULL,
 email VARCHAR(50) NOT NULL, 
 passwor VARCHAR(50)  NOT NULL, 
 direccion VARCHAR(200) ,
+userImage mediumblob,
 role INT NOT NULL  -- 0=admin, 1=vendedor, 2=cliente
 );
 

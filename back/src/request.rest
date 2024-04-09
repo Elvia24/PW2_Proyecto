@@ -1,3 +1,5 @@
+
+
 ####
 POST http://localhost:3000/auth/registro
 Content-Type: application/json
@@ -17,6 +19,42 @@ Content-Type: application/json
   "username": "aa",
   "contrasena": "aa6"
 }
+
+###
+POST http://localhost:3000/productos/
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="userID"
+
+1
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="categoryID"
+
+2
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="nombre"
+
+Camiseta de moda
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="descripcion"
+
+Una hermosa camiseta para estar a la moda
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="precio"
+
+29.99
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="cantidad"
+
+100
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="productImage"; filename="camiseta.jpg"
+Content-Type: image/jpeg
+
+(archivo de imagen binaria)
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
 ###
 GET http://localhost:3000/productos/
 Content-Type: application/json

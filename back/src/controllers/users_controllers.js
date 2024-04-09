@@ -40,11 +40,11 @@ const registro = async (req, res) => {
   try {
     
     const { username, email, password, direccion, role } = req.body;
-    
+    const image = '';
     // Prepara los argumentos para el stored procedure, incluyendo 'IN' para la acción de inserción
-    const args = ['IN', null, username, email, password, direccion, role];
+    const args = ['IN', null, username, email, password, direccion, image, role];
   
-    await pool.promise().query('CALL spGestionUsuarios(?, ?, ?, ?, ?, ?, ?)', args);
+    await pool.promise().query('CALL spGestionUsuarios(?, ?, ?, ?, ?, ?, ?, ?)', args);
     
     res.status(201).json({ message: "Usuario registrado con éxito" });
   } catch (error) {

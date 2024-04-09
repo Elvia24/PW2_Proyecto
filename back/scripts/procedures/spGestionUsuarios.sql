@@ -11,12 +11,13 @@ CREATE PROCEDURE spGestionUsuarios(
     IN p_Email VARCHAR(50),
     IN p_Password VARCHAR(50),
     IN p_Direccion VARCHAR(200),
+    IN p_userImage mediumblob,
     IN p_Role INT
 )
 BEGIN
     IF p_Accion = 'IN' THEN
-        INSERT INTO Usuarios(username, email, passwor, direccion, role)
-        VALUES(p_Username, p_Email, p_Password, p_Direccion, p_Role);
+        INSERT INTO Usuarios(username, email, passwor, direccion,userImage, role)
+        VALUES(p_Username, p_Email, p_Password, p_Direccion, '', p_Role);
     END IF;
 
     IF p_Accion = 'UP' THEN
