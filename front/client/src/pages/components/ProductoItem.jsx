@@ -1,14 +1,14 @@
-// ProductoItem.js
 import React from 'react';
 
 function ProductoItem({ producto }) {
-    const imagenDummy = 'https://via.placeholder.com/150' ;
+    let imagenSrc = producto.productImage ? `data:image/jpeg;base64,${producto.productImage}` : 'https://via.placeholder.com/150';
+    
     return (
         <div className="product-item">
             <div className="overlay">
                 <a href="productDetails.html" className="product-thumb">
-                    {/* Utiliza la imagen dummy si no hay una imagen proporcionada */}
-                    <img src={ imagenDummy} alt={producto.nombre} />
+                    {/* Utiliza la imagen del producto si está disponible, de lo contrario, muestra una imagen dummy */}
+                    <img src={imagenSrc} alt={producto.nombre} />
                 </a>
             </div>
             <div className="product-info">
@@ -25,5 +25,4 @@ function ProductoItem({ producto }) {
 }
 
 export default ProductoItem;
-
  

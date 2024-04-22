@@ -8,12 +8,13 @@ CREATE PROCEDURE spGestionCategorias(
     IN p_Accion CHAR(3),
     IN p_categoryID INT,
     IN p_nombre VARCHAR(50),
-    IN p_descripcion VARCHAR(300)
+    IN p_descripcion VARCHAR(300),
+    IN p_categoryImage mediumblob
 )
 BEGIN
     IF p_Accion = 'IN' THEN
-        INSERT INTO Categoria(nombre, descripcion)
-        VALUES(p_nombre, p_descripcion);
+        INSERT INTO Categoria(nombre, descripcion,categoryImage)
+        VALUES(p_nombre, p_descripcion,p_categoryImage);
     END IF;
 
     IF p_Accion = 'UP' THEN

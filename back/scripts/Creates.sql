@@ -61,7 +61,8 @@ CREATE TABLE Categoria
 (
   categoryID INT auto_increment PRIMARY KEY NOT NULL, -- PK
   nombre VARCHAR(50) NOT NULL unique,
-  descripcion VARCHAR(300) NOT NULL  
+  descripcion VARCHAR(300) NOT NULL,
+  categoryImage mediumblob
 );
 
 

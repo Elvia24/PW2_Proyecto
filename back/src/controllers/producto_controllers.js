@@ -36,27 +36,28 @@ const addProduct = async (req, res) => {
 };
 
 const getAllProducts = async (req, res) => {
-    try{
-    const [results] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?, ?)', ['SE', 0, 0, 0, '','', '', 0, 0]);
+    try {
+        const [results] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?, ?)', ['SE', 0, 0, 0, '', '', '', 0, 0]);
 
-    
-    if (results[0].length > 0) {
-        res.json({
-            success: true,
-            message: 'Productos encontrados',
-            data: results[0]
-        });
-    } else {
-      
-      res.status(401).json({ success: false, message: 'No se encontraron productos' });
-    }
-    }
-     catch (error) {
+        if (results[0].length > 0) {
+            // Convertir la imagen blob a base64 para cada producto
+            const productos = results[0].map(producto => ({
+                ...producto,
+                productImage: producto.productImage ? Buffer.from(producto.productImage).toString('base64') : null
+            }));
+            
+            res.json({
+                success: true,
+                message: 'Productos encontrados',
+                data: productos
+            });
+        } else {
+            res.status(401).json({ success: false, message: 'No se encontraron productos' });
+        }
+    } catch (error) {
         console.error('Error al buscar productos:', error.message);
         res.status(500).json({ message: error.message });
-      }
-
-   
+    }
 };
 
 module.exports = {
