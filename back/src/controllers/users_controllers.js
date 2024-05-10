@@ -1,39 +1,36 @@
-const pool = require('../config/db.js');
-
+const pool = require('../config/db');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
+const secretKey = process.env.JWT_SECRET;
 
 
-//const login = async (req, res) => {
-//  res.send('Esto es para login');
-//};
 
 const login = async (req, res) => {
   try {
-    const { username, contrasena } = req.body;
+      const { username, contrasena } = req.body;
+      const [results] = await pool.promise().query('CALL spLoginUsuario(?, ?)', [username, contrasena]);
 
-    
-    const [results] = await pool.promise().query('CALL spLoginUsuario(?, ?)', [username, contrasena]);
+      if (results[0].length > 0) {
+          const user = results[0][0];
+          const token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '2h' });
 
-    
-    if (results[0].length > 0) {
-      res.json({
-        success: true,
-        message: 'Inicio de sesión exitoso',
-        data: results[0][0] 
-      });
-    } else {
-      
-      res.status(401).json({ success: false, message: 'Usuario o contraseña incorrecta' });
-    }
+          res.json({
+              success: true,
+              message: 'Inicio de sesión exitoso',
+              token: token
+          });
+
+          console.log('Token'+token)
+      } else {
+          res.status(401).json({ success: false, message: 'Usuario o contraseña incorrecta' });
+      }
   } catch (error) {
-    console.error('Error al intentar iniciar sesión:', error.message);
-    res.status(500).json({ success: false, message: 'Error al procesar la solicitud de inicio de sesión' });
+      console.error('Error al intentar iniciar sesión:', error.message);
+      res.status(500).json({ success: false, message: 'Error al procesar la solicitud de inicio de sesión' });
   }
 };
 
-//const registro = async (req, res) => {
-//  res.send('Esto es para registro');
-//};
 
 const registro = async (req, res) => {
   

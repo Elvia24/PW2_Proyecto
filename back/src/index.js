@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const authenticateToken = require('./middlewares/auth');
 
 const mysql = require('mysql2');
 const app = express();
@@ -23,8 +24,7 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(express.json());
 app.use('/auth', userRoutes);
-app.use('/productos', productoRoutes);
-
+app.use('/productos', authenticateToken, productoRoutes);
 
 
 

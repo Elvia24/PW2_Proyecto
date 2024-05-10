@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import axios from 'axios';
 
 function InicioSesion() {
-    const [message, setMessage] = useState(''); 
+    const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -16,16 +18,24 @@ function InicioSesion() {
                 contrasena
             });
 
-            // Login exitoso
-            setMessage(response.data.message); 
-            setTimeout(() => {
-                setMessage(''); 
-                window.location.href = '/'; 
-            }, 2000);
+            if (response.data.token) {
+                // Almacenar el token en sessionStorage
+                sessionStorage.setItem('token', response.data.token);
+                setMessage(response.data.message);
+
+                // Redirigir al usuario después de mostrar mensaje de éxito
+                setTimeout(() => {
+                    setMessage('');
+                    navigate('/'); 
+                }, 2000);
+            } else {
+                // Si no hay token, manejar como error o falta de datos
+                setMessage('Inicio de sesión exitoso, pero no se recibió token.');
+            }
         } catch (error) {
             if (error.response) {
                 // Login fallido
-                setMessage(error.response.data.message); // 
+                setMessage(error.response.data.message);
             } else {
                 setMessage('Ocurrió un error al procesar la solicitud.');
             }
