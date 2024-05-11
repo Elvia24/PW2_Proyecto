@@ -1,31 +1,37 @@
-// userData.js
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useUserData = () => {
-    const [nombreUser, setNombreUser] = useState('Juan Pérez 5');
-    const handleNombreChange = (event) => {
-        setNombreUser(event.target.value);
-    };
+    // State initialization
+    const [nombreUser, setNombreUser] = useState('');
+    const [mail, setMail] = useState('');
+    const [address, setAddress] = useState('');
+    const [rol, setRol] = useState('');
 
-    const [mail, setMail] = useState('ejemplo@example.com');
-    const handlEmailChange = (event) => {
-        setMail(event.target.value);
-    };
+    useEffect(() => {
+        // Fetching user data from session storage
+        const userDataJson = sessionStorage.getItem('userData');
+        if (userDataJson) {
+            const userData = JSON.parse(userDataJson);
+            setNombreUser(userData.username || '');
+            setMail(userData.email || '');
+            setAddress(userData.direccion || '');
+            // Convert the numeric role to a string description
+            setRol(userData.role === 1 ? 'Cliente' : 'Administrador'); // Assuming '1' indicates a Cliente
+        }
+    }, []);
 
-    const [address, setAddress] = useState('Calle 123, Ciudad, País');
-    const handlAddressChange = (event) => {
-        setAddress(event.target.value);
-    };
-
-    const rol = 'Cliente';
+    // Handlers for input changes
+    const handleNombreChange = (event) => setNombreUser(event.target.value);
+    const handleEmailChange = (event) => setMail(event.target.value);
+    const handleAddressChange = (event) => setAddress(event.target.value);
 
     return {
         nombreUser,
         handleNombreChange,
         mail,
-        handlEmailChange,
+        handleEmailChange,
         address,
-        handlAddressChange,
+        handleAddressChange,
         rol
     };
 };

@@ -35,7 +35,7 @@ BEGIN
     END IF;
 
     IF p_Accion = 'SE' THEN
-        SELECT userID, username, email, passwor, direccion, role
+        SELECT userID, username, email,  direccion, role
         FROM Usuarios
         WHERE userID = p_userID;
     END IF;

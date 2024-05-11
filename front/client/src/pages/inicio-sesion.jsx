@@ -19,26 +19,36 @@ function InicioSesion() {
             });
 
             if (response.data.token) {
-                // Almacenar el token en sessionStorage
                 sessionStorage.setItem('token', response.data.token);
-                setMessage(response.data.message);
-
-                // Redirigir al usuario después de mostrar mensaje de éxito
-                setTimeout(() => {
-                    setMessage('');
-                    navigate('/'); 
-                }, 2000);
+                setMessage('Inicio de sesión exitoso');
+                console.log(response.data.token);
+                // Obtener datos del usuario
+                fetchUserData(response.data.token);
             } else {
-                // Si no hay token, manejar como error o falta de datos
+                // Manejar como error o falta de datos
                 setMessage('Inicio de sesión exitoso, pero no se recibió token.');
             }
         } catch (error) {
-            if (error.response) {
-                // Login fallido
-                setMessage(error.response.data.message);
+            setMessage(error.response ? error.response.data.message : 'Ocurrió un error al procesar la solicitud.');
+        }
+    };
+
+    const fetchUserData = async (token) => {
+        try {
+            const userResponse = await axios.get('http://localhost:3000/auth/usuario', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if (userResponse.data.success) {
+                sessionStorage.setItem('userData', JSON.stringify(userResponse.data.data));
+                //console.log('session ='+sessionStorage.getItem('userData'));
+                navigate('/'); 
             } else {
-                setMessage('Ocurrió un error al procesar la solicitud.');
+                setMessage('Error al obtener los datos del usuario.');
             }
+        } catch (error) {
+            setMessage('Ocurrió un error al obtener los datos del usuario.');
         }
     };
 
@@ -58,7 +68,7 @@ function InicioSesion() {
                             <button type="button" className="cancelbtn">Cancelar</button>
                             <button type="submit" className="registrobtn">Iniciar</button>
                         </div>
-                        {message && <div className="login-message">{message}</div>} 
+                        {message && <div className="login-message">{message}</div>}
                     </form>
                 </div>
             </div>

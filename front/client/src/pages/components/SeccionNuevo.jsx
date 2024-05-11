@@ -26,7 +26,7 @@ function SectionNuevo() {
         } else {
             setIsAuthenticated(false);
         }
-    }, []); // Ejecutar solo una vez al montar el componente
+    }, []); 
 
     return (
         <section className="section new-arrival">

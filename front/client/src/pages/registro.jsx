@@ -29,7 +29,7 @@ function Registro() {
 
         try {
             
-            const response = await axios.post('http://localhost:3400/auth/registro', {
+            const response = await axios.post('http://localhost:3000/auth/registro', {
                 username,
                 email,
                 password,

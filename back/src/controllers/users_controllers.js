@@ -13,7 +13,9 @@ const login = async (req, res) => {
 
       if (results[0].length > 0) {
           const user = results[0][0];
-          const token = jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '2h' });
+
+          console.log(results);
+          const token = jwt.sign({ id: user.userID}, secretKey, { expiresIn: '1h' });
 
           res.json({
               success: true,
@@ -41,7 +43,7 @@ const registro = async (req, res) => {
     // Prepara los argumentos para el stored procedure, incluyendo 'IN' para la acción de inserción
     const args = ['IN', null, username, email, password, direccion, image, role];
   
-    await pool.promise().query('CALL spGestionUsuarios(?, ?, ?, ?, ?, ?, ?, ?)', args);
+     await pool.promise().query('CALL spGestionUsuarios(?, ?, ?, ?, ?, ?, ?, ?)', args);
     
     res.status(201).json({ message: "Usuario registrado con éxito" });
   } catch (error) {
@@ -49,8 +51,38 @@ const registro = async (req, res) => {
   }
 };
 
+const getUser = async (req, res) => {
+  try {
+      const userId = req.user.id;  
+      
+      const args = ['SE', userId, '', '', '', '', '', 1];
+
+      const [results] = await pool.promise().query('CALL spGestionUsuarios(?, ?, ?, ?, ?, ?, ?, ?)', args);
+     
+
+      if (results[0].length > 0) {
+          const user = results[0][0];  
+          res.json({
+              success: true,
+              data: {
+                  userID: user.userID, 
+                  username: user.username, 
+                  email: user.email, 
+                  direccion: user.direccion,
+                  role: user.role
+              }
+          });
+      } else {
+          res.status(404).json({ success: false, message: "Usuario no encontrado" });
+      }
+  } catch (error) {
+      console.error('Error al obtener datos del usuario:', error.message);
+      res.status(500).json({ success: false, message: 'Error al procesar la solicitud' });
+  }
+};
 
 module.exports = {
-  login,
-  registro
+login,
+registro,
+getUser 
 };
