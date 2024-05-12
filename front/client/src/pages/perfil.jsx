@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from "./components/Navbar";
-import { useUserData } from '../js/data/userData';
+import { useAuth } from '../context/AuthContext'; // Verifica la ruta correcta al contexto
+import axios from 'axios';
 import SalesReport from './components/SalesReport';
 import PurchaseReport from './components/PurchaseReport';
-import { isAuthenticated } from '../js/services/authService';
-
+import { useUserData } from '../js/data/userData';
 
 function Perfil() {
-    
-    
-
-    
-    
+    const { isAuthenticated, userDetails, updateUserDetails,setUserDetails } = useAuth();
+ 
+    const [seccionVisible, setSeccionVisible] = useState('editar-informacion');
+    const navigate = useNavigate();
     const {
         nombreUser,
         handleNombreChange,
@@ -22,21 +21,41 @@ function Perfil() {
         handleAddressChange,
         rol
     } = useUserData();
-
-    const [seccionVisible, setSeccionVisible] = useState('editar-informacion');
-    const navigate = useNavigate();
-
-    // Check authentication status and redirect if not authenticated
     useEffect(() => {
-        if (!isAuthenticated()) {
-            navigate('/');  // Redirect to login page if not authenticated
+        if (!isAuthenticated) {
+            navigate('/');  
         }
-    }, [navigate]); // Dependency on `navigate` to ensure it's only called when needed
+    }, [isAuthenticated, navigate]);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const updatedUser = {
+            userId: userDetails.userID,
+            username: nombreUser,
+            email: mail,
+            direccion: address,
+            role: userDetails.role
+        };
+    
+        try {
+            const response = await axios.put('http://localhost:3000/auth/usuario', updatedUser, {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem('token')}`
+                }
+            });
+            if (response.data) {
+                updateUserDetails(updatedUser);  // Aquí usas la nueva función
+                alert('Información actualizada correctamente');
+            }
+        } catch (error) {
+            console.error('Error al actualizar la información del usuario:', error);
+            alert('Error al actualizar la información');
+        }
+    };
 
     const handleClick = (seccion) => {
         setSeccionVisible(seccion);
     };
-    
 
     return (
         <div>
@@ -64,7 +83,7 @@ function Perfil() {
                     {seccionVisible === 'editar-informacion' && (
                         <div className="edit-section">
                             <h2>Editar Información</h2>
-                            <form id="user-info-form">
+                            <form onSubmit={handleSubmit}>
                                 <div className="form-group">
                                     <label htmlFor="nombreUser">Nombre De Usuario:</label>
                                     <input
@@ -108,7 +127,6 @@ function Perfil() {
             </div>
         </div>
     );
-    
 }
 
 export default Perfil;

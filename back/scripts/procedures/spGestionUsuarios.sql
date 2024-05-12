@@ -23,10 +23,8 @@ BEGIN
     IF p_Accion = 'UP' THEN
         UPDATE Usuarios
         SET username = p_Username,
-            email = p_Email,
-            passwor = p_Password,
-            direccion = p_Direccion, 
-            role = p_Role
+            email = p_Email,           
+            direccion = p_Direccion
         WHERE userID = p_userID;
     END IF;
 

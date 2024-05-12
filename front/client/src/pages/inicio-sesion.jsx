@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';  // Asegúrate de tener la ruta correcta al contexto
 import Navbar from "./components/Navbar";
 import axios from 'axios';
 
 function InicioSesion() {
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const { login } = useAuth();  // Extrae login de useAuth
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -18,37 +20,16 @@ function InicioSesion() {
                 contrasena
             });
 
+            
             if (response.data.token) {
-                sessionStorage.setItem('token', response.data.token);
+                await login(response.data.token); // Asegúrate de que login ahora maneja la carga de datos del usuario
                 setMessage('Inicio de sesión exitoso');
-                console.log(response.data.token);
-                // Obtener datos del usuario
-                fetchUserData(response.data.token);
+                navigate('/');
             } else {
-                // Manejar como error o falta de datos
                 setMessage('Inicio de sesión exitoso, pero no se recibió token.');
             }
         } catch (error) {
             setMessage(error.response ? error.response.data.message : 'Ocurrió un error al procesar la solicitud.');
-        }
-    };
-
-    const fetchUserData = async (token) => {
-        try {
-            const userResponse = await axios.get('http://localhost:3000/auth/usuario', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            if (userResponse.data.success) {
-                sessionStorage.setItem('userData', JSON.stringify(userResponse.data.data));
-                //console.log('session ='+sessionStorage.getItem('userData'));
-                navigate('/'); 
-            } else {
-                setMessage('Error al obtener los datos del usuario.');
-            }
-        } catch (error) {
-            setMessage('Ocurrió un error al obtener los datos del usuario.');
         }
     };
 

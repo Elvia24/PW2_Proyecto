@@ -81,8 +81,26 @@ const getUser = async (req, res) => {
   }
 };
 
+const putUser = async (req, res) => {
+  try {
+    const { userId, username, email, direccion } = req.body;
+    //const hashedPassword = password ? await bcrypt.hash(password, 8) : undefined; 
+    
+    const image = ''; 
+    const args = ['UP', userId, username, email, image, direccion, image, 1];
+
+    await pool.promise().query('CALL spGestionUsuarios(?, ?, ?, ?, ?, ?, ?, ?)', args);
+
+    res.json({ message: "Datos del usuario actualizados con éxito" });
+  } catch (error) {
+    console.error('Error al actualizar el usuario:', error.message);
+    res.status(500).json({ message: "Error al actualizar el usuario", error: error.message });
+  }
+};
+
 module.exports = {
 login,
 registro,
-getUser 
+getUser,
+putUser 
 };

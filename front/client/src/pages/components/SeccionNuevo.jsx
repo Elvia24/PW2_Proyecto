@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductoItem from "./ProductoItem";
 import axios from 'axios';
+import { useAuth } from '../../context/AuthContext'; // Asegúrate de tener la ruta correcta al contexto
 
 function SectionNuevo() {
     const [productos, setProductos] = useState([]);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const { isAuthenticated } = useAuth(); // Usa isAuthenticated desde AuthContext
 
     useEffect(() => {
-        const token = sessionStorage.getItem('token');
-
-        if (token) {
-            setIsAuthenticated(true);
+        if (isAuthenticated) {
             // Hacer la solicitud GET para obtener los productos desde tu backend
+            const token = sessionStorage.getItem('token'); // Considera pasar el token desde AuthContext
             axios.get('http://localhost:3000/productos/', {
                 headers: {
                     Authorization: `Bearer ${token}`  // Asegura que el token se envíe en la solicitud
@@ -23,10 +22,8 @@ function SectionNuevo() {
             .catch(error => {
                 console.error('Error al obtener los productos:', error);
             });
-        } else {
-            setIsAuthenticated(false);
         }
-    }, []); 
+    }, [isAuthenticated]);  // Dependencia de isAuthenticated para reaccionar a cambios
 
     return (
         <section className="section new-arrival">
