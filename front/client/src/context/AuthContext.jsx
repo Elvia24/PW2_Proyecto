@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
+        console.log(token)
         const userData = sessionStorage.getItem('userData');
         if (token && userData) {
             setIsAuthenticated(true);

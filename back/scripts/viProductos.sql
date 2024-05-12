@@ -4,15 +4,15 @@ DROP VIEW IF EXISTS viProductos;
 CREATE VIEW viProductos AS
 SELECT 
     p.productID,
-    p.userID AS productUserID,
+    p.userID ,
     p.categoryID,
-    p.nombre AS nombreProducto,
+    p.nombre ,
     p.productImage,
-    p.descripcion AS descripcionProducto,
+    p.descripcion,
     p.precio,
     p.cantidad,
     c.nombre AS nombreCategoria,
-    c.descripcion AS descripcionCategoria,
-    c.categoryImage
+    (SELECT COUNT(*) FROM Productos) AS total
+
 FROM Productos p
 JOIN Categoria c ON p.categoryID = c.categoryID;

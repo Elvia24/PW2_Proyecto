@@ -18,10 +18,7 @@ const addProduct = async (req, res) => {
         const imageData = fs.readFileSync(productImage.path);
         
         // Inserta el nuevo producto en la base de datos
-        const result = await pool.promise().query(
-            'INSERT INTO Productos (userID, categoryID, nombre, productImage, descripcion, precio, cantidad) VALUES (?, ?, ?, ?, ?, ?, ?)',
-            [userID, categoryID, nombre, imageData, descripcion, precio, cantidad]
-        );
+        const [result] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?,?,?,?)', ['IN', userID, userID, categoryID, nombre, imageData, descripcion, precio, cantidad,cantidad,cantidad]);
 
 
 
@@ -37,7 +34,7 @@ const addProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
     try {
-        const [results] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?, ?)', ['SE', 0, 0, 0, '', '', '', 0, 0]);
+        const [results] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?,?,?,?)', ['SE3', 0, 0, 0, '', '', '', 0, 0,0,0]);
 
         if (results[0].length > 0) {
             // Convertir la imagen blob a base64 para cada producto
@@ -60,9 +57,47 @@ const getAllProducts = async (req, res) => {
     }
 };
 
+const getPageProducts = async (req, res) => {
+    const page = parseInt(req.query.page) || 1; 
+    const limit = parseInt(req.query.limit) || 8; 
+    const offset = (page - 1) * limit;
+    
+    try {
+        const [results] = await pool.promise().query(
+            'CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?,?,?,?)',
+            ['SE', 0, 0, 0, '', '', '',0,0, limit, offset] 
+        );
+        
+        if (results.length > 0) {
+            const productos = results[0].map(producto => ({
+                ...producto,
+                productImage: producto.productImage ? Buffer.from(producto.productImage).toString('base64') : null
+            }));
+            
+            const totalProductos = productos[0].total; 
+          
+            res.json({
+                success: true,
+                message: 'Productos encontrados',
+                data: productos,
+                pagination: {
+                    currentPage: page,
+                    totalPages: Math.ceil(totalProductos / limit) 
+                }
+            });
+        } else {
+            res.status(404).json({ success: false, message: 'No se encontraron productos' });
+        }
+    } catch (error) {
+        console.error('Error al buscar productos:', error.message);
+        res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     getAllProducts,
-    addProduct
+    addProduct,
+    getPageProducts
     
   };
 

@@ -1,160 +1,76 @@
-import Navbar from "./components/Navbar"
-function Productos() {
-    return (
+import React, { useEffect, useState } from 'react';
+import Navbar from "./components/Navbar";
+import ProductoItem from "./components/ProductoItem";
+import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
+function Productos() {
+    const [productos, setProductos] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
+    const [itemsPerPage, setItemsPerPage] = useState(8);
+    const { isAuthenticated } = useAuth();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/');
+            return;
+        }
+
+        fetchProducts();
+    }, [isAuthenticated, currentPage]); // navigate removed from dependencies to prevent unnecessary calls
+
+    const fetchProducts = () => {
+        const token = sessionStorage.getItem('token');
+        axios.get(`http://localhost:3000/productos/pages?page=${currentPage}&limit=${itemsPerPage}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            setProductos(response.data.data);
+            setTotalPages(response.data.pagination.totalPages); // Ensure correct path to totalPages
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+        });
+    };
+
+    function handlePageChange(newPage) {
+        if (newPage > 0 && newPage <= totalPages) {
+            setCurrentPage(newPage);
+        }
+    }
+
+    return (
         <div>
             <Navbar />
-            <div>
-
-                {/* <!-- All Products --> */}
-                <section className="section all-products" id="products">
-                    <div className="top container">
-                        <h1>Todos Los Productos</h1>
-
-                    </div>
-                    <div className="product-center container">
-                        <div className="product-item">
-                            <div className="overlay">
-                                <div   className="product-thumb">
-                                    <img src="../../src/images/sample_images/product-7.jpg" alt="" />
-                                </div>
-                            </div>
-                            <div className="product-info">
-                                <span> CATEGORIA</span>
-                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
-                                <h4>$150</h4>
-                            </div>
-                            <ul className="icons">
-                                <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a> </li>
-                                <li><i className="bx bx-cart"></i></li>
-                            </ul>
-                        </div>
-                        <div className="product-item">
-                            <div className="overlay">
-                                <div className="product-thumb">
-                                    <img src="../../src/images/sample_images/product-2.jpg" alt="" />
-                                </div>
-                            </div>
-                            <div className="product-info">
-                                <span> CATEGORIA</span>
-                                <a >Concepts Solid Pink Men’s Polo</a>
-                                <h4>$150</h4>
-                            </div>
-                            <ul className="icons">
-                            <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
-                                <li><i className="bx bx-cart"></i></li>
-                            </ul>
-                        </div>
-                        <div className="product-item">
-                            <div className="overlay">
-                                <div className="product-thumb">
-                                    <img src="../../src/images/sample_images/product-3.jpg" alt="" />
-                                </div>
-                            </div>
-                            <div className="product-info">
-                                <span> CATEGORIA</span>
-                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
-                                <h4>$150</h4>
-                            </div>
-                            <ul className="icons">
-                            <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
-                                <li><i className="bx bx-cart"></i></li>
-                            </ul>
-                        </div>
-                        <div className="product-item">
-                            <div className="overlay">
-                                <a  className="product-thumb">
-                                    <img src="../../src/images/sample_images/product-4.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div className="product-info">
-                                <span> CATEGORIA</span>
-                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
-                                <h4>$150</h4>
-                            </div>
-                            <ul className="icons">
-                                <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
-                                <li><i className="bx bx-cart"></i></li>
-                            </ul>
-                        </div>
-                        <div className="product-item">
-                            <div className="overlay">
-                                <div  className="product-thumb">
-                                    <img src="../../src/images/sample_images/product-5.jpg" alt="" />
-                                </div>
-                            </div>
-                            <div className="product-info">
-                                <span> CATEGORIA</span>
-                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
-                                <h4>$150</h4>
-                            </div>
-                            <ul className="icons">
-                                <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
-                                <li><i className="bx bx-cart"></i></li>
-                            </ul>
-                        </div>
-                        <div className="product-item">
-                            <div className="overlay">
-                                <div  className="product-thumb">
-                                    <img src="../../src/images/sample_images/product-6.jpg" alt="" />
-                                </div>
-                            </div>
-                            <div className="product-info">
-                                <span> CATEGORIA</span>
-                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
-                                <h4>$150</h4>
-                            </div>
-                            <ul className="icons">
-                                <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
-                                <li><i className="bx bx-cart"></i></li>
-                            </ul>
-                        </div>
-                        <div className="product-item">
-                            <div className="overlay">
-                                <div className="product-thumb">
-                                    <img src="../../src/images/sample_images/product-7.jpg" alt="" />
-                                </div>
-                            </div>
-                            <div className="product-info">
-                                <span> CATEGORIA</span>
-                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
-                                <h4>$150</h4>
-                            </div>
-                            <ul className="icons">
-                                <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
-                                <li><i className="bx bx-cart"></i></li>
-                            </ul>
-                        </div>
-                        <div className="product-item">
-                            <div className="overlay">
-                                <div  className="product-thumb">
-                                    <img src="../../src/images/sample_images/product-4.jpg" alt="" />
-                                </div>
-                            </div>
-                            <div className="product-info">
-                                <span> CATEGORIA</span>
-                                <a href="/ArtemiShop_productDetails">Concepts Solid Pink Men’s Polo</a>
-                                <h4>$150</h4>
-                            </div>
-                            <ul className="icons">
-                                <li><a href="/ArtemiShop_productDetails"> <i className="bx bxs-show"></i></a></li>
-                                <li><i className="bx bx-cart"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <section className="pagination">
-                    <div className="container">
-                        <span>1</span> <span>2</span> <span>3</span> <span>4</span>
-                        <span><i className="bx bx-right-arrow-alt"></i></span>
-                    </div>
-                </section>
-
-
-            </div>
-            
+            <section className="section all-products" id="products">
+                <div className="top container">
+                    <h1>Todos Los Productos</h1>
+                </div>
+                <div className="product-center container">
+                    {productos.map(producto => (
+                        <ProductoItem key={producto.productID} producto={producto} />
+                    ))}
+                </div>
+            </section>
+            <section className="pagination">
+                <div className="container">
+                    <span onClick={() => handlePageChange(currentPage - 1)}>&lt;</span>
+                    {[...Array(totalPages).keys()].map(page => (
+                        <span key={page} onClick={() => handlePageChange(page + 1)}
+                            className={page + 1 === currentPage ? 'active' : ''}>
+                            {page + 1}
+                        </span>
+                    ))}
+                    <span onClick={() => handlePageChange(currentPage + 1)}>&gt;</span>
+                </div>
+            </section>
         </div>
     );
 }
+
 export default Productos;

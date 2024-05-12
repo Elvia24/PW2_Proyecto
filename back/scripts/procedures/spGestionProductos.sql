@@ -13,12 +13,14 @@ CREATE PROCEDURE spGestionProductos(
     IN p_productImage mediumblob,
     IN p_descripcion VARCHAR(300),
     IN p_precio DECIMAL(10,2),
-    IN p_cantidad DECIMAL(10,2)
+    IN p_cantidad DECIMAL(10,2),
+    IN p_Limit INT, 
+    IN p_Offset INT  
 )
 BEGIN
     IF p_Accion = 'IN' THEN
         INSERT INTO Productos(userID, categoryID, nombre, productImage, descripcion, precio, cantidad)
-        VALUES(p_userID, p_categoryID, p_nombre, p_productImage,p_descripcion, p_precio, p_cantidad);
+        VALUES(p_userID, p_categoryID, p_nombre, p_productImage, p_descripcion, p_precio, p_cantidad);
     END IF;
 
     IF p_Accion = 'UP' THEN
@@ -37,14 +39,19 @@ BEGIN
     END IF;
 
     IF p_Accion = 'SE' THEN
-        SELECT productID, userID, categoryID, nombre,productImage, descripcion, precio, cantidad
-        FROM Productos;
+        SELECT productID, userID, categoryID, nombre, productImage, descripcion, precio, cantidad,total
+        FROM viProductos
+        LIMIT p_Limit OFFSET p_Offset;
     END IF;
-    
+
     IF p_Accion = 'SE2' THEN
-        SELECT productID, userID, categoryID, nombre,productImage, descripcion, precio, cantidad
+        SELECT productID, userID, categoryID, nombre, productImage, descripcion, precio, cantidad
         FROM Productos
         WHERE productID = p_productID;
+    END IF;
+    IF p_Accion = 'SE3' THEN
+        SELECT productID, userID, categoryID, nombre,productImage, descripcion, precio, cantidad
+        FROM Productos;    
     END IF;
 END //
 
