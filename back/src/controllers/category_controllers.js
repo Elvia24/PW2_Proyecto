@@ -4,32 +4,32 @@ const path = require('path');
 
 require('dotenv').config();
 
-const addProduct = async (req, res) => {
+const addCategory = async (req, res) => {
     try {
-        const { userID, categoryID, nombre, descripcion, precio, cantidad } = req.body;
-        const productImage = req.file; // Archivo de imagen subido
+        const { userID, nombre, descripcion} = req.body;
+        const categoryImage = req.file; // Archivo de imagen subido
         
         // Verifica si se ha subido una imagen
-        if (!productImage) {
-            return res.status(400).json({ success: false, message: 'Debe proporcionar una imagen para el producto' });
+        if (!categoryImage) {
+            return res.status(400).json({ success: false, message: 'Debe proporcionar una imagen para la categoria' });
         }
 
         // Construye la URL de la imagen
-        const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${productImage.filename}`;
+        const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${categoryImage.filename}`;
 
         
-        const [result] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
-            'IN', userID, userID, categoryID, nombre, imageUrl, descripcion, precio, cantidad, cantidad, cantidad
+        const [result] = await pool.promise().query('CALL spGestionCategorias(?, ?, ?, ?, ?, ?)', [
+            'IN', userID, userID, nombre, descripcion, imageUrl
         ]);
 
-        res.status(201).json({ success: true, message: 'Producto agregado correctamente', productId: result.insertId });
+        res.status(201).json({ success: true, message: 'categoria agregada correctamente', productId: result.insertId });
     } catch (error) {
-        console.error('Error al agregar producto:', error.message);
-        res.status(500).json({ success: false, message: 'Error al agregar producto', error: error.message });
+        console.error('Error al agregar categoria:', error.message);
+        res.status(500).json({ success: false, message: 'Error al agregar categoria', error: error.message });
     }
 };
 
-const getAllProducts = async (req, res) => {
+const getAllCategory = async (req, res) => {
     try {
         const [results] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', ['SE3', 0, 0, 0, '', '', '', 0, 0, 0, 0]);
 
@@ -49,30 +49,30 @@ const getAllProducts = async (req, res) => {
     }
 };
 
-const getUserProducts = async (req, res) => {
+const getUserCategory = async (req, res) => {
     const userID = req.headers.userid;
     console.log(userID);
     
     try {
-        const [results] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?,?,?,?)', ['SE4', 0, userID, 0, '', '', '', 0, 0,0,0]);
+        const [results] = await pool.promise().query('CALL spGestionCategorias(?, ?, ?, ?, ?, ?)', ['SE', 0, userID, '', '', '']);
 
         if (results[0].length > 0) {
             
             res.json({
                 success: true,
-                message: 'Productos encontrados del usuario',
+                message: 'Categorias encontrados del usuario',
                 data: results[0]
             });
         } else {
-            res.status(401).json({ success: false, message: 'No se encontraron productos' });
+            res.status(401).json({ success: false, message: 'No se encontraron categorias' });
         }
     } catch (error) {
-        console.error('Error al buscar productos:', error.message);
+        console.error('Error al buscar categorias:', error.message);
         res.status(500).json({ message: error.message });
     }
 };
 
-const getPageProducts = async (req, res) => {
+const getPageCategory = async (req, res) => {
     const page = parseInt(req.query.page) || 1; 
     const limit = parseInt(req.query.limit) || 8; 
     const offset = (page - 1) * limit;
@@ -109,10 +109,10 @@ const getPageProducts = async (req, res) => {
 };
 
 module.exports = {
-    getAllProducts,
-    addProduct,
-    getPageProducts,
-    getUserProducts
+    getAllCategory,
+    addCategory,
+    getPageCategory,
+    getUserCategory
     
   };
 

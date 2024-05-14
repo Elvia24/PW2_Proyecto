@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000
 const fs = require('fs');
 const userRoutes = require('./routes/users_routes.js');
 const productoRoutes = require('./routes/product_routes.js');
+const categoriaRoutes = require('./routes/category_routes.js');
 
 const pool = require('./config/db');
 
@@ -25,6 +26,9 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use('/auth', userRoutes);
 app.use('/productos', authenticateToken, productoRoutes);
+app.use('/categorias', authenticateToken, categoriaRoutes);
+app.use('/uploads', express.static('src/uploads'));
+
 
 
 

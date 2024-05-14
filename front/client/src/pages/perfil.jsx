@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from "./components/Navbar";
-import { useAuth } from '../context/AuthContext'; // Verifica la ruta correcta al contexto
+import { useAuth } from '../context/AuthContext'; 
 import axios from 'axios';
 import SalesReport from './components/SalesReport';
 import PurchaseReport from './components/PurchaseReport';
-import { useUserData } from '../js/data/userData';
+import { useUserData } from '../js/data/userData';  
+import { Link } from 'react-router-dom';
 
 function Perfil() {
     const { isAuthenticated, userDetails, updateUserDetails,setUserDetails } = useAuth();
@@ -44,7 +45,7 @@ function Perfil() {
                 }
             });
             if (response.data) {
-                updateUserDetails(updatedUser);  // Aquí usas la nueva función
+                updateUserDetails(updatedUser);  
                 alert('Información actualizada correctamente');
             }
         } catch (error) {
@@ -75,8 +76,8 @@ function Perfil() {
                                 <button onClick={() => handleClick("session-report-venta")} className={seccionVisible === 'session-report-venta' ? 'active' : ''}>Mis Ventas</button>
                                 <button onClick={() => handleClick("session-report-compra")} className={seccionVisible === 'session-report-compra' ? 'active' : ''}>Mis Compras</button>
                                 <br /><hr /><br />
-                                <a href="/ArtemiShop_misProductos" className="button-group-perfil"><button>Mis Productos</button></a>
-                                <a href="/ArtemiShop_misCategorias" className="button-group-perfil"><button>Mis Categorias</button></a>
+                                <Link to="/ArtemiShop_misProductos"className="button-group-perfil"><button>Mis Productos</button></Link>
+                        <Link to="/ArtemiShop_misCategorias"className="button-group-perfil"><button>Mis Categorias</button></Link>
                             </li>
                         </ul>
                     </div>

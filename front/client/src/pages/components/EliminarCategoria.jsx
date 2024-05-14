@@ -20,7 +20,7 @@ function EliminarCategoria({ categoriaSeleccionado, setCategoriaSeleccionado }) 
                     <input
                         type="text"
                         name="id"
-                        value={categoriaSeleccionado.id}
+                        value={categoriaSeleccionado.categoryID}
                         onChange={handleChange}
                         disabled
                     />
@@ -37,7 +37,7 @@ function EliminarCategoria({ categoriaSeleccionado, setCategoriaSeleccionado }) 
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
 
-                    <img src={categoriaSeleccionado.imagen} alt={categoriaSeleccionado.nombre} style={{ maxWidth: '200px', }} />
+                    <img src={categoriaSeleccionado.categoryImage} alt={categoriaSeleccionado.nombre} style={{ maxWidth: '200px', }} />
                 </div>
                 <div>
                     <label>Descripción:</label>

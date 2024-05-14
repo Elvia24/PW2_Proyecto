@@ -1,9 +1,9 @@
 const { Router } = require('express');
 const path = require('path');
 const multer = require('multer');
-const productoCtrl = require('../controllers/producto_controllers.js');
+const categoryCtrl = require('../controllers/category_controllers.js');
 
-const productoRoutes = Router();
+const categoriaRoutes = Router();
 
 // Setup for multer (for handling file uploads)
 const storage = multer.diskStorage({
@@ -17,12 +17,12 @@ const storage = multer.diskStorage({
   
 const upload = multer({ storage: storage });
 
-productoRoutes.get('/pages', (req, res) => {
+categoriaRoutes.get('/pages', (req, res) => {
     const { page, limit } = req.query;
-    productoCtrl.getPageProducts(req, res, page, limit);
+    categoryCtrl.getPageCategory(req, res, page, limit);
 });
-productoRoutes.get('/', productoCtrl.getAllProducts);
-productoRoutes.get('/user', productoCtrl.getUserProducts);
-productoRoutes.post('/', upload.single('productImage'), productoCtrl.addProduct);
+categoriaRoutes.get('/', categoryCtrl.getAllCategory);
+categoriaRoutes.get('/user', categoryCtrl.getUserCategory);
+categoriaRoutes.post('/', upload.single('categoryImage'), categoryCtrl.addCategory);
 
-module.exports = productoRoutes;
+module.exports = categoriaRoutes;

@@ -38,10 +38,22 @@ CREATE TABLE Productos
   userID INT NOT NULL, -- FK a la tabla Usuario
   categoryID INT NOT NULL, -- FK a la tabla Categoria
   nombre VARCHAR(50) not null,
-  productImage mediumblob,
+  productImage VARCHAR(200),
   descripcion VARCHAR(300),  
   precio DECIMAL(10,2) NOT NULL,
   cantidad DECIMAL(10,2) NOT NULL
+);
+
+
+
+DROP TABLE IF EXISTS Categoria;
+CREATE TABLE Categoria
+(
+  categoryID INT auto_increment PRIMARY KEY NOT NULL, -- PK
+  userID INT NOT NULL, -- FK a la tabla Usuario
+  nombre VARCHAR(50) NOT NULL unique,
+  descripcion VARCHAR(300) NOT NULL,
+  categoryImage VARCHAR(200)
 );
 
 DROP TABLE IF EXISTS Usuarios;
@@ -52,23 +64,17 @@ username VARCHAR(50)  NOT NULL,
 email VARCHAR(50) NOT NULL, 
 passwor VARCHAR(50)  NOT NULL, 
 direccion VARCHAR(200) ,
-userImage mediumblob,
+userImage VARCHAR(250),
 role INT NOT NULL  -- 0=admin, 1=vendedor, 2=cliente
-);
-
-DROP TABLE IF EXISTS Categoria;
-CREATE TABLE Categoria
-(
-  categoryID INT auto_increment PRIMARY KEY NOT NULL, -- PK
-  nombre VARCHAR(50) NOT NULL unique,
-  descripcion VARCHAR(300) NOT NULL,
-  categoryImage mediumblob
 );
 
 
 ALTER TABLE Productos
 	ADD CONSTRAINT FK_UsuLista_iDUsuario   FOREIGN KEY (userID) REFERENCES Usuarios(userID),
     ADD CONSTRAINT FK_UsuLista_iDUsuario2   FOREIGN KEY (categoryID) REFERENCES Categoria(categoryID);
+    
+ALTER TABLE Categoria	
+    ADD CONSTRAINT FK_UsuLisdta_iDUsuario2   FOREIGN KEY (userID) REFERENCES Usuarios(userID);
 
 ALTER TABLE Ventas
 	ADD CONSTRAINT FK_UsuLista_iDUsuario3   FOREIGN KEY (userID) REFERENCES Usuarios(userID);

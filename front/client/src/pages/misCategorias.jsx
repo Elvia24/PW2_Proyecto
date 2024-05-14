@@ -1,22 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';  
+import axios from 'axios';
 import Navbar from "./components/Navbar";
 import AgregarCategoria from "./components/AgregarCategoria";
-
 import TablaCategorias from './components/TablaCategorias';
  import VerCategoria from "./components/VerCategoria";
  import EditarCategoria from "./components/EditarCategoria";
  import EliminarCategoria from "./components/EliminarCategoria";
+ import MenuNavegacionCategoria from "./components/MenuNavegacionCategoria";
 
 function MisCategorias() {
     // ---SECCIONES VISIBLES---
     // Estado para almacenar el identificador de la sección actualmente visible
     const [seccionVisible, setSeccionVisible] = useState('Ver-Categoria');
+    const [categorias, setCategorias] = useState([]);
+    const { userDetails } = useAuth();
+    const { isAuthenticated } = useAuth();
+    const navigate = useNavigate();
 
+    const fetchCategorias = useCallback(async () => {
+        const token = sessionStorage.getItem('token');
+        if (!isAuthenticated || !userDetails.userID) {
+            navigate('/');
+            return;
+        }
+
+        try {
+            const response = await axios.get('http://localhost:3000/categorias/user', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    userid: userDetails.userID
+                }
+            });
+            if (response && response.data.data) {
+                setCategorias(response.data.data);
+            }
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+        }
+    }, [userDetails.userID, isAuthenticated, navigate]);
+
+    useEffect(() => {
+        fetchCategorias();
+    }, [fetchCategorias]);
     // Función para manejar el clic en los botones
     const handleClick = (seccion) => {
-        setSeccionVisible(seccion); // Cambiar el estado a la sección clicada
+        setSeccionVisible(seccion);
         setCategoriaSeleccionado(null);
-
     };
     // ---SECCIONES VISIBLES---
 
@@ -24,20 +55,17 @@ function MisCategorias() {
     const [categoriaSeleccionado, setCategoriaSeleccionado] = useState(null);
 
 
-    const categorias = [
-        { id: 1, nombre: 'Categoria 1', imagen: `src/images/sample_images/cat1.jpg`, descripcion: 'Descripcion1' },
-        { id: 2, nombre: 'Categoria 2', imagen: `src/images/sample_images/cat2.jpg`, descripcion: 'Descripcion1' },
-        { id: 3, nombre: 'Categoria 3', imagen: `src/images/sample_images/cat3.jpg`, descripcion: 'Descripcion3' },
-        { id: 4, nombre: 'Categoria 4', imagen: `src/images/sample_images/accessories.jpg`, descripcion: 'Descripcion4' },
-        { id: 5, nombre: 'Categoria 5', imagen: `src/images/sample_images/cat1.jpg`, descripcion: 'Descripcion5' },
-        { id: 6, nombre: 'Categoria 6', imagen: `src/images/sample_images/cat2.jpg`, descripcion: 'Descripcion6' },
-
-        // Añade más categorias según necesites
-    ];
+    
 
     const handleCategoriaSeleccionado = (categoria) => {
         setCategoriaSeleccionado(categoria);
 
+    };
+
+     // Función para restablecer la vista
+     const handleResetView = () => {
+        setSeccionVisible('Ver-Categoria');
+        setCategoriaSeleccionado(null);
     };
 
     return (
@@ -46,14 +74,7 @@ function MisCategorias() {
             {/* <!-- Barra de navegación --> */}
             <div className="container">
                 <br />
-                <div className="navbar">
-                    <a href="/ArtemiShop_Perfil"><button><i className='bx bxs-left-arrow-alt' ></i></button></a>
-                    <button className={seccionVisible === "Ver-Categoria" ? "selected" : ""} onClick={() => handleClick("Ver-Categoria")}>Ver Categorias</button>
-                    <button className={seccionVisible === "Agregar-Categoria" ? "selected" : ""} onClick={() => handleClick("Agregar-Categoria")}>Agregar Categoria</button>
-                    <button className={seccionVisible === "Editar-Categoria" ? "selected" : ""} onClick={() => handleClick("Editar-Categoria")}>Editar Categoria</button>
-                    <button className={seccionVisible === "Eliminar-Categoria" ? "selected" : ""} onClick={() => handleClick("Eliminar-Categoria")}>Eliminar Categoria</button>
-                </div>
-
+                <MenuNavegacionCategoria seccionActual={seccionVisible} onCambioSeccion={setSeccionVisible} />
                 <br />
 
 
@@ -74,9 +95,9 @@ function MisCategorias() {
                         <TablaCategorias categorias={categorias} onCategoriaSeleccionado={handleCategoriaSeleccionado} />
                     </div>
 
-                    <div style={{ display: seccionVisible === "Agregar-Categoria" ? "block" : "none" }}>
-                        <AgregarCategoria />
-                    </div>
+                    {seccionVisible === "Agregar-Categoria" && (
+                    <AgregarCategoria onCategoryAdded={fetchCategorias} onResetView={handleResetView} />
+                )}
 
                     <div style={{ display: seccionVisible === "Editar-Categoria" ? "block" : "none" }}>
                         {categoriaSeleccionado && (
@@ -98,7 +119,7 @@ function MisCategorias() {
                             />
                         )}
                         <br />
-                        *selecciona un categoria
+                        
                         <h2>Eliminar Categoria</h2>
                         *selecciona un categoria
                         <TablaCategorias categorias={categorias} onCategoriaSeleccionado={handleCategoriaSeleccionado} />

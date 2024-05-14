@@ -1,56 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom'; 
-import axios from 'axios';
+import React, { useState } from 'react';
 import Navbar from "./components/Navbar";
 import AgregarProducto from "./components/AgregarProducto";
+
 import TablaProductos from './components/TablaProductos';
 import VerProducto from "./components/VerProducto";
 import EditarProducto from "./components/EditarProducto";
 import EliminarProducto from "./components/EliminarProducto";
-import MenuNavegacion from "./components/MenuNavegacion";
+
 function MisProductos() {
     // ---SECCIONES VISIBLES---
     // Estado para almacenar el identificador de la sección actualmente visible
     const [seccionVisible, setSeccionVisible] = useState('Ver-Producto');
-    const [productos, setProductos] = useState([]);
-    const { userDetails } = useAuth();
-    const { isAuthenticated } = useAuth();
-    const navigate = useNavigate();
-
-    
-    
-    useEffect(() => {
-        const token = sessionStorage.getItem('token');  
-        if (!isAuthenticated || !userDetails.userID) {
-            navigate('/');
-            return;
-        }
-
-        
-        const fetchProductos = async () => {
-            
-            
-            try {
-                const response = await axios.get(`http://localhost:3000/productos/user`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,  
-                        userid: userDetails.userID  
-                    }
-                });
-                
-                
-                if (response && response.data.data) {
-                    setProductos(response.data.data);
-                    console.log(response.data.data);  
-                }
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        };
-
-        fetchProductos();
-    }, [userDetails,isAuthenticated, userDetails.userID]);
 
     // Función para manejar el clic en los botones
     const handleClick = (seccion) => {
@@ -64,7 +24,16 @@ function MisProductos() {
     const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
 
-   
+    const productos = [
+        { id: 1, nombre: 'Producto 1', imagen: `src/images/sample_images/product-1.jpg`, descripcion: 'Descripcion1', precio: 100, cantidad: 1, categoria: 'Categoria1' },
+        { id: 2, nombre: 'Producto 2', imagen: `src/images/sample_images/product-2.jpg`, descripcion: 'Descripcion1', precio: 200, cantidad: 1, categoria: 'Categoria1' },
+        { id: 3, nombre: 'Producto 3', imagen: `src/images/sample_images/product-3.jpg`, descripcion: 'Descripcion3', precio: 300, cantidad: 1, categoria: 'Categoria1' },
+        { id: 4, nombre: 'Producto 4', imagen: `src/images/sample_images/product-4.jpg`, descripcion: 'Descripcion4', precio: 400, cantidad: 1, categoria: 'Categoria1' },
+        { id: 5, nombre: 'Producto 5', imagen: `src/images/sample_images/product-5.jpg`, descripcion: 'Descripcion5', precio: 500, cantidad: 1, categoria: 'Categoria1' },
+        { id: 6, nombre: 'Producto 6', imagen: `src/images/sample_images/product-6.jpg`, descripcion: 'Descripcion6', precio: 600, cantidad: 1, categoria: 'Categoria1' },
+
+        // Añade más productos según necesites
+    ];
 
     const handleProductoSeleccionado = (producto) => {
         setProductoSeleccionado(producto);
@@ -77,7 +46,13 @@ function MisProductos() {
             {/* <!-- Barra de navegación --> */}
             <div className="container">
                 <br />
-                <MenuNavegacion seccionActual={seccionVisible} onCambioSeccion={setSeccionVisible} />
+                <div className="navbar">
+                    <a href="/ArtemiShop_Perfil"><button><i className='bx bxs-left-arrow-alt' ></i></button></a>
+                    <button className={seccionVisible === "Ver-Producto" ? "selected" : ""} onClick={() => handleClick("Ver-Producto")}>Ver Productos</button>
+                    <button className={seccionVisible === "Agregar-Producto" ? "selected" : ""} onClick={() => handleClick("Agregar-Producto")}>Agregar Producto</button>
+                    <button className={seccionVisible === "Editar-Producto" ? "selected" : ""} onClick={() => handleClick("Editar-Producto")}>Editar Producto</button>
+                    <button className={seccionVisible === "Eliminar-Producto" ? "selected" : ""} onClick={() => handleClick("Eliminar-Producto")}>Eliminar Producto</button>
+                </div>
 
                 <br />
 

@@ -34,7 +34,7 @@ function TablaProductos({ productos, onProductoSeleccionado }) {
                 <tbody>
                     {productos.map((producto, index) => (
                         <tr
-                            key={producto.id}
+                            key={producto.productID}
                             onClick={() => handleRowClick(producto, index)}
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}
@@ -42,15 +42,15 @@ function TablaProductos({ productos, onProductoSeleccionado }) {
                                 cursor: 'pointer', backgroundColor : hoveredRow === index ? '#f0f0f0' : 'transparent'
                             }}
                         >
-                            <td>{producto.id}</td>
+                            <td>{producto.productID}</td>
                             <td>{producto.nombre}</td>
                             <td>
-                                <img src={producto.imagen} alt={producto.nombre} style={{ width: '50px', height: '50px' }} />
+                                <img src={producto.productImage} alt={producto.nombre} style={{ width: '50px', height: '50px' }} />
                             </td>
                             <td>{producto.descripcion}</td>
                             <td>${producto.precio}</td>
                             <td>{producto.cantidad}</td>
-                            <td>{producto.categoria}</td>
+                            <td>{producto.nombreCategoria}</td>
                         </tr>
                     ))}
                 </tbody>

@@ -19,7 +19,7 @@ function VerProducto({ productoSeleccionado, setProductoSeleccionado }) {
                     <input
                         type="text"
                         name="id"
-                        value={productoSeleccionado.id}
+                        value={productoSeleccionado.productID}
                         onChange={handleChange}
                         disabled
                     />
@@ -36,7 +36,7 @@ function VerProducto({ productoSeleccionado, setProductoSeleccionado }) {
                 </div>
                 <div  style={{ display: 'flex', justifyContent: 'center' }}>
                     {/* <label>Imagen:</label> */}
-                    <img src={productoSeleccionado.imagen} alt={productoSeleccionado.nombre} style={{ maxWidth: '200px', }} />
+                    <img src={productoSeleccionado.productImage} alt={productoSeleccionado.nombre} style={{ maxWidth: '200px', }} />
                 </div>
                 <div>
                     <label>Descripción:</label>
@@ -72,7 +72,7 @@ function VerProducto({ productoSeleccionado, setProductoSeleccionado }) {
                     <input
                         type="text"
                         name="categoria"
-                        value={productoSeleccionado.categoria || ''}
+                        value={productoSeleccionado.nombreCategoria || ''}
                         onChange={handleChange}
                         disabled
                     />

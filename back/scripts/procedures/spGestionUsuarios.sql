@@ -11,7 +11,7 @@ CREATE PROCEDURE spGestionUsuarios(
     IN p_Email VARCHAR(50),
     IN p_Password VARCHAR(50),
     IN p_Direccion VARCHAR(200),
-    IN p_userImage mediumblob,
+    IN p_userImage VARCHAR(200),
     IN p_Role INT
 )
 BEGIN

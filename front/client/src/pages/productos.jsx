@@ -20,7 +20,7 @@ function Productos() {
         }
 
         fetchProducts();
-    }, [isAuthenticated, currentPage]); // navigate removed from dependencies to prevent unnecessary calls
+    }, [isAuthenticated, currentPage]); 
 
     const fetchProducts = () => {
         const token = sessionStorage.getItem('token');
@@ -31,7 +31,7 @@ function Productos() {
         })
         .then(response => {
             setProductos(response.data.data);
-            setTotalPages(response.data.pagination.totalPages); // Ensure correct path to totalPages
+            setTotalPages(response.data.pagination.totalPages); 
         })
         .catch(error => {
             console.error('Error fetching products:', error);

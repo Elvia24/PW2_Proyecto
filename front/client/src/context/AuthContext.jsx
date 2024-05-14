@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true);
             console.log(userData)
             try {
-                const parsedData = JSON.parse(userData);
+                const parsedData = JSON.parse(userData);    
                 setUserDetails(parsedData);
                 
             } catch (e) {

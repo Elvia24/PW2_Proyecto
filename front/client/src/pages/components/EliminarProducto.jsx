@@ -20,7 +20,7 @@ function EliminarProducto({ productoSeleccionado, setProductoSeleccionado }) {
                     <input
                         type="text"
                         name="id"
-                        value={productoSeleccionado.id}
+                        value={productoSeleccionado.productID}
                         onChange={handleChange}
                         disabled
                     />
@@ -37,7 +37,7 @@ function EliminarProducto({ productoSeleccionado, setProductoSeleccionado }) {
                 </div>
                 <div  style={{ display: 'flex', justifyContent: 'center' }}>
                     
-                    <img src={productoSeleccionado.imagen} alt={productoSeleccionado.nombre} style={{ maxWidth: '200px', }} />
+                    <img src={productoSeleccionado.productImage} alt={productoSeleccionado.nombre} style={{ maxWidth: '200px', }} />
                 </div>
                 <div>
                     <label>Descripción:</label>
@@ -73,7 +73,7 @@ function EliminarProducto({ productoSeleccionado, setProductoSeleccionado }) {
                     <input
                         type="text"
                         name="categoria"
-                        value={productoSeleccionado.categoria || ''}
+                        value={productoSeleccionado.nombreCategoria || ''}
                         onChange={handleChange}
                         disabled
                     />

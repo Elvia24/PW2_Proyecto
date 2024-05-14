@@ -10,7 +10,7 @@ CREATE PROCEDURE spGestionProductos(
     IN p_userID INT,
     IN p_categoryID INT,
     IN p_nombre VARCHAR(50),
-    IN p_productImage mediumblob,
+    IN p_productImage VARCHAR(200),
     IN p_descripcion VARCHAR(300),
     IN p_precio DECIMAL(10,2),
     IN p_cantidad DECIMAL(10,2),
@@ -39,19 +39,24 @@ BEGIN
     END IF;
 
     IF p_Accion = 'SE' THEN
-        SELECT productID, userID, categoryID, nombre, productImage, descripcion, precio, cantidad,total
+        SELECT productID, userID, categoryID, nombre, productImage, descripcion, precio, cantidad,total,nombreCategoria
         FROM viProductos
         LIMIT p_Limit OFFSET p_Offset;
     END IF;
 
     IF p_Accion = 'SE2' THEN
-        SELECT productID, userID, categoryID, nombre, productImage, descripcion, precio, cantidad
-        FROM Productos
+        SELECT productID, userID, categoryID, nombre, productImage, descripcion, precio, cantidad,nombreCategoria
+        FROM viProductos
         WHERE productID = p_productID;
     END IF;
     IF p_Accion = 'SE3' THEN
-        SELECT productID, userID, categoryID, nombre,productImage, descripcion, precio, cantidad
-        FROM Productos;    
+        SELECT productID, userID, categoryID, nombre,productImage, descripcion, precio, cantidad,nombreCategoria
+        FROM viProductos;    
+    END IF;
+    IF p_Accion = 'SE4' THEN
+        SELECT productID, userID, categoryID, nombre,productImage, descripcion, precio, cantidad,nombreCategoria
+        FROM viProductos
+        WHERE userID = p_userID;    
     END IF;
 END //
 

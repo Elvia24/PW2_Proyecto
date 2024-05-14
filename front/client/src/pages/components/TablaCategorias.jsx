@@ -32,7 +32,7 @@ function TablaCategorias({ categorias, onCategoriaSeleccionado }) {
                 <tbody>
                     {categorias.map((categoria, index) => (
                         <tr
-                            key={categoria.id}
+                            key={categoria.categoryID}
                             onClick={() => handleRowClick(categoria, index)}
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}
@@ -40,10 +40,10 @@ function TablaCategorias({ categorias, onCategoriaSeleccionado }) {
                                 cursor: 'pointer', backgroundColor : hoveredRow === index ? '#f0f0f0' : 'transparent'
                             }}
                         >
-                            <td>{categoria.id}</td>
+                            <td>{categoria.categoryID}</td>
                             <td>{categoria.nombre}</td>
                             <td>
-                                <img src={categoria.imagen} alt={categoria.nombre} style={{ minWidth: '50%', minHeight: '50%' }} />
+                                <img src={categoria.categoryImage} alt={categoria.nombre} style={{ minWidth: '50%', minHeight: '50%' }} />
                             </td>
                             <td>{categoria.descripcion}</td>
 
