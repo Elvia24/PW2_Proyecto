@@ -24,5 +24,8 @@ productoRoutes.get('/pages', (req, res) => {
 productoRoutes.get('/', productoCtrl.getAllProducts);
 productoRoutes.get('/user', productoCtrl.getUserProducts);
 productoRoutes.post('/', upload.single('productImage'), productoCtrl.addProduct);
+productoRoutes.put('/', upload.single('productImage'), productoCtrl.updateProduct);
+productoRoutes.delete('/', productoCtrl.deleteProduct);
+
 
 module.exports = productoRoutes;

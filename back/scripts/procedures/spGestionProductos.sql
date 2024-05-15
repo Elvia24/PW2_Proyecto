@@ -30,12 +30,13 @@ BEGIN
             nombre = p_nombre,
             descripcion = p_descripcion,
             precio = p_precio,
-            cantidad = p_cantidad
-        WHERE productID = p_productID;
+            cantidad = p_cantidad,
+            productImage = p_productImage
+        WHERE productID = p_productID and userID = p_userID;
     END IF;
 
     IF p_Accion = 'BO' THEN
-        DELETE FROM Productos WHERE productID = p_productID;
+        DELETE FROM Productos WHERE productID = p_productID and userID = p_userID;
     END IF;
 
     IF p_Accion = 'SE' THEN

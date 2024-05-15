@@ -24,5 +24,7 @@ categoriaRoutes.get('/pages', (req, res) => {
 categoriaRoutes.get('/', categoryCtrl.getAllCategory);
 categoriaRoutes.get('/user', categoryCtrl.getUserCategory);
 categoriaRoutes.post('/', upload.single('categoryImage'), categoryCtrl.addCategory);
+categoriaRoutes.put('/', upload.single('categoryImage'), categoryCtrl.updateCategory);
+categoriaRoutes.delete('/', categoryCtrl.deleteCategory);
 
 module.exports = categoriaRoutes;

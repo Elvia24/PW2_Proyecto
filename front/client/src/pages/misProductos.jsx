@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
@@ -14,43 +14,42 @@ function MisProductos() {
     // Estado para almacenar el identificador de la sección actualmente visible
     const [seccionVisible, setSeccionVisible] = useState('Ver-Producto');
     const [productos, setProductos] = useState([]);
-    const { userDetails } = useAuth();
-    const { isAuthenticated } = useAuth();
+    const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+    const { userDetails, isAuthenticated } = useAuth();
     const navigate = useNavigate();
 
-    
-    
-    useEffect(() => {
-        const token = sessionStorage.getItem('token');  
+    const fetchProductos = useCallback(async () => {
+        const token = sessionStorage.getItem('token');
+
         if (!isAuthenticated || !userDetails.userID) {
             navigate('/');
             return;
         }
-
-        
-        const fetchProductos = async () => {
             
-            
-            try {
-                const response = await axios.get(`http://localhost:3000/productos/user`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,  
-                        userid: userDetails.userID  
-                    }
-                });
-                
-                
-                if (response && response.data.data) {
-                    setProductos(response.data.data);
-                    console.log(response.data.data);  
+        try {
+            const response = await axios.get(`http://localhost:3000/productos/user`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,  
+                    userid: userDetails.userID  
                 }
-            } catch (error) {
-                console.error('Error fetching products:', error);
+            });
+            
+            
+            if (response && response.data.data) {
+                setProductos(response.data.data);
+                console.log(response.data.data);  
             }
-        };
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    }, [userDetails.userID, isAuthenticated, navigate]);
 
+    
+    
+    useEffect(() => {
+       
         fetchProductos();
-    }, [userDetails,isAuthenticated, userDetails.userID]);
+    }, [fetchProductos]);
 
     // Función para manejar el clic en los botones
     const handleClick = (seccion) => {
@@ -60,15 +59,14 @@ function MisProductos() {
     };
     // ---SECCIONES VISIBLES---
 
-
-    const [productoSeleccionado, setProductoSeleccionado] = useState(null);
-
-
-   
-
     const handleProductoSeleccionado = (producto) => {
         setProductoSeleccionado(producto);
 
+    };
+
+    const handleResetView = () => {
+        setSeccionVisible('Ver-Producto');
+        setProductoSeleccionado(null);
     };
 
     return (
@@ -100,7 +98,7 @@ function MisProductos() {
                     </div>
 
                     <div style={{ display: seccionVisible === "Agregar-Producto" ? "block" : "none" }}>
-                        <AgregarProducto />
+                        <AgregarProducto onProductAdded={fetchProductos} onResetView={handleResetView} />
                     </div>
 
                     <div style={{ display: seccionVisible === "Editar-Producto" ? "block" : "none" }}>
@@ -108,6 +106,8 @@ function MisProductos() {
                             <EditarProducto
                                 productoSeleccionado={productoSeleccionado}
                                 setProductoSeleccionado={setProductoSeleccionado}
+                                onProductUpdated={fetchProductos} // Agregado
+                                onResetView={handleResetView}
                             />
                         )}
                         <br />
@@ -120,6 +120,8 @@ function MisProductos() {
                             <EliminarProducto
                                 productoSeleccionado={productoSeleccionado}
                                 setProductoSeleccionado={setProductoSeleccionado}
+                                onProductDeleted={fetchProductos} // Agregado
+                                onResetView={handleResetView}
                             />
                         )}
                         <br />

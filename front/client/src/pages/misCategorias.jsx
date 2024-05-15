@@ -5,18 +5,16 @@ import axios from 'axios';
 import Navbar from "./components/Navbar";
 import AgregarCategoria from "./components/AgregarCategoria";
 import TablaCategorias from './components/TablaCategorias';
- import VerCategoria from "./components/VerCategoria";
- import EditarCategoria from "./components/EditarCategoria";
- import EliminarCategoria from "./components/EliminarCategoria";
- import MenuNavegacionCategoria from "./components/MenuNavegacionCategoria";
+import VerCategoria from "./components/VerCategoria";
+import EditarCategoria from "./components/EditarCategoria";
+import EliminarCategoria from "./components/EliminarCategoria";
+import MenuNavegacionCategoria from "./components/MenuNavegacionCategoria";
 
 function MisCategorias() {
-    // ---SECCIONES VISIBLES---
-    // Estado para almacenar el identificador de la sección actualmente visible
     const [seccionVisible, setSeccionVisible] = useState('Ver-Categoria');
     const [categorias, setCategorias] = useState([]);
-    const { userDetails } = useAuth();
-    const { isAuthenticated } = useAuth();
+    const [categoriaSeleccionado, setCategoriaSeleccionado] = useState(null);
+    const { userDetails, isAuthenticated } = useAuth();
     const navigate = useNavigate();
 
     const fetchCategorias = useCallback(async () => {
@@ -44,26 +42,17 @@ function MisCategorias() {
     useEffect(() => {
         fetchCategorias();
     }, [fetchCategorias]);
-    // Función para manejar el clic en los botones
+
     const handleClick = (seccion) => {
         setSeccionVisible(seccion);
         setCategoriaSeleccionado(null);
     };
-    // ---SECCIONES VISIBLES---
-
-
-    const [categoriaSeleccionado, setCategoriaSeleccionado] = useState(null);
-
-
-    
 
     const handleCategoriaSeleccionado = (categoria) => {
         setCategoriaSeleccionado(categoria);
-
     };
 
-     // Función para restablecer la vista
-     const handleResetView = () => {
+    const handleResetView = () => {
         setSeccionVisible('Ver-Categoria');
         setCategoriaSeleccionado(null);
     };
@@ -71,16 +60,11 @@ function MisCategorias() {
     return (
         <div>
             <Navbar />
-            {/* <!-- Barra de navegación --> */}
             <div className="container">
                 <br />
                 <MenuNavegacionCategoria seccionActual={seccionVisible} onCambioSeccion={setSeccionVisible} />
                 <br />
-
-
-                {/* <!-- AGREGAR PRODUCTO --> */}
-                <div className="principal"  >
-
+                <div className="principal">
                     <div style={{ display: seccionVisible === "Ver-Categoria" ? "block" : "none" }}>
                         {categoriaSeleccionado && (
                             <VerCategoria
@@ -89,21 +73,22 @@ function MisCategorias() {
                             />
                         )}
                         <br />
-
                         <h2>Ver Categoria</h2>
                         *selecciona un categoria
                         <TablaCategorias categorias={categorias} onCategoriaSeleccionado={handleCategoriaSeleccionado} />
                     </div>
 
                     {seccionVisible === "Agregar-Categoria" && (
-                    <AgregarCategoria onCategoryAdded={fetchCategorias} onResetView={handleResetView} />
-                )}
+                        <AgregarCategoria onCategoryAdded={fetchCategorias} onResetView={handleResetView} />
+                    )}
 
                     <div style={{ display: seccionVisible === "Editar-Categoria" ? "block" : "none" }}>
                         {categoriaSeleccionado && (
                             <EditarCategoria
                                 categoriaSeleccionado={categoriaSeleccionado}
                                 setCategoriaSeleccionado={setCategoriaSeleccionado}
+                                onCategoryUpdated={fetchCategorias} // Agregado
+                                onResetView={handleResetView} // Agregado
                             />
                         )}
                         <br />
@@ -111,23 +96,25 @@ function MisCategorias() {
                         *selecciona un categoria
                         <TablaCategorias categorias={categorias} onCategoriaSeleccionado={handleCategoriaSeleccionado} />
                     </div>
+
                     <div style={{ display: seccionVisible === "Eliminar-Categoria" ? "block" : "none" }}>
                         {categoriaSeleccionado && (
                             <EliminarCategoria
                                 categoriaSeleccionado={categoriaSeleccionado}
                                 setCategoriaSeleccionado={setCategoriaSeleccionado}
+                                onCategoryDeleted={fetchCategorias} // Agregado
+                                onResetView={handleResetView} // Agregado
                             />
                         )}
                         <br />
-                        
                         <h2>Eliminar Categoria</h2>
                         *selecciona un categoria
                         <TablaCategorias categorias={categorias} onCategoriaSeleccionado={handleCategoriaSeleccionado} />
                     </div>
                 </div>
-
             </div>
         </div>
     );
 }
+
 export default MisCategorias;

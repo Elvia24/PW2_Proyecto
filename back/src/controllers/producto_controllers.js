@@ -29,6 +29,49 @@ const addProduct = async (req, res) => {
     }
 };
 
+const updateProduct = async (req, res) => {
+    try {
+        const { userID, productID, categoryID, nombre, descripcion, precio, cantidad } = req.body;
+        const productImage = req.file; // Archivo de imagen subido
+
+        let imageUrl = null;
+
+        // Verifica si se ha subido una nueva imagen
+        if (productImage) {
+            // Construye la URL de la nueva imagen
+            imageUrl = `${req.protocol}://${req.get('host')}/uploads/${productImage.filename}`;
+        }
+
+        const [result] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+            'UP', userID, productID, categoryID, nombre, imageUrl, descripcion, precio, cantidad, cantidad, cantidad
+        ]);
+
+        res.status(200).json({ success: true, message: 'Producto actualizado correctamente' });
+    } catch (error) {
+        console.error('Error al actualizar producto:', error.message);
+        res.status(500).json({ success: false, message: 'Error al actualizar producto', error: error.message });
+    }
+};
+
+const deleteProduct = async (req, res) => {
+    try {
+        const { userID, productID } = req.body;
+
+        const [result] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+            'BO', userID, productID, 1, '', '', '', 0, 0, 0, 0
+        ]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'Producto no encontrado o el usuario no coincide' });
+        }
+
+        res.status(200).json({ success: true, message: 'Producto eliminado correctamente' });
+    } catch (error) {
+        console.error('Error al eliminar producto:', error.message);
+        res.status(500).json({ success: false, message: 'Error al eliminar producto', error: error.message });
+    }
+};
+
 const getAllProducts = async (req, res) => {
     try {
         const [results] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', ['SE3', 0, 0, 0, '', '', '', 0, 0, 0, 0]);
@@ -112,7 +155,9 @@ module.exports = {
     getAllProducts,
     addProduct,
     getPageProducts,
-    getUserProducts
+    getUserProducts,
+    updateProduct,
+    deleteProduct
     
   };
 
