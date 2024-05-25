@@ -151,13 +151,34 @@ const getPageProducts = async (req, res) => {
     }
 };
 
+const getProductById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const [results] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', ['SE2', id, 0, 0, '', '', '', 0, 0, 0, 0]);
+
+        if (results[0].length > 0) {
+            res.json({
+                success: true,
+                message: 'Producto encontrado',
+                data: results[0][0]
+            });
+        } else {
+            res.status(404).json({ success: false, message: 'Producto no encontrado' });
+        }
+    } catch (error) {
+        console.error('Error al buscar producto:', error.message);
+        res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     getAllProducts,
     addProduct,
     getPageProducts,
     getUserProducts,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getProductById
     
   };
 

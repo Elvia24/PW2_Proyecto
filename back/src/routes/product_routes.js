@@ -26,6 +26,6 @@ productoRoutes.get('/user', productoCtrl.getUserProducts);
 productoRoutes.post('/', upload.single('productImage'), productoCtrl.addProduct);
 productoRoutes.put('/', upload.single('productImage'), productoCtrl.updateProduct);
 productoRoutes.delete('/', productoCtrl.deleteProduct);
-
+productoRoutes.get('/:id', productoCtrl.getProductById);
 
 module.exports = productoRoutes;

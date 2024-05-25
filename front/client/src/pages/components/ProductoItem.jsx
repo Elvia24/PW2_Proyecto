@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 function ProductoItem({ producto }) {
-   
+
     let imagenSrc = producto.productImage ? producto.productImage : 'https://via.placeholder.com/150';
     
     return (
@@ -18,7 +19,7 @@ function ProductoItem({ producto }) {
                 <h4>${producto.precio}</h4>
             </div>
             <ul className="icons">
-                <li><i className='bx bxs-show'></i></li>
+            <Link to={`/ArtemiShop_productDetails/${producto.productID}`}><li><i className='bx bxs-show'></i></li></Link>
                 <li><i className="bx bx-cart"></i></li>
             </ul>
         </div>

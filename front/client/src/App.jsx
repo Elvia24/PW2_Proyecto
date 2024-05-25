@@ -23,7 +23,7 @@ function App(){
       <Route path='/ArtemiShop_Perfil' element={<Perfil />} />
       <Route path='/ArtemiShop_MisProductos' element={<MisProductos />} />
       <Route path='/ArtemiShop_MisCategorias' element={<MisCategorias />} />
-      <Route path='/ArtemiShop_productDetails' element={<ProductDetails />} />
+      <Route path='/ArtemiShop_productDetails/:id' element={<ProductDetails />} />
     </Routes>
   )
 }
