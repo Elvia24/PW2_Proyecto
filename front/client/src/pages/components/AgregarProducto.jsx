@@ -132,6 +132,7 @@ function AgregarProducto({ onProductAdded, onResetView }) {
                         type="number"
                         id="producto-cantidad"
                         name="producto-cantidad"
+                        min= "1"
                         value={cantidad}
                         onChange={handleChange}
                         required

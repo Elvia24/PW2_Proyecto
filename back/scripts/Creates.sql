@@ -54,7 +54,8 @@ CREATE TABLE Categoria
   userID INT NOT NULL, -- FK a la tabla Usuario
   nombre VARCHAR(50) NOT NULL unique,
   descripcion VARCHAR(300) NOT NULL,
-  categoryImage VARCHAR(200)
+  categoryImage VARCHAR(200),
+  eliminado bool  NOT NULL
 );
 
 DROP TABLE IF EXISTS Usuarios;

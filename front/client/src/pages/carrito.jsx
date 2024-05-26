@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import { useNavigate } from 'react-router-dom'; 
 import { useAuth } from '../context/AuthContext';
 import VerCarrito from './components/VerCarrito';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Carrito() {
     const [items, setItems] = useState([]);
@@ -64,9 +66,13 @@ function Carrito() {
             });
             if (!response.data.success) {
                 console.error('Error updating product quantity:', response.data.message);
+                toast.error('Error al actualizar la cantidad del producto');
+            } else {
+                toast.success('Cantidad del producto actualizada');
             }
         } catch (error) {
             console.error('Error updating product quantity:', error);
+            toast.error('Error al actualizar la cantidad del producto');
         }
     };
 
@@ -113,9 +119,14 @@ function Carrito() {
                 setSubtotal(calculatedSubtotal);
                 setImpuesto(calculatedImpuesto);
                 setTotal(calculatedTotal);
+
+                toast.success('Producto eliminado del carrito');
+            } else {
+                toast.error('Error al eliminar el producto del carrito');
             }
         } catch (error) {
             console.error('Error eliminando producto del carrito:', error);
+            toast.error('Error al eliminar el producto del carrito');
         }
     };
 
@@ -140,10 +151,16 @@ function Carrito() {
                 setSubtotal(0);
                 setImpuesto(0);
                 setTotal(0);
-                navigate('/ventas'); // Redirigir a la página de ventas o de confirmación
+                toast.success('Compra realizada con éxito');
+                setTimeout(() => {
+                    navigate('/'); // Redirigir a la página de inicio después de 3 segundos
+                }, 3000);
+            } else {
+                toast.error('Error al finalizar la compra');
             }
         } catch (error) {
             console.error('Error al finalizar la compra:', error);
+            toast.error('Error al finalizar la compra');
         }
     };
 
@@ -153,7 +170,8 @@ function Carrito() {
             <div className="container">
                 {items.length === 0 ? (
                     <>
-                        <p>Tu carrito está vacío.</p>
+                        
+                        <p className="login2-form form h1">Tu carrito está vacío.</p>
                         <div className="total-price">
                             <table>
                                 <tbody>
@@ -186,6 +204,7 @@ function Carrito() {
                     />
                 )}
             </div>
+            <ToastContainer />
         </div>
     );
 }

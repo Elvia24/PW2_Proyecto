@@ -16,8 +16,8 @@ CREATE PROCEDURE spGestionCategorias(
 )
 BEGIN
     IF p_Accion = 'IN' THEN
-        INSERT INTO Categoria(userID,nombre, descripcion,categoryImage)
-        VALUES(p_categoryID,p_nombre, p_descripcion,p_categoryImage);
+        INSERT INTO Categoria(userID,nombre, descripcion,categoryImage,eliminado)
+        VALUES(p_categoryID,p_nombre, p_descripcion,p_categoryImage,0);
     END IF;
 
     IF p_Accion = 'UP' THEN
@@ -29,13 +29,14 @@ BEGIN
     END IF;
 
     IF p_Accion = 'BO' THEN
-        DELETE FROM Categoria WHERE categoryID = p_categoryID and userID = p_userID;
+        UPDATE Categoria
+        SET eliminado = 1      WHERE categoryID = p_categoryID ;
     END IF;
 
     IF p_Accion = 'SE' THEN
         SELECT categoryID, nombre, descripcion,categoryImage
         FROM Categoria
-        WHERE userID = p_userID;
+        WHERE userID = p_userID and eliminado <> 1;
     END IF;
     
     IF p_Accion = 'SE2' THEN

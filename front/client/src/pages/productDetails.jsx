@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from '../context/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ProductDetails() {
     const { id } = useParams();
@@ -45,6 +47,7 @@ function ProductDetails() {
                 }
             } catch (error) {
                 console.error('Error fetching product:', error);
+                toast.error('Error al obtener los detalles del producto');
             }
         };
 
@@ -53,6 +56,11 @@ function ProductDetails() {
 
     const handleAddToCart = async (event) => {
         event.preventDefault();
+
+        if (productosDisponibles === 0) {
+            toast.error('El producto está agotado y no se puede agregar al carrito');
+            return;
+        }
 
         try {
             const response = await axios.post(`http://localhost:3000/productos/user/carrito`, {
@@ -67,10 +75,12 @@ function ProductDetails() {
             });
 
             if (response.status === 201) {
+                toast.success('Producto añadido al carrito');
                 navigate('/ArtemiShop_Carrito'); // Redirect to the cart page
             }
         } catch (error) {
             console.error('Error adding product to cart:', error);
+            toast.error('Error al añadir el producto al carrito');
         }
     };
 
@@ -86,21 +96,27 @@ function ProductDetails() {
                             </div>
                         </div>
                         <div className="right">
-                            <span>{nombreCategoria}</span>
+                            <span>Categoria: {nombreCategoria}</span>
                             <h1>{nombre}</h1>
                             <div className="price">${precio}</div>
 
                             <form className="form" onSubmit={handleAddToCart}>
-                                <label htmlFor="number" style={{ marginRight: '10px' }}>Productos disponibles: {Math.floor(productosDisponibles)}</label>
-                                <input
-                                    type="number"
-                                    placeholder="1"
-                                    min="1"
-                                    max={productosDisponibles}
-                                    value={cantidad}
-                                    onChange={(e) => setCantidad(Number(e.target.value))}
-                                />
-                                <button type="submit" className="addCart">Añadir al Carrito</button>
+                                {productosDisponibles > 0 ? (
+                                    <>
+                                        <label htmlFor="number" style={{ marginRight: '10px' }}>Productos disponibles: {Math.floor(productosDisponibles)}</label>
+                                        <input
+                                            type="number"
+                                            placeholder="1"
+                                            min="1"
+                                            max={productosDisponibles}
+                                            value={cantidad}
+                                            onChange={(e) => setCantidad(Number(e.target.value))}
+                                        />
+                                        <button type="submit" className="addCart">Añadir al Carrito</button>
+                                    </>
+                                ) : (
+                                    <p style={{ color: 'red' }}>Agotado</p>
+                                )}
                             </form>
                             <h3>DETALLE DEL PRODUCTO</h3>
                             <p>{descripcion}</p>
@@ -108,6 +124,7 @@ function ProductDetails() {
                     </div>
                 </section>
             </div>
+            <ToastContainer />
         </div>
     );
 }

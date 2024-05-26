@@ -1,17 +1,18 @@
-
-import Navbar from "./components/Navbar"
+import Navbar from "./components/Navbar";
 import axios from 'axios';
 import React, { useState } from 'react';
-import { validarContraseña } from '../js/validarPassword';
-import { iniciarRegistro } from '../js/validarPassword';
+import { useNavigate } from 'react-router-dom';
+import { validarContraseña, iniciarRegistro } from '../js/validarPassword';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Registro() {
-    
     const [errorConfirmacion, setErrorConfirmacion] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
 
-        
         const formData = new FormData(event.target);
         const username = formData.get('username');
         const email = formData.get('email');
@@ -20,15 +21,12 @@ function Registro() {
         const direccion = formData.get('direccion');
         const role = parseInt(event.target.role.value, 10);
 
-
-        
-        if(password !== confirmPassword) {
+        if (password !== confirmPassword) {
             setErrorConfirmacion('Las contraseñas no coinciden.');
-            return; 
+            return;
         }
 
         try {
-            
             const response = await axios.post('http://localhost:3000/auth/registro', {
                 username,
                 email,
@@ -37,13 +35,13 @@ function Registro() {
                 role
             });
 
-            
-            console.log(response.data.message);
-            alert('Registro exitoso!'); 
-            
+            toast.success('Registro exitoso!');
+            setTimeout(() => {
+                navigate('/'); // Redirigir a la página de inicio después de 3 segundos
+            }, 3000);
         } catch (error) {
             console.error("Error al registrar el usuario", error);
-            alert('Error al registrar el usuario'); 
+            toast.error('Error al registrar el usuario');
         }
     };
 
@@ -84,6 +82,7 @@ function Registro() {
                     </form>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }

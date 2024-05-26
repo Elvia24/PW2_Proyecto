@@ -7,6 +7,8 @@ import SalesReport from './components/SalesReport';
 import PurchaseReport from './components/PurchaseReport';
 import { useUserData } from '../js/data/userData';  
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Perfil() {
     const { isAuthenticated, userDetails, updateUserDetails,setUserDetails } = useAuth();
@@ -46,11 +48,11 @@ function Perfil() {
             });
             if (response.data) {
                 updateUserDetails(updatedUser);  
-                alert('Información actualizada correctamente');
+                toast.success('Información actualizada correctamente');
             }
         } catch (error) {
             console.error('Error al actualizar la información del usuario:', error);
-            alert('Error al actualizar la información');
+            toast.error('Error al actualizar la información');
         }
     };
 
@@ -77,7 +79,7 @@ function Perfil() {
                                 <button onClick={() => handleClick("session-report-compra")} className={seccionVisible === 'session-report-compra' ? 'active' : ''}>Mis Compras</button>
                                 <br /><hr /><br />
                                 <Link to="/ArtemiShop_misProductos"className="button-group-perfil"><button>Mis Productos</button></Link>
-                        <Link to="/ArtemiShop_misCategorias"className="button-group-perfil"><button>Mis Categorias</button></Link>
+                                <Link to="/ArtemiShop_misCategorias"className="button-group-perfil"><button>Mis Categorias</button></Link>
                             </li>
                         </ul>
                     </div>
@@ -126,6 +128,7 @@ function Perfil() {
                     {seccionVisible === 'session-report-compra' && <PurchaseReport />}
                 </section>
             </div>
+            <ToastContainer />
         </div>
     );
 }

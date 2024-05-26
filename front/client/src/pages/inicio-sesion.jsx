@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext.jsx';  // Asegúrate de tener la ruta correcta al contexto
+import { useAuth } from '../context/AuthContext.jsx'; 
 import Navbar from "./components/Navbar";
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function InicioSesion() {
     const [message, setMessage] = useState('');
@@ -23,13 +25,15 @@ function InicioSesion() {
             
             if (response.data.token) {
                 await login(response.data.token); // Asegúrate de que login ahora maneja la carga de datos del usuario
-                setMessage('Inicio de sesión exitoso');
-                navigate('/');
+                toast.success('Inicio de sesión exitoso');
+                setTimeout(() => {
+                    navigate('/');
+                }, 3000);
             } else {
-                setMessage('Inicio de sesión exitoso, pero no se recibió token.');
+                toast.warning('Inicio de sesión exitoso, pero no se recibió token.');
             }
         } catch (error) {
-            setMessage(error.response ? error.response.data.message : 'Ocurrió un error al procesar la solicitud.');
+            toast.error(error.response ? error.response.data.message : 'Ocurrió un error al procesar la solicitud.');
         }
     };
 
@@ -53,6 +57,7 @@ function InicioSesion() {
                     </form>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }

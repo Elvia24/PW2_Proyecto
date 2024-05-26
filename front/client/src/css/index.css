@@ -840,6 +840,27 @@ th:last-child {
   align-self: center;
 }
 
+.login2-form {
+  padding: 10px 20px 10px 20px;
+  max-width: 50rem;
+  margin: 1rem auto;
+  background-color: var(--yellow_save_changes);
+  border-radius: 10px;
+}
+
+.login2-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login2-form form h1 {
+  margin-bottom: 1rem;
+  /* font-family: 'Protest Riot', sans-serif; */
+  align-self: center;
+}
+
+
+
 .login-form form p {
   margin-bottom: 2rem;
 }
