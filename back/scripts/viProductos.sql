@@ -11,6 +11,7 @@ SELECT
     p.descripcion,
     p.precio,
     p.cantidad,
+    p.eliminado,
     c.nombre AS nombreCategoria,
     (SELECT COUNT(*) FROM Productos) AS total
 

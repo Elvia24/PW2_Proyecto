@@ -23,6 +23,10 @@ productoRoutes.get('/pages', (req, res) => {
 });
 productoRoutes.get('/', productoCtrl.getAllProducts);
 productoRoutes.get('/user', productoCtrl.getUserProducts);
+productoRoutes.get('/user/carrito', productoCtrl.getUserProductsCarrito);
+productoRoutes.post('/user/carrito', productoCtrl.addUserProductsCarrito);
+productoRoutes.delete('/user/carrito', productoCtrl.deleteUserProductsCarrito);
+productoRoutes.patch('/user/carrito', productoCtrl.patchUserProductsCarrito);
 productoRoutes.post('/', upload.single('productImage'), productoCtrl.addProduct);
 productoRoutes.put('/', upload.single('productImage'), productoCtrl.updateProduct);
 productoRoutes.delete('/', productoCtrl.deleteProduct);

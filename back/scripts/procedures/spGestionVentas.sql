@@ -16,6 +16,7 @@ BEGIN
     IF p_Accion = 'IN' THEN
         INSERT INTO Ventas(userID, fecha, pago, total)
         VALUES(p_userID, p_fecha, p_pago, p_total);
+        SELECT LAST_INSERT_ID() AS new_saleID;
     END IF;
 
     IF p_Accion = 'UP' THEN
@@ -39,3 +40,4 @@ BEGIN
 END //
 
 DELIMITER ;
+ 

@@ -19,8 +19,8 @@ CREATE PROCEDURE spGestionProductos(
 )
 BEGIN
     IF p_Accion = 'IN' THEN
-        INSERT INTO Productos(userID, categoryID, nombre, productImage, descripcion, precio, cantidad)
-        VALUES(p_userID, p_categoryID, p_nombre, p_productImage, p_descripcion, p_precio, p_cantidad);
+        INSERT INTO Productos(userID, categoryID, nombre, productImage, descripcion, precio, cantidad, eliminado)
+        VALUES(p_userID, p_categoryID, p_nombre, p_productImage, p_descripcion, p_precio, p_cantidad, 0);
     END IF;
 
     IF p_Accion = 'UP' THEN
@@ -34,30 +34,40 @@ BEGIN
             productImage = p_productImage
         WHERE productID = p_productID and userID = p_userID;
     END IF;
+    
+    IF p_Accion = 'UP2' THEN
+        UPDATE Productos
+        SET cantidad = cantidad - p_cantidad            
+        WHERE productID = p_productID;
+    END IF;
 
     IF p_Accion = 'BO' THEN
-        DELETE FROM Productos WHERE productID = p_productID and userID = p_userID;
+        UPDATE Productos
+        SET eliminado = 1      WHERE productID = p_productID ;
     END IF;
 
     IF p_Accion = 'SE' THEN
         SELECT productID, userID, categoryID, nombre, productImage, descripcion, precio, cantidad,total,nombreCategoria
         FROM viProductos
-        LIMIT p_Limit OFFSET p_Offset;
+        WHERE eliminado <> 1
+        LIMIT p_Limit OFFSET p_Offset
+        ;
     END IF;
 
     IF p_Accion = 'SE2' THEN
         SELECT productID, userID, categoryID, nombre, productImage, descripcion, precio, cantidad,nombreCategoria
         FROM viProductos
-        WHERE productID = p_productID;
+        WHERE productID = p_productID and eliminado <> 1;
     END IF;
     IF p_Accion = 'SE3' THEN
         SELECT productID, userID, categoryID, nombre,productImage, descripcion, precio, cantidad,nombreCategoria
-        FROM viProductos;    
+        FROM viProductos
+        WHERE eliminado <> 1;    
     END IF;
     IF p_Accion = 'SE4' THEN
         SELECT productID, userID, categoryID, nombre,productImage, descripcion, precio, cantidad,nombreCategoria
         FROM viProductos
-        WHERE userID = p_userID;    
+        WHERE userID = p_userID and eliminado <> 1;    
     END IF;
 END //
 

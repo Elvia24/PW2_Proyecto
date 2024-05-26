@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS Carrito;
 CREATE TABLE Carrito
 (
   cartID INT auto_increment PRIMARY KEY NOT NULL, -- PK 
-  saleID INT NOT NULL, -- FK a la tabla Ventas
+  userID INT NOT NULL, -- FK a la tabla Usuarios
   productID INT NOT NULL, -- FK a la tabla Productos
   precio DECIMAL(10,2) not null,
   cantidad DECIMAL(10,2) not null 
@@ -41,7 +41,8 @@ CREATE TABLE Productos
   productImage VARCHAR(200),
   descripcion VARCHAR(300),  
   precio DECIMAL(10,2) NOT NULL,
-  cantidad DECIMAL(10,2) NOT NULL
+  cantidad DECIMAL(10,2) NOT NULL,
+  eliminado bool  NOT NULL
 );
 
 
@@ -84,7 +85,7 @@ ALTER TABLE DetalleVenta
     ADD CONSTRAINT FK_UsuLista_iDUsuario5   FOREIGN KEY (productID) REFERENCES Productos(productID);
     
 ALTER TABLE Carrito
-	ADD CONSTRAINT FK_UsuLista_iDUsuario6   FOREIGN KEY (saleID) REFERENCES Ventas(saleID),
+	ADD CONSTRAINT FK_UsuLista_iDUsuario6   FOREIGN KEY (userID) REFERENCES Usuarios(userID),
     ADD CONSTRAINT FK_UsuLista_iDUsuario7   FOREIGN KEY (productID) REFERENCES Productos(productID);
 
 

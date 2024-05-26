@@ -732,6 +732,21 @@ table {
   border-collapse: collapse;
 }
 
+/* Estilos para el botón de eliminar */
+.btn-eliminar {
+  background-color: var(--red_delete);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-eliminar:hover {
+  background-color: var(--red_delete2);
+}
+
 .cart-info {
   display: flex;
   flex-wrap: wrap;

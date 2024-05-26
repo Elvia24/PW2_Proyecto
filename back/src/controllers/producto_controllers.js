@@ -43,7 +43,7 @@ const updateProduct = async (req, res) => {
         }
 
         const [result] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
-            'UP', userID, productID, categoryID, nombre, imageUrl, descripcion, precio, cantidad, cantidad, cantidad
+            'UP', productID, userID, categoryID, nombre, imageUrl, descripcion, precio, cantidad, cantidad, cantidad
         ]);
 
         res.status(200).json({ success: true, message: 'Producto actualizado correctamente' });
@@ -58,7 +58,7 @@ const deleteProduct = async (req, res) => {
         const { userID, productID } = req.body;
 
         const [result] = await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
-            'BO', userID, productID, 1, '', '', '', 0, 0, 0, 0
+            'BO', productID, userID, 1, '', '', '', 0, 0, 0, 0
         ]);
 
         if (result.affectedRows === 0) {
@@ -112,6 +112,77 @@ const getUserProducts = async (req, res) => {
     } catch (error) {
         console.error('Error al buscar productos:', error.message);
         res.status(500).json({ message: error.message });
+    }
+};
+
+const getUserProductsCarrito = async (req, res) => {
+    const userID = req.headers.userid;
+    console.log(userID);
+    
+    try {
+        const [results] = await pool.promise().query('CALL spGestionCarrito(?, ?, ?, ?, ?, ?)', ['SE', 0, userID, 0, 0, 0]);
+
+        if (results[0].length > 0) {
+            res.json({
+                success: true,
+                message: 'Productos encontrados en el carrito',
+                data: results[0]
+            });
+        } else {
+            res.json({
+                success: true,
+                message: 'No se encontraron productos en el carrito',
+                data: []
+            });
+        }
+    } catch (error) {
+        console.error('Error al buscar productos:', error.message);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+const deleteUserProductsCarrito = async (req, res) => {
+    const userID = req.headers.userid;
+    const productID = req.headers.productid;
+    console.log(userID);
+    
+    try {
+        const [results] = await pool.promise().query('CALL spGestionCarrito(?, ?, ?, ?, ?, ?)', ['BO', 0, userID, productID, 0, 0]);
+
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'Producto no encontrado o el usuario no coincide' });
+        }
+
+        res.status(200).json({ success: true, message: 'Producto eliminado correctamente' });
+    } catch (error) {
+        console.error('Error al borrar productos:', error.message);
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+const addUserProductsCarrito = async (req, res) => {
+    const { userID, productID, precio, cantidad } = req.body;
+    
+    try {
+        const [results] = await pool.promise().query('CALL spGestionCarrito(?, ?, ?, ?, ?, ?)', ['IN', 0, userID, productID, precio, cantidad]);
+
+        res.status(201).json({ success: true, message: 'Producto agregado al carrito correctamente', productId: results.insertId });
+    } catch (error) {
+        console.error('Error al agregar producto al carrito:', error.message);
+        res.status(500).json({ success: false, message: 'Error al agregar producto', error: error.message });
+    }
+};
+
+const patchUserProductsCarrito = async (req, res) => {
+    const { userID, productID, cantidad } = req.body;
+    
+    try {
+        const [results] = await pool.promise().query('CALL spGestionCarrito(?, ?, ?, ?, ?, ?)', ['up', 0, userID, productID, 0, cantidad]);
+
+        res.status(201).json({ success: true, message: 'Producto modificado correctamente', productId: results.insertId });
+    } catch (error) {
+        console.error('Error al modificar producto al carrito:', error.message);
+        res.status(500).json({ success: false, message: 'Error al modificar producto', error: error.message });
     }
 };
 
@@ -178,7 +249,11 @@ module.exports = {
     getUserProducts,
     updateProduct,
     deleteProduct,
-    getProductById
+    getProductById,
+    getUserProductsCarrito,
+    addUserProductsCarrito,
+    deleteUserProductsCarrito,
+    patchUserProductsCarrito
     
   };
 

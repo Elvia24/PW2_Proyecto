@@ -1,67 +1,193 @@
-import React, { useState } from 'react';
-import Navbar from "./components/Navbar"
-function Carrito() {
-        // Suponiendo que cada producto tenga un estado para su cantidad
-        /* TODO: al cambiar la cantidad el subtotal tambien cambiara
-        es decir si tenemos 50 de precio original y el usuario cambia la cantidad 
-        del producto a compar el sub total cambiara a 100*/
-        const [cantidad, setCantidad] = useState(1);
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
+import Navbar from './components/Navbar';
+import { useNavigate } from 'react-router-dom'; 
+import { useAuth } from '../context/AuthContext';
+import VerCarrito from './components/VerCarrito';
 
-        const handleCantidadChange = (event) => {
-            setCantidad(event.target.value);
-        };
+function Carrito() {
+    const [items, setItems] = useState([]);
+    const [subtotal, setSubtotal] = useState(0);
+    const [impuesto, setImpuesto] = useState(0);
+    const [total, setTotal] = useState(0);
+    const { userDetails, isAuthenticated } = useAuth();
+    const navigate = useNavigate();
+
+    const fetchCarrito = useCallback(async () => {
+        const token = sessionStorage.getItem('token');
+
+        if (!isAuthenticated || !userDetails.userID) {
+            navigate('/');
+            return;
+        }
+
+        try {
+            const response = await axios.get(`http://localhost:3000/productos/user/carrito`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    userid: userDetails.userID
+                },
+            });
+
+            if (response.data.success) {
+                const fetchedItems = response.data.data;
+                setItems(fetchedItems);
+                console.log(fetchedItems );
+                const calculatedSubtotal = fetchedItems.reduce((sum, item) => sum + parseFloat(item.subtotal), 0);
+                const calculatedImpuesto = calculatedSubtotal * 0.25; // Asume 25% de impuesto
+                const calculatedTotal = calculatedSubtotal + calculatedImpuesto;
+
+                setSubtotal(calculatedSubtotal);
+                setImpuesto(calculatedImpuesto);
+                setTotal(calculatedTotal);
+            }
+        } catch (error) {
+            console.error('Error fetching carrito:', error);
+        }
+    }, [userDetails.userID, isAuthenticated, navigate]);
+
+    useEffect(() => {
+        fetchCarrito();
+    }, [fetchCarrito]);
+
+    const handleUpdate = async (productID, newCantidad) => {
+        const token = sessionStorage.getItem('token');
+        try {
+            const response = await axios.patch(`http://localhost:3000/productos/user/carrito`, {
+                userID: userDetails.userID,
+                productID: productID,
+                cantidad: newCantidad
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if (!response.data.success) {
+                console.error('Error updating product quantity:', response.data.message);
+            }
+        } catch (error) {
+            console.error('Error updating product quantity:', error);
+        }
+    };
+
+    const handleCantidadChange = (productID, event) => {
+        const newCantidad = Number(event.target.value);
+        setItems(items.map(item => {
+            if (item.productID === productID) {
+                item.cantidad = newCantidad;
+                item.subtotal = (item.precio * newCantidad).toFixed(2);
+            }
+            return item;
+        }));
+
+        const calculatedSubtotal = items.reduce((sum, item) => sum + parseFloat(item.subtotal), 0);
+        const calculatedImpuesto = calculatedSubtotal * 0.25;
+        const calculatedTotal = calculatedSubtotal + calculatedImpuesto;
+
+        setSubtotal(calculatedSubtotal);
+        setImpuesto(calculatedImpuesto);
+        setTotal(calculatedTotal);
+
+        handleUpdate(productID, newCantidad); // Llamar a handleUpdate para enviar la petición
+    };
+
+    const handleEliminar = async (productID) => {
+        const token = sessionStorage.getItem('token');
+
+        try {
+            const response = await axios.delete(`http://localhost:3000/productos/user/carrito`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    userid: userDetails.userID,
+                    productid: productID
+                },
+            });
+            
+            if (response.data.success) {
+                setItems(items.filter(item => item.productID !== productID));
+                
+                const calculatedSubtotal = items.reduce((sum, item) => sum + parseFloat(item.subtotal), 0);
+                const calculatedImpuesto = calculatedSubtotal * 0.25;
+                const calculatedTotal = calculatedSubtotal + calculatedImpuesto;
+
+                setSubtotal(calculatedSubtotal);
+                setImpuesto(calculatedImpuesto);
+                setTotal(calculatedTotal);
+            }
+        } catch (error) {
+            console.error('Error eliminando producto del carrito:', error);
+        }
+    };
+
+    const handleCheckout = async () => {
+        const token = sessionStorage.getItem('token');
+        try {
+            const response = await axios.post(`http://localhost:3000/auth/ventas`, {
+                userID: userDetails.userID,
+                items: items,
+                total: total,
+                fecha: new Date().toISOString().split('T')[0], // Formato YYYY-MM-DD
+                pago: total // Asume pago completo, puedes ajustar según sea necesario
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            if (response.data.success) {
+                // Limpiar el carrito después de la compra exitosa
+                setItems([]);
+                setSubtotal(0);
+                setImpuesto(0);
+                setTotal(0);
+                navigate('/ventas'); // Redirigir a la página de ventas o de confirmación
+            }
+        } catch (error) {
+            console.error('Error al finalizar la compra:', error);
+        }
+    };
 
     return (
         <div>
             <Navbar />
-            <div className="container cart">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div className="cart-info">
-                                    <img src="../../src/images/sample_images/product-2.jpg" alt="Boy’s T-Shirt" />
-                                    <div>
-                                        <p>Boy’s T-Shirt</p>
-                                        <span>Precio: $50.00</span> <br />
-                                        <a href="#">Eliminar</a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><input type="number" value={cantidad} min="1" onChange={handleCantidadChange} /></td>
-                            <td>$50.00</td>
-                        </tr>
-                        {/* Repite los <tr> para los demás productos */}
-                    </tbody>
-                </table>
-                <div className="total-price">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>Subtotal</td>
-                                <td>$200</td>
-                            </tr>
-                            <tr>
-                                <td>Impuesto</td>
-                                <td>$50</td>
-                            </tr>
-                            <tr>
-                                <td>Total</td>
-                                <td>$250</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <a href="#" className="checkout btn">Finalizar Compra</a>
-                </div>
+            <div className="container">
+                {items.length === 0 ? (
+                    <>
+                        <p>Tu carrito está vacío.</p>
+                        <div className="total-price">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Subtotal</td>
+                                        <td>$0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Impuesto</td>
+                                        <td>$0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total</td>
+                                        <td>$0.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button className="checkout btn" disabled>Finalizar Compra</button>
+                        </div>
+                    </>
+                ) : (
+                    <VerCarrito 
+                        items={items} 
+                        onCantidadChange={handleCantidadChange} 
+                        onEliminar={handleEliminar} 
+                        subtotal={subtotal} 
+                        impuesto={impuesto} 
+                        total={total} 
+                        handleCheckout={handleCheckout}
+                    />
+                )}
             </div>
         </div>
     );
 }
+
 export default Carrito;

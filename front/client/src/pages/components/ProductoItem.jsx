@@ -20,7 +20,7 @@ function ProductoItem({ producto }) {
             </div>
             <ul className="icons">
             <Link to={`/ArtemiShop_productDetails/${producto.productID}`}><li><i className='bx bxs-show'></i></li></Link>
-                <li><i className="bx bx-cart"></i></li>
+                
             </ul>
         </div>
     );

@@ -98,9 +98,44 @@ const putUser = async (req, res) => {
   }
 };
 
+const addUserVentas = async (req, res) => {
+  const { userID, items, total, fecha, pago } = req.body;
+  const args = ['IN', 0, userID, fecha, pago, total];
+  
+    try {       
+
+        // Insertar en la tabla Ventas
+        const [ventaResult] = await pool.promise().query('CALL spGestionVentas(?, ?, ?, ?, ?, ?)', args);
+
+        const saleID = ventaResult[0][0].new_saleID;
+        console.log(saleID);
+        // Insertar en la tabla DetalleVenta
+        for (let item of items) {
+          await pool.promise().query('CALL spGestionDetalleVenta(?, ?, ?, ?, ?, ?, ?)', ['IN',0,saleID, item.productID, item.precio, item.cantidad, item.subtotal]);
+
+           await pool.promise().query('CALL spGestionProductos(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+            'UP2', item.productID, 0, 0, '', '', '', 0, item.cantidad, 0, 0
+        ]);
+        }
+
+        const [results] = await pool.promise().query('CALL spGestionCarrito(?, ?, ?, ?, ?, ?)', ['BO2', 0, userID, 0, 0, 0]);
+
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'Producto no encontrado o el usuario no coincide' });
+        }
+       
+        res.json({ success: true, message: 'Compra finalizada con éxito' });
+    } catch (error) {
+        console.error('Error al finalizar la compra:', error);
+        res.status(500).json({ success: false, message: 'Error al finalizar la compra' });
+    }
+};
+
 module.exports = {
 login,
 registro,
 getUser,
-putUser 
+putUser,
+addUserVentas
+
 };
