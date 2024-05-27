@@ -3,15 +3,17 @@ import Navbar from "./components/Navbar";
 import ProductoItem from "./components/ProductoItem";
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Productos() {
     const [productos, setProductos] = useState([]);
+    const [allProductos, setAllProductos] = useState([]); // Para almacenar todos los productos
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(8);
     const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
+    const { categoryID } = useParams(); // Obtener categoryID de la URL
 
     useEffect(() => {
         if (!isAuthenticated) {
@@ -19,28 +21,42 @@ function Productos() {
             return;
         }
 
-        fetchProducts();
-    }, [isAuthenticated, currentPage]); 
+        fetchAllProducts();
+    }, [isAuthenticated]);
 
-    const fetchProducts = () => {
+    useEffect(() => {
+        filterProductsByCategory();
+    }, [categoryID, allProductos]); // Filtrar productos cuando cambie categoryID o allProductos
+
+    const fetchAllProducts = () => {
         const token = sessionStorage.getItem('token');
-        axios.get(`http://localhost:3000/productos/pages?page=${currentPage}&limit=${itemsPerPage}`, {
+        axios.get(`http://localhost:3000/productos`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
         .then(response => {
-            setProductos(response.data.data);
-            setTotalPages(response.data.pagination.totalPages); 
+            setAllProductos(response.data.data);
+            setTotalPages(Math.ceil(response.data.data.length / itemsPerPage));
         })
         .catch(error => {
             console.error('Error fetching products:', error);
         });
     };
 
+    const filterProductsByCategory = () => {
+        if (categoryID) {
+            const filteredProducts = allProductos.filter(producto => producto.categoryID === parseInt(categoryID));
+            setProductos(filteredProducts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
+        } else {
+            setProductos(allProductos.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
+        }
+    };
+
     function handlePageChange(newPage) {
         if (newPage > 0 && newPage <= totalPages) {
             setCurrentPage(newPage);
+            filterProductsByCategory();
         }
     }
 
@@ -49,7 +65,7 @@ function Productos() {
             <Navbar />
             <section className="section all-products" id="products">
                 <div className="top container">
-                    <h1>Todos Los Productos</h1>
+                    <h1>{categoryID ? `Productos de la Categoría ${categoryID}` : 'Todos Los Productos'}</h1>
                 </div>
                 <div className="product-center container">
                     {productos.map(producto => (

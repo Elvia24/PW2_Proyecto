@@ -37,6 +37,40 @@ BEGIN
         FROM Usuarios
         WHERE userID = p_userID;
     END IF;
+    
+    IF p_Accion = 'SE2' THEN
+        SELECT 
+              VendedorID,
+				Vendedor,
+				Producto,
+				Imagen,
+				Precio,
+                detalleID,
+				CantidadVendida,
+				Subtotal,
+				FechaVenta
+        FROM 
+            viVentas 
+        WHERE 
+            VendedorID = p_userID;
+    END IF;
+
+    IF p_Accion = 'SE3' THEN
+        SELECT 
+             CompradorID,
+			Comprador,
+			Producto,
+			Imagen,
+			Precio,
+			detalleID,
+			CantidadComprada,
+			Subtotal,
+			FechaCompra
+        FROM 
+            viCompras 
+        WHERE 
+            CompradorID = p_userID;
+    END IF;
 END //
 
 DELIMITER ;

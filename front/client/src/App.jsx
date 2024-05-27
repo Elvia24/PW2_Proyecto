@@ -24,6 +24,8 @@ function App(){
       <Route path='/ArtemiShop_MisProductos' element={<MisProductos />} />
       <Route path='/ArtemiShop_MisCategorias' element={<MisCategorias />} />
       <Route path='/ArtemiShop_productDetails/:id' element={<ProductDetails />} />
+      <Route path="/productos/:categoryID" element={<Productos />} />
+      
     </Routes>
   )
 }

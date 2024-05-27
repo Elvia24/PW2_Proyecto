@@ -32,6 +32,7 @@ function Categorias() {
         .then(response => {
             setCategorias(response.data.data);
             setTotalPages(response.data.pagination.totalPages); 
+            
         })
         .catch(error => {
             console.error('Error fetching categories:', error);
@@ -42,6 +43,10 @@ function Categorias() {
         if (newPage > 0 && newPage <= totalPages) {
             setCurrentPage(newPage);
         }
+    }
+
+    function handleCategoryClick(categoryID) {
+        navigate(`/productos/${categoryID}`);
     }
 
     return (
@@ -55,8 +60,8 @@ function Categorias() {
                         </div>
                         <div className="cat-center ">
                             {categorias.map(categoria => (
-                                <div className="cat" key={categoria.categoryID}>
-                                     <img src={categoria.categoryImage || defaultImage} alt={categoria.nombre} />
+                                <div className="cat" key={categoria.categoryID} onClick={() => handleCategoryClick(categoria.categoryID)}>
+                                    <img src={categoria.categoryImage || defaultImage} alt={categoria.nombre} />
                                     <div>
                                         <p>{categoria.nombre}</p>
                                     </div>

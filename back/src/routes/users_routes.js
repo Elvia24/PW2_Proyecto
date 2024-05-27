@@ -8,5 +8,7 @@ userRoutes.post('/registro', authCtrl.registro);
 userRoutes.get('/usuario', authenticateToken, authCtrl.getUser);
 userRoutes.put('/usuario', authenticateToken, authCtrl.putUser);
 userRoutes.post('/ventas',authenticateToken ,authCtrl.addUserVentas);
+userRoutes.get('/misVentas',authenticateToken ,authCtrl.getUserVentas);
+userRoutes.get('/compras',authenticateToken ,authCtrl.getUserCompras);
 
 module.exports = userRoutes;

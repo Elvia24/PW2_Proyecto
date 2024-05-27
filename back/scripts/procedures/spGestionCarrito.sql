@@ -13,9 +13,26 @@ CREATE PROCEDURE spGestionCarrito(
     IN p_cantidad DECIMAL(10,2)
 )
 BEGIN
+	DECLARE existingCartID INT;
+	DECLARE existingCantidad DECIMAL(10,2);
+    
     IF p_Accion = 'IN' THEN
-        INSERT INTO Carrito(userID, productID, precio, cantidad)
-        VALUES(p_userID, p_productID, p_precio, p_cantidad);
+        -- Verificar si ya existe un producto en el carrito con el mismo userID y productID
+        SELECT cartID, cantidad INTO existingCartID, existingCantidad
+        FROM Carrito
+        WHERE userID = p_userID AND productID = p_productID
+        LIMIT 1;
+
+        IF existingCartID IS NOT NULL THEN
+            -- Actualizar la cantidad del producto existente en el carrito
+            UPDATE Carrito
+            SET cantidad = existingCantidad + p_cantidad
+            WHERE cartID = existingCartID;
+        ELSE
+            -- Insertar un nuevo producto en el carrito si no existe
+            INSERT INTO Carrito(userID, productID, precio, cantidad)
+            VALUES(p_userID, p_productID, p_precio, p_cantidad);
+        END IF;
     END IF;
 
     IF p_Accion = 'UP' THEN

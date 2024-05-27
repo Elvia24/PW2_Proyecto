@@ -131,11 +131,85 @@ const addUserVentas = async (req, res) => {
     }
 };
 
+const getUserVentas = async (req, res) => {
+  const userID = req.headers.userid;
+  const args = ['SE2', userID, '', '', '', '', '', 1];
+
+  try {
+      const [results] = await pool.promise().query('CALL spGestionUsuarios(?, ?, ?, ?, ?, ?, ?, ?)', args);
+
+      if (results[0].length > 0) {
+          const ventas = results[0].map(user => ({
+              VendedorID: user.VendedorID,
+              Vendedor: user.Vendedor,
+              Producto: user.Producto,
+              Imagen: user.Imagen,
+              Precio: user.Precio,
+              detalleID: user.detalleID,
+              CantidadVendida: user.CantidadVendida,
+              Subtotal: user.Subtotal,
+              FechaVenta: user.FechaVenta
+          }));
+          res.json({
+              success: true,
+              data: ventas
+          });
+      } else {
+          res.json({
+              success: true,
+              data: [],
+              message: "No hay ventas disponibles"
+          });
+      }
+  } catch (error) {
+      console.error('Error al obtener datos de las ventas:', error.message);
+      res.status(500).json({ success: false, message: 'Error al procesar la solicitud' });
+  }
+};
+
+const getUserCompras = async (req, res) => {
+  const userID = req.headers.userid;
+  const args = ['SE3', userID, '', '', '', '', '', 1];
+
+  try {
+      const [results] = await pool.promise().query('CALL spGestionUsuarios(?, ?, ?, ?, ?, ?, ?, ?)', args);
+
+      if (results[0].length > 0) {
+          const compras = results[0].map(user => ({
+              CompradorID: user.CompradorID,
+              Comprador: user.Comprador,
+              Producto: user.Producto,
+              Imagen: user.Imagen,
+              Precio: user.Precio,
+              detalleID: user.detalleID,
+              CantidadComprada: user.CantidadComprada,
+              Subtotal: user.Subtotal,
+              FechaCompra: user.FechaCompra
+          }));
+          res.json({
+              success: true,
+              data: compras
+          });
+      } else {
+          res.json({
+              success: true,
+              data: [],
+              message: "No hay compras disponibles"
+          });
+      }
+  } catch (error) {
+      console.error('Error al obtener datos de las compras:', error.message);
+      res.status(500).json({ success: false, message: 'Error al procesar la solicitud' });
+  }
+};
+
 module.exports = {
 login,
 registro,
 getUser,
 putUser,
-addUserVentas
+addUserVentas,
+getUserVentas,
+getUserCompras
 
 };
