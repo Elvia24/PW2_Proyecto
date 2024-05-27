@@ -2,6 +2,7 @@ const { Router } = require('express');
 const path = require('path');
 const multer = require('multer');
 const categoryCtrl = require('../controllers/category_controllers.js');
+const { validateCategory, validateCategoryUpdate, validateCategoryDeletion } = require('../middlewares/validations/categoryValidations');
 
 const categoriaRoutes = Router();
 
@@ -23,8 +24,8 @@ categoriaRoutes.get('/pages', (req, res) => {
 });
 categoriaRoutes.get('/', categoryCtrl.getAllCategory);
 categoriaRoutes.get('/user', categoryCtrl.getUserCategory);
-categoriaRoutes.post('/', upload.single('categoryImage'), categoryCtrl.addCategory);
-categoriaRoutes.put('/', upload.single('categoryImage'), categoryCtrl.updateCategory);
-categoriaRoutes.delete('/', categoryCtrl.deleteCategory);
+categoriaRoutes.post('/', upload.single('categoryImage'),validateCategory, categoryCtrl.addCategory);
+categoriaRoutes.put('/', upload.single('categoryImage'),validateCategoryUpdate, categoryCtrl.updateCategory);
+categoriaRoutes.delete('/',validateCategoryDeletion, categoryCtrl.deleteCategory);
 
 module.exports = categoriaRoutes;
